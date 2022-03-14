@@ -11,8 +11,8 @@ jobs:
           npm run build
           npm run export
       - persist_to_workspace:
-          root: bunkernet
-          paths: [build]
+          root: ./
+          paths: [out]
 
   publish:
     docker:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: ./ 
       - run: |
           touch out/.nojekyll
           echo "www.bunkernet.dev" > out/CNAME
