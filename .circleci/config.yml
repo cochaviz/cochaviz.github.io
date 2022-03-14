@@ -44,11 +44,11 @@ workflows:
             branches:
               only:
                 - dev
-                - master
+                - main
       - publish:
           requires:
             - build
           filters:
             branches:
               only:
-                - master
+                - main
