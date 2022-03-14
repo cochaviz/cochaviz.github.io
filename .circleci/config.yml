@@ -26,7 +26,7 @@ jobs:
           echo "www.bunkernet.dev" > out/CNAME
       - add_ssh_keys:
           fingerprints:
-            - "4f:4f:31:6c:1a:6c:f3:0c:4b:3c:5e:44:15:01:56:32"
+            - "2c:f0:58:1d:90:86:ff:9f:1d:8e:a6:6d:bb:49:25:5d"
       - run: |
           npm install -g --silent gh-pages@2.0.1
           git config user.email "ci-build@bunkernet.dev"
