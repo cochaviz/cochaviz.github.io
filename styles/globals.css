@@ -1,16 +1,42 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'code';
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+    html {
+        @apply text-white;
+    }
 
-* {
-  box-sizing: border-box;
+    h1, h2, h3, h4 {
+        @apply underline underline-offset-4 decoration-2 ;
+    }
+
+    h1 {
+        @apply decoration-yellow-600 text-2xl pb-4 ;
+    }
+
+    h2 {
+        @apply decoration-green-600;
+    }
+
+    h3 {
+        @apply decoration-blue-600;
+    }
+
+    p {
+        @apply px-2 sm:px-4 py-2;
+    }
+
+    a {
+        @apply text-cyan-600 underline-offset-2 underline hover:text-green-600;
+    }
+
+    ul {
+        @apply px-6 list-disc;
+    }
+
+    ul > li {
+        @apply p-2;
+    }
 }
