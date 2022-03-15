@@ -63,8 +63,8 @@ export default function Home({ projects, posts }) {
       </p>
       <p>
         Here I collect stuff about what I&apos;ve learned, useful resources
-        and show off some cool stuff I&apos;ve made. Feel free to have a look around and tell me
-        what you think!
+        and show off some cool stuff I&apos;ve made. Feel free to have a look around and <a href="mailto:cochaviz@bunkernet.dev">tell me
+          what you think! </a>
       </p>
 
       <h1 className="pt-8">Recent Posts</h1>
@@ -99,7 +99,7 @@ export default function Home({ projects, posts }) {
         {projects.map(({ name, url, description }) => (
           <li key={name}>
             <a href={url}>{name}</a>
-            <p className="p-0 text-gray-400">{description}</p>
+            <p className="italic p-0 text-gray-400">{description}</p>
           </li>
         ))}
       </ul>
