@@ -5,7 +5,7 @@
 
 @layer base {
     html {
-        @apply text-white;
+        @apply text-black dark:text-white;
     }
 
     h1, h2, h3, h4 {
@@ -13,23 +13,23 @@
     }
 
     h1 {
-        @apply decoration-yellow-600 text-2xl pb-4 ;
+        @apply decoration-green-500 dark:decoration-yellow-600 text-2xl pb-4 ;
     }
 
     h2 {
-        @apply decoration-green-600;
+        @apply decoration-yellow-500 dark:decoration-green-600;
     }
 
     h3 {
-        @apply decoration-blue-600;
+        @apply decoration-blue-500;
     }
 
     p {
-        @apply px-2 sm:px-4 py-2;
+        @apply py-2 px-2 sm:px-4;
     }
 
     a {
-        @apply text-cyan-600 underline-offset-2 underline hover:text-green-600;
+        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600;
     }
 
     ul {
