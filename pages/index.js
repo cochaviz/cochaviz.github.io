@@ -82,7 +82,7 @@ export default function Home({ projects, posts }) {
             </Link>
             <br />
             {frontmatter.tags.map((tag) => (
-              <p className="inline italic p-0 text-gray-400">#{tag} </p>
+              <p key={tag} className="inline italic p-0 text-gray-400">#{tag} </p>
             ))}
           </li>
         ))}
