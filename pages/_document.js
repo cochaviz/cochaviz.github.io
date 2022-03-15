@@ -20,6 +20,9 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          {/* clicky traffic analysis */}
+          <script async src="//static.getclicky.com/101354370.js"></script>
+          <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101354370ns.gif" /></p></noscript>
         </body>
       </Html>
     )
