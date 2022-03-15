@@ -5,6 +5,8 @@ metaDesc: 'An example post showing off all functionalities and styles'
 date: '2022-02-14'
 tags:
   - first
+  - example 
+  - test
 ---
 
 ## Heading 2 ##

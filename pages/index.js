@@ -3,7 +3,6 @@ import Head from 'next/head';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css'
 
 export async function getStaticProps() {
   const files = fs.readdirSync('posts');
@@ -11,7 +10,7 @@ export async function getStaticProps() {
   let posts = files.map((fileName) => {
     const slug = fileName.replace('.md', '');
     const readFile = fs.readFileSync(`posts/${fileName}`, 'utf-8');
-    const {data: frontmatter} = matter(readFile);
+    const { data: frontmatter } = matter(readFile);
 
     return {
       slug,
@@ -19,16 +18,20 @@ export async function getStaticProps() {
     };
   });
 
+  // sort by most recent post
+  posts = posts.sort(function(a, b) {
+    return -a.frontmatter.date.localeCompare(b.frontmatter.date);
+  });
   posts = posts.slice(0, 4)
 
   // Automate?
   const projects = [
-    {name: "dotfiles", url:"https://www.github.com/cochaviz/dotfiles", description: "Linux configuration, and hidden files (neovim, .zshrc, etc.)" },
-    {name: "course_os", url:"https://github.com/rellermeyer/course_os", description: "Toy kernel for ARM, written by students of TU Delft" },
-    {name: "gopy", url:"https://github.com/cochaviz/gopy", description: "Go game written in python, without any dependecies " },
-    {name: "battlesnake", url:"https://github.com/cochaviz/battlesnake", description: "Repo containing my battlesnakes 🐍" },
-    {name: "dotfield", url:"https://github.com/cochaviz/dotfield", description: "Flutter package which generates a field of dots " },
-    {name: "bunkernet", url:"https://github.com/cochaviz/bunkernet", description: "Personal website containing projects, guides, and other blog posts " },
+    { name: "dotfiles", url: "https://www.github.com/cochaviz/dotfiles", description: "Linux configuration, and hidden files (neovim, .zshrc, etc.)" },
+    { name: "course_os", url: "https://github.com/rellermeyer/course_os", description: "Toy kernel for ARM, written by students of TU Delft" },
+    { name: "gopy", url: "https://github.com/cochaviz/gopy", description: "Go game written in python, without any dependecies " },
+    { name: "battlesnake", url: "https://github.com/cochaviz/battlesnake", description: "Repo containing my battlesnakes 🐍" },
+    { name: "dotfield", url: "https://github.com/cochaviz/dotfield", description: "Flutter package which generates a field of dots " },
+    { name: "bunkernet", url: "https://github.com/cochaviz/bunkernet", description: "Personal website containing projects, guides, and other blog posts " },
   ];
 
   return {
@@ -42,7 +45,15 @@ export async function getStaticProps() {
 export default function Home({ projects, posts }) {
   return (
     <div className="p-4">
-      <Head><title>bunkernet</title></Head>
+      <Head>
+        <title>bunkernet</title>
+        <meta property="og:title" content="bunkernet.dev - portfolio website and blog" key="title" />
+        <meta property="og:description"
+          content="Hi! My name is Zohar, and on this website I share cool things I have built of learned about! \
+              Check out some of my blog posts or projects"
+          key="description" />
+        <meta property="og:image" content="https://en.gravatar.com/userimage/210058707/cdb57864a558eca6d7f37cfe9eedec27.png?size=200" />
+      </Head>
 
       <h1>Hi!</h1>
       <p>
@@ -62,15 +73,19 @@ export default function Home({ projects, posts }) {
       </p>
 
       <ul>
-      {posts.map(({slug, frontmatter}) => (
+        {posts.map(({ slug, frontmatter }) => (
           <li key={slug}>
             <Link href={`/post/${slug}`}>
               <a>
                 {frontmatter.date} --//-- {frontmatter.title}
               </a>
             </Link>
+            <br />
+            {frontmatter.tags.map((tag) => (
+              <p className="inline italic p-0 text-gray-400">#{tag} </p>
+            ))}
           </li>
-      ))}
+        ))}
         <li><a>older...</a></li>
       </ul>
 
@@ -81,12 +96,12 @@ export default function Home({ projects, posts }) {
       </p>
 
       <ul>
-      {projects.map(({name, url, description}) => (
+        {projects.map(({ name, url, description }) => (
           <li key={name}>
-              <a href={url}>{name}</a>
-              <p className="p-0 text-gray-400">{description}</p>
+            <a href={url}>{name}</a>
+            <p className="p-0 text-gray-400">{description}</p>
           </li>
-      ))}
+        ))}
       </ul>
     </div>
   );
