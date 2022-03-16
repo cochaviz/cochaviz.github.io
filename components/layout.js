@@ -22,7 +22,7 @@ export default function Layout({ children }) {
       <main className="container max-w-4xl mx-auto flex-1 sm:px-8">{children}</main>
 
       <footer className="bg-neutral-200 dark:bg-black mt-8 py-4">
-        <div className="container mx-auto text-neutral-500 flex justify-center">
+        <div className="container mx-auto text-neutral-400 flex justify-center">
           &copy; 2022 - Zohar Cochavi
         </div>
       </footer>
