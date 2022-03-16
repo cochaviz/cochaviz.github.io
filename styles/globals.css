@@ -6,7 +6,7 @@
 @layer base {
     body {
         @apply text-black dark:text-white;
-        cursor: url(/favicon.ico) 45 5, auto;
+        cursor: url(/favicon-32x32.png) 45 5, auto;
     }
 
     h1, h2, h3, h4 {
@@ -34,7 +34,7 @@
     }
 
     a:hover {
-        cursor: url(/pointer.ico) 40 0, auto;
+        cursor: url(/pointer.png) 40 0, auto;
     }
 
     ul {
