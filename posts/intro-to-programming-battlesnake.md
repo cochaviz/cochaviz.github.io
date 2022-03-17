@@ -4,6 +4,7 @@ metaTitle: 'Introduction to programming with snake AI'
 metaDesc: 'An introduction to programming with the goal of implementing an AI that will compete in the developer game Battlesnake'
 date: '2022-02-16'
 tags:
+  - wip
   - battlesnake
   - tutorial
   - beginner/novice
@@ -52,11 +53,11 @@ what isn't, so I'll make sure keep concepts and  implementation separate.
 The tutorial assumes that you are a beginner, but that you have some basic
 knowledge about programming.  More specifically, you
 
-- have an environment in which you can write and run code (i.e. an IDE)
-- know how use logic in you programming language of choice (e.g. if-statements)
-- know how to use any of: classes/objects/structs (if you language supports
+- **have an environment** in which you can write and run code (i.e. an IDE)
+- **know how use logic** in you programming language of choice (e.g. if-statements)
+- know how to use any of: **classes/objects/structs** (if you language supports
   those)
-- have made a couple of small practice projects (not necessary, but highly
+- **have made a couple of small practice projects** (not necessary, but highly
   recommended for fluency)
 
 If some of these don't apply to you, I would highly encourage you to pick up a
@@ -129,14 +130,46 @@ The reason why we need to provide a URL when creating a snake, is because the
 snake is essentially a [web service](). I briefly mentioned this in the
 introduction, but now I'll elaborate on what that actually means.
 
-To put it concretely, our snake will run its own computer (server) and the
-Battlesnake game server will send us the current state of the game (location of
-all the snake, food, size of the field, etc.) and ask us what our next move is.
-We then send a response, this simply contains the action: "up", "down", "left",
-and "right". But for the Battlesnake server to reach us we to tell it our
-location, the URL.
+To put it concretely, our snake will run on its own remote computer (server),
+the Battlesnake game server will send us the current state of the game (location
+of all the snake, food, size of the field, etc.) and ask us what our next move
+is.  We then send a response (indicated `{response}` in the diagram), this
+simply contains the action: "up", "down", "left", or "right". But for the
+Battlesnake server to reach us we to tell it our location, the URL. If you would
+this manually, this is the equivalent of typing the URL, let's say
+`my-awesome-snake.dev`, and appending `/move` to it, giving us
+`my-awesome-snake.dev/move`. This is what we call an [endpoint](). There is also
+a endpoint for indicating that we want to start to game, which would be
+`my-awesome-snake.dev/start`. And one for ending the game, `/end`. You get the
+idea. 
 
 ![transaction
 diagram](/images/post/intro-to-programming-battlesnake/transaction-diagram.svg
 "Transaction diagram of the requests and responses made during a Battlesnake
-game. Here **/start**, **/move** and **/end** are the so-called end-points")
+game. Here to the endpoints **/start**, **/move**, and **/end**")
+
+As you can imagine, there is no real need to send any info back to the
+Battlesnake server when it send a web-request to our snake on `/end`, telling it
+to end the game. But we do definitely need to send a response when we've been
+asked to make a move. Just like we really need to receive some information about
+the game, for example, what moves the others have made. The specification for
+what type of requests we need to handle (does the request contain information?
+Do we need to send anything back; give a response?), as well as the format that the information
+is in (e.g. a two-dimensional array representing the board) is called an
+[Application Programming Interface, or API](). 
+
+Having an API is great, because it means that **two programs can
+communicate, without them needing to know exactly how the other works**. Since
+the only import thing is that they know what to expect when they ask the other
+something. Just as they know what to provide in order to make sure the other can
+successfully perform their required task. This is exactly the reason why you
+should be able to program in any language you want! **As long as you adhere to
+the API specification, you can implement your snake in anything you want**.
+
+Of course, the Battlesnake documentation also [contains a specification for the
+API of the snake](). Go and see if you can find the endpoints mentioned before.
+There is actually one more endpoint I didn't mention, try to see if you can find
+it and figure out what it does! 
+
+
+
