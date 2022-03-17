@@ -138,7 +138,8 @@ simply contains the action: "up", "down", "left", or "right". But for the
 Battlesnake server to reach us we to tell it our location, the URL. If you would
 this manually, this is the equivalent of typing the URL, let's say
 `my-awesome-snake.dev`, and appending `/move` to it, giving us
-`my-awesome-snake.dev/move`. This is what we call an [endpoint](). There is also
+`my-awesome-snake.dev/move`. This is what we call an
+[endpoint](https://en.wikipedia.org/wiki/Communication_endpoint). There is also
 a endpoint for indicating that we want to start to game, which would be
 `my-awesome-snake.dev/start`. And one for ending the game, `/end`. You get the
 idea. 
@@ -156,7 +157,7 @@ the game, for example, what moves the others have made. The specification for
 what type of requests we need to handle (does the request contain information?
 Do we need to send anything back; give a response?), as well as the format that the information
 is in (e.g. a two-dimensional array representing the board) is called an
-[Application Programming Interface, or API](). 
+[Application Programming Interface, or API](https://en.wikipedia.org/wiki/API). 
 
 Having an API is great, because it means that **two programs can
 communicate, without them needing to know exactly how the other works**. Since
@@ -167,9 +168,10 @@ should be able to program in any language you want! **As long as you adhere to
 the API specification, you can implement your snake in anything you want**.
 
 Of course, the Battlesnake documentation also [contains a specification for the
-API of the snake](). Go and see if you can find the endpoints mentioned before.
-There is actually one more endpoint I didn't mention, try to see if you can find
-it and figure out what it does! 
+API of the snake](https://docs.battlesnake.com/references/api). Go and see if
+you can find the endpoints mentioned before.  There is actually one more
+endpoint I didn't mention, try to see if you can find it and figure out what it
+does! 
 
 
 
