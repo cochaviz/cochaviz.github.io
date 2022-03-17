@@ -74,7 +74,7 @@ be using Go to illustrate examples, I will try to keep all language-dependent
 parts separate.
 
 First, I'll introduce the game, Battlesnake, rules and the different tools we'll
-need.  Then we'll touch upon web-services and APIs; how our application will
+need.  Then we'll touch upon web services and APIs; how our application will
 communicate with the Battlesnake server.  Following that, I'll introduce
 software to manage different versions of your code, and a platform to upload
 your code to.  Finally, we will spin up a server which will use the code we've
@@ -127,8 +127,9 @@ required field, but head to next section and I'll explain what's going on.
 ### How Battlesnake _actually_ works
 
 The reason why we need to provide a URL when creating a snake, is because the
-snake is essentially a [web service](). I briefly mentioned this in the
-introduction, but now I'll elaborate on what that actually means.
+snake is essentially a [web service](https://en.wikipedia.org/wiki/Web_service).
+I briefly mentioned this in the introduction, but now I'll elaborate on what
+that actually means.
 
 To put it concretely, our snake will run on its own remote computer (server),
 the Battlesnake game server will send us the current state of the game (location
@@ -155,9 +156,10 @@ to end the game. But we do definitely need to send a response when we've been
 asked to make a move. Just like we really need to receive some information about
 the game, for example, what moves the others have made. The specification for
 what type of requests we need to handle (does the request contain information?
-Do we need to send anything back; give a response?), as well as the format that the information
-is in (e.g. a two-dimensional array representing the board) is called an
-[Application Programming Interface, or API](https://en.wikipedia.org/wiki/API). 
+Do we need to send anything back; give a response?), as well as the format that
+the information is in (e.g. a two-dimensional array representing the board) is
+called an [Application Programming Interface, or
+API](https://en.wikipedia.org/wiki/API). 
 
 Having an API is great, because it means that **two programs can
 communicate, without them needing to know exactly how the other works**. Since
