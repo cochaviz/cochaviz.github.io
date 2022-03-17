@@ -56,7 +56,7 @@ export default function Home({ projects, posts }) {
           content="Hi! My name is Zohar, and on this website I share cool things I have built of learned about! \
               Check out some of my blog posts or projects"
           key="description" />
-        <meta property="og:image" content="https://en.gravatar.com/userimage/210058707/cdb57864a558eca6d7f37cfe9eedec27.png?size=200" />
+        <meta property="og:image" content="/meta-image.png" />
       </Head>
 
       <h1>Hi! My name is Zohar</h1>
