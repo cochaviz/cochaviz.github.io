@@ -8,7 +8,6 @@
         @apply text-black dark:text-white;
         cursor: url(/favicon-32x32.png) 45 5, auto;
     }
-
     h1, h2, h3, h4 {
         @apply underline underline-offset-4 decoration-2 ;
     }
@@ -30,7 +29,7 @@
     }
 
     a {
-        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600;
+        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600 focus:outline-double focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
     }
 
     a:hover {

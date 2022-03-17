@@ -86,7 +86,7 @@ export default function Home({ projects, posts }) {
             ))}
           </li>
         ))}
-        <li><a>older...</a></li>
+        <li className="text-neutral-500">older...</li>
       </ul>
 
       <h1 className="pt-8">Projects</h1>
