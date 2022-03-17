@@ -10,6 +10,8 @@ tags:
   - ai
 ---
 
+[[toc]]
+
 ## Introduction
 
 In this post I'll walk you through concepts of programming and application
