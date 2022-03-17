@@ -51,6 +51,7 @@ export default function PostPage({ frontmatter, content }) {
         <title>{frontmatter.title}</title>
         <meta property="og:title" content={frontmatter.metaTitle} key="title" />
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
+        <meta property="og:image" content={frontmatter.metaImg} key="image" />
       </Head>
       <div id="button" className="text-left px-0">
         <a className="text-4xl no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 px-3 py-1 border-dashed border-2"

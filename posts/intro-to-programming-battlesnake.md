@@ -2,6 +2,7 @@
 title: 'Intro to programming: implementing a snake AI 🐍'
 metaTitle: 'Introduction to programming with snake AI'
 metaDesc: 'An introduction to programming with the goal of implementing an AI that will compete in the developer game Battlesnake'
+metaImg: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.battlesnake.com%2Fcontent%2Fimages%2F2021%2F06%2FMediumSocial-1.png&f=1&nofb=1'
 date: '2022-02-16'
 tags:
   - wip
