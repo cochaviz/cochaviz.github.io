@@ -44,7 +44,7 @@ export async function getStaticProps() {
 
 export default function Home({ projects, posts }) {
   return (
-    <div className="p-4">
+    <div>
       <Head>
         <title>bunkernet</title>
         <meta property="og:title" content="bunkernet.dev - portfolio website and blog" key="title" />
@@ -67,7 +67,7 @@ export default function Home({ projects, posts }) {
           what you think! </a>
       </p>
 
-      <h1 className="pt-8">Recent Posts</h1>
+      <h2>Recent Posts</h2>
       <p>
         Most recent blog posts. Check the archive for more!
       </p>
@@ -82,14 +82,14 @@ export default function Home({ projects, posts }) {
             </Link>
             <br />
             {frontmatter.tags.map((tag) => (
-              <p key={tag} className="inline italic p-0 text-gray-400">#{tag} </p>
+              <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
             ))}
           </li>
         ))}
         <li className="text-neutral-500">older...</li>
       </ul>
 
-      <h1 className="pt-8">Projects</h1>
+      <h2>Projects</h2>
       <p>
         Here you can find the projects I&apos;m mosts proud of!
         (this is just a proxy for the pinned projects from my <a href="https://www.github.com/cochaviz">github profile</a>)
@@ -99,7 +99,7 @@ export default function Home({ projects, posts }) {
         {projects.map(({ name, url, description }) => (
           <li key={name}>
             <a href={url}>{name}</a>
-            <p className="italic p-0 text-gray-400">{description}</p>
+            <p className="italic p-0 m-0 text-gray-400">{description}</p>
           </li>
         ))}
       </ul>

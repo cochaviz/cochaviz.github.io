@@ -1,17 +1,23 @@
+import Head from 'next/head';
+
 import fs from 'fs';
 import matter from 'gray-matter';
+
 import markdownIt from 'markdown-it';
 import highlightjs from 'markdown-it-highlightjs';
 import figure from 'markdown-it-image-figures';
+import anchor from 'markdown-it-anchor';
 import emojis from 'markdown-it-emoji';
-import Head from 'next/head';
+import toc from 'markdown-it-toc-done-right';
 
 const md = markdownIt()
   .use(highlightjs)
   .use(emojis)
   .use(figure, {
     figcaption: true,
-  });
+  })
+  .use(anchor)
+  .use(toc);
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
@@ -40,12 +46,16 @@ export async function getStaticProps({ params: { slug } }) {
 
 export default function PostPage({ frontmatter, content }) {
   return (
-    <div className="prose dark:prose-invert mx-auto px-4 pt-4 sm:pt-0">
+    <div>
       <Head>
         <title>{frontmatter.title}</title>
         <meta property="og:title" content={frontmatter.metaTitle} key="title" />
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
       </Head>
+      <div id="button" className="text-left px-0">
+        <a className="text-4xl no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 px-3 py-1 border-dashed border-2"
+          href="#TOP">↑</a>
+      </div>
       <h1>{frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />
     </div>
