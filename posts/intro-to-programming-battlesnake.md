@@ -115,10 +115,26 @@ GitHub, then head over to Battlesnake to [create an
 account](https://play.battlesnake.com/login/) and select the **Sign in with
 GitHub** button.
 
-Awesome, now we can head over to Battlesnake to [create a new snake](https://play.battlesnake.com/account/snakes/create/ ). Give it a name
-(I name my snakes after Lord of the Rings characters)! And... Huh? A URL? Yes, a
+Awesome, now we can head over to Battlesnake to [create a new
+snake](https://play.battlesnake.com/account/snakes/create/ ). Give it a name (I
+name my snakes after Lord of the Rings characters)! And... Huh? A URL? Yes, a
 URL. This is where the fun begins. For now we'll cancel, since the URL is a
 required field, but head to next section and I'll explain what's going on.
 
 ### How Battlesnake _actually_ works
- 
+
+The reason why we need to provide a URL when creating a snake, is because the
+snake is essentially a [web service](). I briefly mentioned this in the
+introduction, but now I'll elaborate on what that actually means.
+
+To put it concretely, our snake will run its own computer (server) and the
+Battlesnake game server will send us the current state of the game (location of
+all the snake, food, size of the field, etc.) and ask us what our next move is.
+We then send a response, this simply contains the action: "up", "down", "left",
+and "right". But for the Battlesnake server to reach us we to tell it our
+location, the URL.
+
+![transaction
+diagram](/images/post/intro-to-programming-battlesnake/transaction-diagram.svg
+"Transaction diagram of the requests and responses made during a Battlesnake
+game. Here **/start**, **/move** and **/end** are the so-called end-points")
