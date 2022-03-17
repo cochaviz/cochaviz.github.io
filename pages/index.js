@@ -18,6 +18,10 @@ export async function getStaticProps() {
     };
   });
 
+  // filter out wip posts
+  posts = posts.filter(function(e) {
+    return !e.frontmatter.tags.includes('wip')
+  });
   // sort by most recent post
   posts = posts.sort(function(a, b) {
     return -a.frontmatter.date.localeCompare(b.frontmatter.date);
