@@ -43,4 +43,12 @@
     ul > li {
         @apply p-2;
     }
+
+    figure > img {
+        @apply mx-auto;
+    }
+
+    figcaption {
+        @apply text-center
+    }
 }

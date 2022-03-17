@@ -2,10 +2,16 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import markdownIt from 'markdown-it';
 import highlightjs from 'markdown-it-highlightjs';
+import figure from 'markdown-it-image-figures';
 import emojis from 'markdown-it-emoji';
 import Head from 'next/head';
 
-const md = markdownIt({ html: true }).use(highlightjs).use(emojis);
+const md = markdownIt()
+  .use(highlightjs)
+  .use(emojis)
+  .use(figure, {
+    figcaption: true,
+  });
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
