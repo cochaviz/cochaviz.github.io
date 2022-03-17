@@ -55,9 +55,9 @@ export default function Home({ projects, posts }) {
         <meta property="og:image" content="https://en.gravatar.com/userimage/210058707/cdb57864a558eca6d7f37cfe9eedec27.png?size=200" />
       </Head>
 
-      <h1>Hi!</h1>
+      <h1>Hi! My name is Zohar</h1>
       <p>
-        My name is Zohar, I&apos;m a computer science and engineering student at Delft University of Technology.
+        I&apos;m a computer science and engineering student at Delft University of Technology.
         Academically I&apos;m very interested in algorithms and collaborative AI, among other things.
         When I&apos;m not studying I love to make projects about anything that seems interesting at the moment.
       </p>

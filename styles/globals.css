@@ -17,20 +17,24 @@
         @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
     }
 
-    h1, h2, h3, h4 {
+    h2, h3, h4 {
         @apply underline underline-offset-4 decoration-2;
     }
 
     h1 {
-        @apply decoration-green-500 dark:decoration-yellow-600;
+        @apply m-2 my-8 p-4 border-2 border-yellow-600 border-dashed text-center;
     }
 
     h2 {
-        @apply decoration-yellow-500 dark:decoration-green-600;
+        @apply decoration-yellow-500 dark:decoration-yellow-600;
     }
 
     h3 {
-        @apply decoration-blue-500;
+        @apply decoration-green-600;
+    }
+
+    h4 {
+        @apply decoration-blue-600;
     }
 
     p {
@@ -51,6 +55,14 @@
 
     figcaption {
         @apply text-center
+    }
+
+    li {
+        @apply pr-4;
+    }
+
+    ol {
+        @apply ml-4;
     }
 
     nav ol { counter-reset: list-item; }
