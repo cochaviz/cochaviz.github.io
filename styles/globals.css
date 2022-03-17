@@ -45,14 +45,6 @@
         cursor: url(/pointer.png) 40 0, auto;
     }
 
-    ul {
-        @apply px-6 list-disc;
-    }
-
-    ul > li {
-        @apply p-2;
-    }
-
     figure > img {
         @apply mx-auto;
     }
