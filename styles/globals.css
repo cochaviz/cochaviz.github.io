@@ -4,16 +4,25 @@
 @import 'code';
 
 @layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
     body {
         @apply text-black dark:text-white;
         cursor: url(/favicon-32x32.png) 45 5, auto;
     }
+
+    main {
+        @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
+    }
+
     h1, h2, h3, h4 {
-        @apply underline underline-offset-4 decoration-2 ;
+        @apply underline underline-offset-4 decoration-2;
     }
 
     h1 {
-        @apply decoration-green-500 dark:decoration-yellow-600 text-2xl pb-4 ;
+        @apply decoration-green-500 dark:decoration-yellow-600;
     }
 
     h2 {
@@ -25,11 +34,11 @@
     }
 
     p {
-        @apply py-2 px-2 sm:px-4;
+        @apply text-justify;
     }
 
     a {
-        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600 focus:outline-double focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
+        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
     }
 
     a:hover {
@@ -51,4 +60,8 @@
     figcaption {
         @apply text-center
     }
+
+    nav ol { counter-reset: list-item; }
+    nav li { display: block; counter-increment: list-item; }
+    nav li:before { content: counters(list-item,'.') ' '; }
 }

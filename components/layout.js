@@ -3,8 +3,8 @@ import Link from 'next/link';
 export default function Layout({ children }) {
   return (
     <div className="dark:bg-neutral-900 flex flex-col min-h-screen">
-      <header className="bg-neutral-200 dark:bg-black sm:mb-8 py-4 px-8 ">
-        <div className="container max-w-4xl mx-auto flex justify-between">
+      <header className="bg-neutral-200 dark:bg-black mb-4 sm:mb-8 py-4 px-8">
+        <div className="container max-w-3xl mx-auto flex justify-between">
           <Link href="/">
             <a className="no-underline my-auto">~/</a>
           </Link>
@@ -19,7 +19,7 @@ export default function Layout({ children }) {
         </div>
       </header>
 
-      <main className="container max-w-4xl mx-auto flex-1 sm:px-8">{children}</main>
+      <main className="container max-w-2xl">{children}</main>
 
       <footer className="bg-neutral-200 dark:bg-black mt-8 py-4">
         <div className="container mx-auto text-neutral-400 flex justify-center">
