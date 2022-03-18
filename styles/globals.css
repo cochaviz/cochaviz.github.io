@@ -17,6 +17,10 @@
         @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
     }
 
+    h1, h2, h3, h4 {
+        @apply font-mono;
+    }
+
     h2, h3, h4 {
         @apply underline underline-offset-4 decoration-2;
     }
@@ -47,6 +51,10 @@
 
     a:hover {
         cursor: url(/pointer.png) 40 0, auto;
+    }
+
+    blockquote {
+        @apply border-yellow-600 py-1 border-l-2;
     }
 
     figure > img {
