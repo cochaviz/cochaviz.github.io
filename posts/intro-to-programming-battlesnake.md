@@ -149,7 +149,7 @@ idea.
 ![transaction
 diagram](/images/post/intro-to-programming-battlesnake/transaction-diagram.svg
 "Transaction diagram of the requests and responses made during a Battlesnake
-game. Here to the endpoints **/start**, **/move**, and **/end**")
+game. Here to the endpoints `/start`, `/move`, and `/end`")
 
 As you can imagine, there is no real need to send any info back to the
 Battlesnake server when it send a web-request to our snake on `/end`, telling it
