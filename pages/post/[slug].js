@@ -55,6 +55,7 @@ export default function PostPage({ frontmatter, content }) {
       </Head>
       <a className="text-4xl font-mono no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 px-3 py-1 border-dashed border-2"
         href="#TOP">↑</a>
+      <h1>{frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />
     </div>
   );
