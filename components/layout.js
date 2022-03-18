@@ -6,11 +6,13 @@ export default function Layout({ children }) {
       <header className="bg-neutral-200 dark:bg-black py-4 px-8">
         <div className="container max-w-3xl mx-auto flex justify-between">
           <Link href="/">
-            <a className="no-underline my-auto">~/</a>
+            <a className="font-mono no-underline my-auto">~/</a>
           </Link>
 
-          <span className="hidden sm:block mx-auto my-auto text-green-600 dark:text-yellow-600">cochaviz@bunkernet.dev</span>{' '}
-          <span className="block sm:hidden mx-auto my-auto text-green-600 dark:text-yellow-600">cochaviz</span>{' '}
+          <div className="font-mono">
+            <span className="hidden sm:block mx-auto my-auto text-green-600 dark:text-yellow-600">cochaviz@bunkernet.dev</span>{' '}
+            <span className="block sm:hidden mx-auto my-auto text-green-600 dark:text-yellow-600">cochaviz</span>{' '}
+          </div>
 
           <div className="flex gap-x-2">
             <a href="https://www.github.com/zoharcochavi"> github </a>

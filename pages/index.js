@@ -46,6 +46,12 @@ export async function getStaticProps() {
   };
 }
 
+export function printTags(frontmatter) {
+  return frontmatter.tags.map((tag) => (
+    <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
+  ))
+}
+
 export default function Home({ projects, posts }) {
   return (
     <div>
@@ -84,10 +90,11 @@ export default function Home({ projects, posts }) {
                 {frontmatter.date} --//-- {frontmatter.title}
               </a>
             </Link>
-            <br />
-            {frontmatter.tags.map((tag) => (
-              <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
-            ))}
+            <div>
+              {frontmatter.tags.map((tag) => (
+                <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
+              ))}
+            </div>
           </li>
         ))}
         <li className="text-neutral-500">older...</li>
