@@ -9,6 +9,7 @@ import figure from 'markdown-it-image-figures';
 import anchor from 'markdown-it-anchor';
 import emojis from 'markdown-it-emoji';
 import toc from 'markdown-it-toc-done-right';
+import tasks from 'markdown-it-tasks';
 
 const md = markdownIt({ html: true })
   .use(highlightjs)
@@ -17,7 +18,8 @@ const md = markdownIt({ html: true })
     figcaption: true,
   })
   .use(anchor)
-  .use(toc);
+  .use(toc)
+  .use(tasks, { enabled: true });
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
