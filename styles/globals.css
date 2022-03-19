@@ -10,7 +10,7 @@
 
     body {
         @apply text-black dark:text-white;
-        cursor: url(/favicon-32x32.png) 45 5, auto;
+        cursor: url(/cursor.png) 3 7, auto;
     }
 
     main {
@@ -46,7 +46,7 @@
     }
 
     a:hover {
-        cursor: url(/pointer.png) 40 0, auto;
+        cursor: url(/pointer.png) 5 0, auto;
     }
 
     blockquote {
