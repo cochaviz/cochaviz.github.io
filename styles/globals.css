@@ -50,7 +50,7 @@
     }
 
     blockquote {
-        @apply border-yellow-600 py-1 border-l-2;
+        @apply border-yellow-600 border-l-2;
     }
 
     code {
@@ -58,7 +58,7 @@
     }
 
     kbd {
-        @apply p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
+        @apply px-2 p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
     }
 
     figure > img {
