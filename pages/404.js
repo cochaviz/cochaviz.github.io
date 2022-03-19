@@ -60,37 +60,37 @@ export default function FourOhFour() {
 
       <h1 className='border-red-600'><n className="text-red-600">4 oh... 4</n></h1>
       <p>
-        Ohno, seems like you've gotten lost my friend. Or maybe, you have found something you did not know you were looking for!
+        Ohno, seems like you&apos;ve gotten lost my friend. Or maybe, you have found something you did not know you were looking for!
         In that case, let me tell you a story...
       </p>
       <div className='p-8 text-center'>
         <p className='text-center'>
           all about how,
           My life got flipped-turned upside down,
-          And I'd like to take a minute, just sit right there,
-          I'll tell you how I became the prince of a town called Bel Air.
+          And I&apos;d like to take a minute, just sit right there,
+          I&apos;ll tell you how I became the prince of a town called Bel Air.
         </p>
         <p className='text-center'>
           In West Philadelphia, born and raised
           On the playground is where I spent most of my days.
-          Chillin' out, maxin', relaxin all cool,
-          And all shootin' some B-ball outside of the school.
+          Chillin&apos; out, maxin&apos;, relaxin all cool,
+          And all shootin&apos; some B-ball outside of the school.
         </p>
         <p className='text-center'>
           When a couple of guys who were up to no good,
-          Started makin' trouble in my neighborhood.
+          Started makin&apos; trouble in my neighborhood.
           I got in one little fight and my mom got scared,
-          And said "You're movin' with your auntie and uncle in Bel Air."
+          And said &quot;You&apos;re movin&apos; with your auntie and uncle in Bel Air.&quot;
         </p>
         <p className='text-center'>
           I whistled for a cab, and when it came near,
-          The license plate said "fresh" and it had dice in the mirror.
+          The license plate said &quot;fresh&quot; and it had dice in the mirror.
           If anything I could say that this cab was rare,
-          But I thought "Nah forget it, Yo home to Bel Air."
+          But I thought &quot;Nah forget it, Yo home to Bel Air.&quot;
         </p>
         <p className='text-center pb-10'>
           I pulled up to the house about seven or eight,
-          and I yelled to the cabby "Yo homes, smell ya later."
+          and I yelled to the cabby &quot;Yo homes, smell ya later.&quot;
           Looked at my kingdom, I was finally there,
           To sit on my throne as the Prince of Bel Air.
         </p>
