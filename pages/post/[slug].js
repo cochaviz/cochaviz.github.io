@@ -10,7 +10,7 @@ import anchor from 'markdown-it-anchor';
 import emojis from 'markdown-it-emoji';
 import toc from 'markdown-it-toc-done-right';
 
-const md = markdownIt()
+const md = markdownIt({ html: true })
   .use(highlightjs)
   .use(emojis)
   .use(figure, {

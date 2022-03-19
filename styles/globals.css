@@ -57,6 +57,10 @@
         @apply bg-neutral-700 rounded-lg p-1 before:content-none after:content-none;
     }
 
+    kbd {
+        @apply p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
+    }
+
     figure > img {
         @apply mx-auto;
     }
