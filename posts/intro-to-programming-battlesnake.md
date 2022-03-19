@@ -176,5 +176,45 @@ you can find the endpoints mentioned before.  There is actually one more
 endpoint I didn't mention, try to see if you can find it and figure out what it
 does! 
 
-## Creating out web service
+## Creating a basic snake
+
+All right, this is where most of the work is gonna take place, so I'll just tell
+you right now what to expect and how we're gonna do it. First, we'll take one of
+the beginner projects that I've mentioned before. All of them are on GitHub, and
+with just one button we can have our own version of such a so-called
+**template** to work with. Then, we'll make sure we have a local version of that
+code. This is done with git, which I'll also introduce then (in short, it allows
+us to keep track of different versions of our code and lets us sync our local
+version with a remote one, in our case GitHub). Once we've got that going, we
+will look at Heroku. This is a service that will host our code on a publicly 
+accessible URL, which will allow us to create our first snake! Once all of this
+is set up we will be able to start programming our snake logic. With that said,
+let's get going!
+
+### Creating our first repository
+
+Going back to the [starter
+projects](https://docs.battlesnake.com/references/starter-projects), click on
+the one that you would like to use. This should bring you to GitHub, where you
+will click the big green button saying 
+<kbd style="color: white; display:inline-block; background-color:darkgreen">
+  Use this template
+</kbd>. Give it a name, keep it public, and click
+<kbd style="color: white; display:inline-block; background-color:darkgreen">
+ Create repository from template
+</kbd>. Congratulations! You have made your first repository  :partying_face:!
+"But what is a repository?", I can hear you ask. Well, let me explain. 
+
+A repository is a folder in which [git]() tracks changes in order to organize
+the history of your code. And what is git? Well, it simply is a tool to organize
+the history, or, the different versions of you code, a [Version Control
+System, or VCS](). It allows you to **commit** changes in batches, and requires
+you to title and describe each of these batches, or **commits**. Now, let's say
+you would like to see if a particular feature would work well. You don't want to
+accidentally break your precious program, so you **branch** off to a different
+version. In this new branch, you write your code and continue to make commits.
+You are a great programmer, so your feature turns out to be a great addition to
+the existing program! Now you can **merge** the new feature branch with the
+**main** (from which we've originally branched off) one. Congratulations, you're
+a _git master_.
 
