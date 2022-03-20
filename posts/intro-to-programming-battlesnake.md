@@ -12,7 +12,12 @@ tags:
   - ai
 ---
 
+<details>
+<summary>Table of Contents</summary>
+
 [[toc]]
+
+</details>
 
 ## Introduction
 
@@ -85,6 +90,7 @@ You are, of course, free to stop at any moment and resume at a later date.
 Actually, I highly encourage this! Take breaks regularly, especially if things
 don't seem to work when they should... :bug:. We'll cover a lot of material, so
 buckle up, grab some snacks, and let's get going :rocket:!
+
 
 ## Battlesnake
 
@@ -176,7 +182,8 @@ you can find the endpoints mentioned before.  There is actually one more
 endpoint I didn't mention, try to see if you can find it and figure out what it
 does! 
 
-## Creating a basic snake
+
+## Getting the server running
 
 All right, this is where most of the work is gonna take place, so I'll just tell
 you right now what to expect and how we're gonna do it. First, we'll take one of
@@ -191,7 +198,7 @@ accessible URL, which will allow us to create our first snake! Once all of this
 is set up we will be able to start programming our snake logic. With that said,
 let's get going!
 
-### Creating our first repository
+### Creating your first repository
 
 Going back to the [starter
 projects](https://docs.battlesnake.com/references/starter-projects), click on
@@ -205,6 +212,7 @@ will click the big green button saying
 </kbd>. Congratulations! You have made your first repository  :partying_face:!
 "But what is a repository?", I can hear you ask. Well, let me explain. 
 
+#### Git primer
 A repository is a folder in which [git]() tracks changes in order to organize
 the history of your code. And what is git? Well, it simply is a tool to organize
 the history, or, the different versions of you code, a [Version Control
@@ -215,6 +223,66 @@ accidentally break your precious program, so you **branch** off to a different
 version. In this new branch, you write your code and continue to make commits.
 You are a great programmer, so your feature turns out to be a great addition to
 the existing program! Now you can **merge** the new feature branch with the
-**main** (from which we've originally branched off) one. Congratulations, you're
-a _git master_.
+**main** (from which we've originally branched off) one. 
 
+![git history
+diagram](/images/post/intro-to-programming-battlesnake/git-history-diagram.svg
+"An example of a git history tree. After the first commit on the `main` branch,
+a new feature is tested on a new branch. In the merge, the commits made to the
+`new-feature` branch are applied to the `main` branch.")
+
+#### Working with git
+Now, there are a couple of different options in with regard to performing these
+actions on a local version of your new repository. There are applications with 
+a **graphical user interface (GUI)** such as
+
+- [GitHub Desktop](https://desktop.github.com/) - easiest to use in combination
+  with GitHub 
+- [GitKraken](https://www.gitkraken.com/) - has a _ton_ of features
+- [and many more...](https://git-scm.com/downloads/guis)
+
+Personally, I like using the command line ([git
+bash](https://git-scm.com/downloads) for Windows) to use git.  If you don't have
+any experience using a **command line interface (CLI)**, I suggest you take one
+of the options that includes a GUI. I, however, will be giving explaining what
+to do using command line instructions. Which would looks something like this
+```bash
+$ git add changed_file.go
+$ git commit -m "Commit #1"
+```
+Here, I'm adding all my changes from a file called `changed_file.go`, and then
+committing them in a new commit called _Commit #1_. If you would like to know
+how to do that in your git application of choice, simply _DuckDuckGo_ something
+along the lines of _"how to add on GitHub Desktop"_ and _"how to commit on Github
+Desktop"_. It might be a little hard at first, but I believe you'll learn more
+about the application and how to work with it if you find the solution yourself.
+
+### Exploring the code base
+> Little sneak-peak to what will be coming, secretly getting familiar with git
+> in the process
+
+### Making a web service with Heroku
+> Just guiding the reader through the process of working with Heroku
+
+
+## Programming the snake
+> Actually starting to do some programming
+
+### Making the snake beautiful
+> Customize info and show how changes propagate through the whole pipeline
+
+### Making the snake not stupid
+> Get through the basic challenges
+
+### Making the snake smart 
+> Getting food, and some heuristics
+
+
+## Beyond this tutorial
+> Give some ideas on how to continue
+
+### CI/CD
+> Creating a pipeline using a CI/CD tool to check if the snake will actually run
+
+### Tree snakes
+> Small teaser to tree-traversal and the potentials of a better snake
