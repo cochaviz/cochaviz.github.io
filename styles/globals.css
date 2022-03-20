@@ -83,5 +83,5 @@
 
     nav ol { counter-reset: list-item; }
     nav li { display: block; counter-increment: list-item; }
-    nav li:before { content: counters(list-item,'.') ' '; }
+    nav li:before { content: counters(list-item,'.') ' · '; }
 }
