@@ -231,6 +231,17 @@ diagram](/images/post/intro-to-programming-battlesnake/git-history-diagram.svg
 a new feature is tested on a new branch. In the merge, the commits made to the
 `new-feature` branch are applied to the `main` branch.")
 
+GitHub comes in when you would like to work together with other people (or just
+have a non-local backup). It is simply a repository stored on the GitHub
+servers. If you want to edit code on a repository you would first **clone** the
+repository to you local machine. In this local version you would keep track of
+your changes like normal, commit similar batches of changes and branching if
+need be. At any point, you can choose to **push** your changes to the **remote**
+repository on GitHub. This is why it is important to always **pull** before
+starting to code on a collaborative project, since someone might have changed
+the same code you want to work on. If you don't do this, you might encounter
+**conflicts** when you want to push the changes you made to the remote.
+
 #### Working with git
 Now, there are a couple of different options in with regard to performing these
 actions on a local version of your new repository. There are applications with 
