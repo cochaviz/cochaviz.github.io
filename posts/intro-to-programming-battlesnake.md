@@ -26,8 +26,8 @@ development by example of an AI  that will play the game
 [Battlesnake](https://play.battlesnake.com/). The aim of this tutorial is to
 help you step beyond the 'programming a calculator' phase. You know what
 language you want to learn, have a grasp of basic syntax and know how logic in
-programming works (e.g. if statements). But what now? Well, writing an AI :sunglasses:. We
-will cover:
+programming works (e.g. if statements). But what now? Well, writing an AI
+:sunglasses:. We will cover:
 
 - problem representation and solving (algorithms and data structures)
 - version control ([git](https://git-scm.com) and
@@ -99,7 +99,7 @@ meaning that everything in, about, and around the game is made by developers,
 for developers. This means that there are a lot of resources out there that can
 help us out.  Best example is, of course, the original [Battlesnake
 documentation](https://docs.battlesnake.com/), which I encourage you to read and
-refer to whenever you're lost before trying to _DuckDuckGo_ it.
+refer to whenever you're lost before trying to _DuckDuck Go_ it.
 
 ### How Battlesnake works
 
@@ -258,19 +258,80 @@ any experience using a **command line interface (CLI)**, I suggest you take one
 of the options that includes a GUI. I, however, will be giving explaining what
 to do using command line instructions. Which would looks something like this
 ```bash
-$ git add changed_file.go
-$ git commit -m "Commit #1"
+git add changed_file.go
+git commit -m "Commit #1"
 ```
 Here, I'm adding all my changes from a file called `changed_file.go`, and then
 committing them in a new commit called _Commit #1_. If you would like to know
-how to do that in your git application of choice, simply _DuckDuckGo_ something
+how to do that in your git application of choice, simply _DuckDuck Go_ something
 along the lines of _"how to add on GitHub Desktop"_ and _"how to commit on Github
 Desktop"_. It might be a little hard at first, but I believe you'll learn more
 about the application and how to work with it if you find the solution yourself.
 
 ### Exploring the code base
-> Little sneak-peak to what will be coming, secretly getting familiar with git
-> in the process
+Let's get a little taste of what we're gonna be working with and check if
+everything works as it should, before starting to set up our server. In order to
+check out the code, we could of course go to repository on GitHub and browse the
+code from there. But if we want to make changes, we'll have to have it locally.
+So let's do that now. 
+```bash
+# this will clone the repository <repo> of <username> into the folder <local_repo>
+git clone git@github.com:<username>/<repo>.git <local_repo>
+```
+This will give us a folder, which we can open with our favorite IDE (mine is
+emacs). All the beginner projects have a similar structure of which these are
+the most important files.
+```
+# A wildcard (*) indicates any sort of pattern (e.g. py, go, rs, etc.)
+- logic.*
+- main.*
+- logic_test.*
+```
+
+#### Web requests
+> Cover the main.* file
+
+#### Snake logic
+> Cover the logic.* and logic_test.* files
+
+#### Trying it out
+
+To check if the server runs like it should (and it should), you can run the
+project in whatever IDE you have. In Go, using the command line, it would look
+like this:
+```bash
+go run main.go
+```
+```txt
+2022/03/23 21:10:03 Starting Battlesnake Server at http://0.0.0.0:8080...
+```
+Open your browser and type in the URL at the end of the line
+(or, `http://localhost:8080`, they mean the same). If everything works as it
+should, you should see something like this:
+```json
+{
+  "apiversion": "1",
+  "author": "cochaviz",
+  "color": "#488A16",
+  "head": "beluga",
+  "tail": "curled"
+}
+```
+This is the 'secret' endpoint I was hinting at in the previous chapter! It's the
+so-called **root** of our server. It tells us information about who made the
+snake (me :smile:), what it looks like, and the version of the API. Knowing the
+version of the API is important because it tells you if it even makes sense to
+interact with the snake any further. If the Battlesnake game server would see a
+different API version, it would probably not interact any further (maybe show
+you an error when creating the snake) in order to avoid possible errors. 
+
+This is essentially what the Heroku server will do. It will take the code from
+GitHub and run it. The only difference is that the URL will be different than
+`http://0.0.0.0:8080`. This address is actually only accessible from your
+computer (hinted to by `localhost`) in order to make sure no malicious users
+could gain access to your computer. Technically you _could_ host it yourself
+(and once you know a little bit more about networking and hosting I would highly
+encourage you to do so!), but for now Heroku is the simplest _and_ safest option.
 
 ### Making a web service with Heroku
 > Just guiding the reader through the process of working with Heroku
