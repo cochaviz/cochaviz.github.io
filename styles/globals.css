@@ -61,6 +61,24 @@
         @apply p-0;
     }
 
+    pre {
+        @apply mb-0 rounded-b-none;
+    }
+
+    @media(hover: hover) and (pointer: fine) {
+        button:hover {
+            @apply bg-yellow-600 text-black;
+        }
+    }
+
+    button {
+        @apply text-right w-full mb-4 rounded-b-md bg-neutral-800 transition-all;
+    }
+
+    button:active {
+        @apply bg-green-600 text-black;
+    }
+
     kbd {
         @apply px-2 p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
     }

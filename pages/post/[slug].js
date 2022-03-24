@@ -10,6 +10,7 @@ import anchor from 'markdown-it-anchor';
 import emojis from 'markdown-it-emoji';
 import toc from 'markdown-it-toc-done-right';
 import tasks from 'markdown-it-tasks';
+import copy from '../../public/static/js/copy_button';
 
 const md = markdownIt({ html: true })
   .use(highlightjs)
@@ -19,7 +20,8 @@ const md = markdownIt({ html: true })
   })
   .use(anchor)
   .use(toc)
-  .use(tasks, { enabled: true });
+  .use(tasks, { enabled: true })
+  .use(copy, { iconAlt: "copy" });
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
@@ -55,7 +57,7 @@ export default function PostPage({ frontmatter, content }) {
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
         <meta property="og:image" content={frontmatter.metaImg} key="image" />
       </Head>
-      <a className="text-4xl font-mono no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 px-3 py-1 border-dashed border-2"
+      <a className="text-4xl font-mono no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 p-3 py-1 border-dashed border-2"
         href="#TOP">↑</a>
       <h1>{frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />
