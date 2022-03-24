@@ -21,7 +21,7 @@ const md = markdownIt({ html: true })
   .use(anchor)
   .use(toc)
   .use(tasks, { enabled: true })
-  .use(copy, { iconAlt: "copy" });
+  .use(copy, { iconAlt: 'copy' });
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
