@@ -36,7 +36,6 @@ programming works (e.g. if statements). But what now? Well, writing an AI
   ([APIs](https://en.wikipedia.org/wiki/API))
 - setting up a server with [Heroku](https://www.heroku.com)
 
-
 Battlesnake is a great place to start from. Firstly, because it touches upon a
 lot of different concepts in software development.  Secondly, your AI will
 battle against that of other people and there are leaderboards to show you how
@@ -287,12 +286,54 @@ the most important files.
 - main.*
 - logic_test.*
 ```
+`main.*` contains the functions that handle the web requests. `logic.*` contains
+the snake logic; how your snake responds given a game state. `logic_test.*`
+contains some tests for functions defined in `logic.*`. In the next two sections
+I'll discuss the code in these files. Again, it will be done in Go, but you
+should be able to follow in any language since the structure is similar.
 
 #### Web requests
-> Cover the main.* file
+Opening `main.go` file will show a couple of functions and structs. The functions are
+for handling web requests, and the structs show how the data should be
+**parsed** from the incoming web request. All these data structures have to do
+with the `GameState` that we get from a request at the `/move` endpoint.
+
+We can see four different handlers:
+```go
+func HandleIndex(w http.ResponseWriter, r *http.Request) {
+  [...]
+}
+
+func HandleStart(w http.ResponseWriter, r *http.Request) {
+  [...]
+}
+
+func HandleMove(w http.ResponseWriter, r *http.Request) {
+  [...]
+}
+
+func HandleEnd(w http.ResponseWriter, r *http.Request) {
+  [...]
+}
+```
+Each one corresponds to a different end point. Here, `HandleIndex` corresponds
+to the `/`, or **root**, endpoint. The reason that this is called `HandleIndex`
+and not `HandleRoot`, is because when you normally type a URL, for example
+`duckduckgo.com`, you don't actually go to the root. You browser automatically
+starts looking for a file called `index.html` on the corresponding website (i.e.
+`duckduckgo.com/index.html`). In its simplest form, a website is nothing more
+than a server that serves `html` files. Which is also why `/` is called the
+root, because **it is the root of the filesystem of the server**.
 
 #### Snake logic
-> Cover the logic.* and logic_test.* files
+Having a look in the `logic.go` shows only a couple of functions
+
+```go
+func testFunction() int {
+  log.Println("I'm a test funcion!")
+  return 0
+}
+```
 
 #### Trying it out
 
@@ -335,7 +376,6 @@ encourage you to do so!), but for now Heroku is the simplest _and_ safest option
 
 ### Making a web service with Heroku
 > Just guiding the reader through the process of working with Heroku
-
 
 ## Programming the snake
 > Actually starting to do some programming
