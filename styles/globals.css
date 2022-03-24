@@ -68,6 +68,7 @@
     @media(hover: hover) and (pointer: fine) {
         button:hover {
             @apply bg-yellow-600 text-black;
+            cursor: url(/pointer.png) 5 0, auto;
         }
     }
 
