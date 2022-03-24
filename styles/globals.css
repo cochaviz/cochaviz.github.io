@@ -67,7 +67,7 @@
 
     @media(hover: hover) and (pointer: fine) {
         button:hover {
-            @apply bg-yellow-600 text-black;
+            @apply bg-neutral-700 text-white;
             cursor: url(/pointer.png) 5 0, auto;
         }
     }
@@ -77,7 +77,7 @@
     }
 
     button:active {
-        @apply bg-green-600 text-black;
+        @apply bg-yellow-600 text-black transition-none;
     }
 
     kbd {
