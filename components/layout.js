@@ -26,7 +26,7 @@ export default function Layout({ children }) {
       <footer className="bg-neutral-200 dark:bg-black mt-8 py-4">
         <div className="container mx-auto text-neutral-400 flex justify-evenly">
           <div>&copy; 2022 - Zohar Cochavi</div>
-          <a href="https://github.com/cochaviz/bunkernet">Check the source</a>
+          <a href="https://github.com/cochaviz/bunkernet">check the source</a>
         </div>
       </footer>
     </div>
