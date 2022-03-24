@@ -83,8 +83,12 @@
         @apply px-2 p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
     }
 
+    figure {
+        @apply bg-neutral-900 hover:border-2 hover:scale-125 hover:p-4 transition-all;
+    }
+
     figure > img {
-        @apply mx-auto;
+        @apply mx-auto mt-0 py-0;
     }
 
     figcaption {
