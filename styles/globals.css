@@ -104,6 +104,10 @@
         @apply ml-1;
     }
 
+    nav {
+        @apply w-fit mt-8 p-4 border-2 border-neutral-700;
+    }
+
     nav ol { counter-reset: list-item; }
     nav li { display: block; counter-increment: list-item; }
     nav li:before { content: counters(list-item,'.') ' · '; }

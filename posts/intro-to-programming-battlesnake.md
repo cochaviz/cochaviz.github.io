@@ -93,6 +93,10 @@ buckle up, grab some snacks, and let's get going :rocket:!
 
 ## Battlesnake
 
+> Battlesnake is a multi-player programming game played by developers all over
+> the world. All you need to play is a live web server that implements the
+> Battlesnake API. 
+
 [Battlesnake](https://play.battlesnake.com/) is a developer-oriented game,
 meaning that everything in, about, and around the game is made by developers,
 for developers. This means that there are a lot of resources out there that can
