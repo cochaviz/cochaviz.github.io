@@ -24,7 +24,7 @@ export default function Layout({ children }) {
       <main className="container max-w-2xl">{children}</main>
 
       <footer className="bg-neutral-200 dark:bg-black mt-8 py-4">
-        <div className="container mx-auto text-neutral-400 flex justify-evenly">
+        <div className="container max-w-3xl mx-auto text-neutral-400 flex justify-between">
           <div>&copy; 2022 - Zohar Cochavi</div>
           <a href="https://github.com/cochaviz/bunkernet">check the source</a>
         </div>
