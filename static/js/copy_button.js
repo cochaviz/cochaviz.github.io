@@ -4,7 +4,7 @@ import Clipboard from 'clipboard';
 try {
   // Node js will throw an error
   this === window;
-  new Clipboard('.markdown-it-code-copy');
+  new Clipboard('.code-copy-button');
 } catch (_) { }
 
 const defaultOptions = {
