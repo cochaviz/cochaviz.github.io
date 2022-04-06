@@ -21,7 +21,7 @@ tags:
 
 ## Introduction
 
-In this post I'll walk you through concepts of programming and application
+In this guide I'll walk you through concepts of programming and application
 development by example of an AI  that will play the game
 [Battlesnake](https://play.battlesnake.com/). The aim of this tutorial is to
 help you step beyond the 'programming a calculator' phase. You know what
@@ -29,11 +29,11 @@ language you want to learn, have a grasp of basic syntax and know how logic in
 programming works (e.g. if statements). But what now? Well, writing an AI
 :sunglasses:. We will cover:
 
-- problem representation and solving (algorithms and data structures)
-- version control ([git](https://git-scm.com) and
-  [GitHub](https://www.github.com))
-- some high-level concepts regarding web services
-  ([APIs](https://en.wikipedia.org/wiki/API))
+- problem representation and solving 
+- version control with [git](https://git-scm.com) and
+  [GitHub](https://www.github.com)
+- some high-level concepts regarding web services and
+  [APIs](https://en.wikipedia.org/wiki/API)
 - setting up a server with [Heroku](https://www.heroku.com)
 
 Battlesnake is a great place to start from. Firstly, because it touches upon a
@@ -96,6 +96,7 @@ buckle up, grab some snacks, and let's get going :rocket:!
 > Battlesnake is a multi-player programming game played by developers all over
 > the world. All you need to play is a live web server that implements the
 > Battlesnake API. 
+>    - play.battlesnake.com
 
 [Battlesnake](https://play.battlesnake.com/) is a developer-oriented game,
 meaning that everything in, about, and around the game is made by developers,
@@ -108,7 +109,7 @@ refer to whenever you're lost before trying to _DuckDuck Go_ it.
 
 The Battlesnake game rules are simple. In the default game mode, the goal is to
 be the last-snake-standing among a group of  three other snakes. Besides that,
-the normal snake rules apply:
+the normal rules of snake apply:
 
 1. don't run into walls
 2. don't run into snakes (you and others)
@@ -329,16 +330,6 @@ starts looking for a file called `index.html` on the corresponding website (i.e.
 than a server that serves `html` files. Which is also why `/` is called the
 root, because **it is the root of the filesystem of the server**.
 
-#### Snake logic
-Having a look in the `logic.go` shows only a couple of functions
-
-```go
-func testFunction() int {
-  log.Println("I'm a test funcion!")
-  return 0
-}
-```
-
 #### Trying it out
 
 To check if the server runs like it should (and it should), you can run the
@@ -362,13 +353,13 @@ should, you should see something like this:
   "tail": "curled"
 }
 ```
-This is the 'secret' endpoint I was hinting at in the previous chapter! It's the
-so-called **root** of our server. It tells us information about who made the
-snake (me :smile:), what it looks like, and the version of the API. Knowing the
-version of the API is important because it tells you if it even makes sense to
-interact with the snake any further. If the Battlesnake game server would see a
-different API version, it would probably not interact any further (maybe show
-you an error when creating the snake) in order to avoid possible errors. 
+This is the 'secret' endpoint I was hinting at in the previous chapter! It tells
+us information about who made the snake (me :smile:), what it looks like, and
+the version of the API. Knowing the version of the API is important because it
+tells you if it even makes sense to interact with the snake any further. If the
+Battlesnake game server would see a different API version, it would probably not
+interact any further (maybe show you an error when creating the snake) in order
+to avoid possible errors. 
 
 This is essentially what the Heroku server will do. It will take the code from
 GitHub and run it. The only difference is that the URL will be different than
@@ -377,6 +368,62 @@ computer (hinted to by `localhost`) in order to make sure no malicious users
 could gain access to your computer. Technically you _could_ host it yourself
 (and once you know a little bit more about networking and hosting I would highly
 encourage you to do so!), but for now Heroku is the simplest _and_ safest option.
+
+#### Snake logic
+Having a look in the `logic.go` shows only a couple of functions, but a lot of
+comments. This is where most of the magic will happen, at least, in the
+beginning. Once you make your snake more complex, you will inevitably
+restructure your project. But, it is a nice place to start from. Let's have a
+look together, but do make sure to read through the comments first to see if you
+understand what they are supposed to do.
+
+```go
+// This function is called when you register your Battlesnake on play.battlesnake.com
+// See https://docs.battlesnake.com/guides/getting-started#step-4-register-your-battlesnake
+// It controls your Battlesnake appearance and author permissions.
+// For customization options, see https://docs.battlesnake.com/references/personalization
+// TIP: If you open your Battlesnake URL in browser you should see this data.
+func info() BattlesnakeInfoResponse {
+  [...]
+}
+
+// This function is called everytime your Battlesnake is entered into a game.
+// The provided GameState contains information about the game that's about to be played.
+// It's purely for informational purposes, you don't have to make any decisions here.
+func start(state GameState) {
+  [...]
+}
+
+// This function is called when a game your Battlesnake was in has ended.
+// It's purely for informational purposes, you don't have to make any decisions here.
+func end(state GameState) {
+  [...]
+}
+
+// This function is called on every turn of a game. Use the provided GameState to decide
+// where to move -- valid moves are "up", "down", "left", or "right".
+// We've provided some code and comments to get you started.
+func move(state GameState) BattlesnakeMoveResponse {
+  [...]
+
+	// Step 0: Don't let your Battlesnake move back in on it's own neck
+
+  [...]
+
+	// TODO: Step 1 - Don't hit walls.
+
+	// TODO: Step 2 - Don't hit yourself.
+
+	// TODO: Step 3 - Don't collide with others.
+
+	// TODO: Step 4 - Find food.
+
+	// TODO: Step 5 - Select a move to make based on strategy, rather than random.
+  
+  [...]
+}
+```
+
 
 ### Making a web service with Heroku
 > Just guiding the reader through the process of working with Heroku

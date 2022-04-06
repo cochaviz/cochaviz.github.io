@@ -57,7 +57,7 @@ export default function PostPage({ frontmatter, content }) {
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
         <meta property="og:image" content={frontmatter.metaImg} key="image" />
       </Head>
-      <a className="text-4xl font-mono no-underline fixed bottom-10 right-10 z-0 bg-neutral-900 p-3 py-1 border-dashed border-2"
+      <a className="text-5xl font-sans no-underline fixed bottom-10 right-10 z-0  bg-neutral-900 px-3 pb-2 visited:text-cyan-600 border-double border-4"
         href="#TOP">↑</a>
       <h1>{frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />

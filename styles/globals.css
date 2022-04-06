@@ -10,7 +10,6 @@
 
     body {
         @apply text-black dark:text-white;
-        cursor: url(/cursor.png) 3 7, auto;
     }
 
     main {
@@ -26,7 +25,7 @@
     }
 
     h1 {
-        @apply m-2 my-8 p-4 border-2 border-yellow-600 border-dashed text-center;
+        @apply m-2 my-8 p-4 border-4 border-yellow-600 border-double text-center;
     }
 
     h2 {
@@ -42,11 +41,20 @@
     }
 
     a {
-        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-yellow-500 dark:hover:text-green-600 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
+        @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-green-600 dark:hover:text-green-600 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
+        text-underline-position: left;
     }
 
-    a:hover {
-        cursor: url(/pointer.png) 5 0, auto;
+    a {
+        @apply font-semibold;
+    }
+
+    a:visited {
+        @apply dark:text-neutral-400;
+    }
+
+    a:visited:hover {
+        @apply dark:text-green-600;
     }
 
     blockquote {
@@ -54,38 +62,29 @@
     }
 
     code {
-        @apply p-1 bg-neutral-700 rounded-lg before:content-none after:content-none;
+        @apply px-1 border-neutral-500 bg-neutral-700 before:content-none after:content-none;
+        border-width: 1px;
     }
 
     pre > code {
         @apply p-0;
+        border-width: 0px;
     }
 
     pre {
-        @apply mb-0 rounded-b-none;
-    }
-
-    @media(hover: hover) and (pointer: fine) {
-        button:hover {
-            @apply bg-neutral-700 text-white;
-            cursor: url(/pointer.png) 5 0, auto;
-        }
+        @apply mb-0 rounded-none;
     }
 
     button {
-        @apply text-right w-full mb-4 rounded-b-md bg-neutral-800 transition-all;
-    }
-
-    button:active {
-        @apply bg-yellow-600 text-black transition-none;
+        @apply text-right w-full mb-4 bg-neutral-800 transition-all;
     }
 
     kbd {
-        @apply px-2 p-1 bg-neutral-800 border-b-4 border-2 border-black rounded-md;
+        @apply px-2 p-1 bg-neutral-800 border-b-4 border-2 border-black;
     }
 
     figure {
-        @apply bg-neutral-900 hover:border-2 hover:scale-125 hover:p-4 transition-all;
+        @apply bg-neutral-900 border-double transition-all;
     }
 
     figure > img {
@@ -104,11 +103,37 @@
         @apply ml-1;
     }
 
+    /* on laptops */
     nav {
-        @apply w-fit mt-8 p-4 border-2 border-neutral-700;
+        @apply w-fit mt-8 p-4 border-2 border-neutral-700 bg-neutral-800;
     }
 
     nav ol { counter-reset: list-item; }
     nav li { display: block; counter-increment: list-item; }
     nav li:before { content: counters(list-item,'.') ' · '; }
+
+    /* on laptops */
+    @media(hover: hover) and (pointer: fine) {
+        body {
+            cursor: url(/cursor.png) 3 7, auto;
+        }
+
+        button:hover {
+            @apply bg-neutral-700 text-white;
+            cursor: url(/pointer.png) 5 0, auto;
+        }
+
+        figure:hover {
+            @apply border-4 scale-125 p-4
+        }
+
+        a:hover {
+            cursor: url(/pointer.png) 5 0, auto;
+        }
+    }
+
+    /* has to be after figure:hover :shrugs: */
+    button:active {
+        @apply bg-yellow-600 text-black transition-none;
+    }
 }

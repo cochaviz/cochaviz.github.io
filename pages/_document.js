@@ -13,8 +13,11 @@ class MyDocument extends Document {
           {/* google fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-          <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet" />
+          {/* Fira Code */}
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans&display=swap" rel="stylesheet" />
+          {/* Source Pro */}
+          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Source+Sans+Pro+Medium&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
 
           {/* favicon - Copyright 2020 Twitter, Inc and other contributors */}
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
