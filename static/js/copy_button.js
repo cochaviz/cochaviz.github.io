@@ -8,7 +8,7 @@ try {
 } catch (_) { }
 
 const defaultOptions = {
-  iconStyle: 'margin-left: auto; margin-right: auto; display: inline; padding: 1em;',
+  iconStyle: 'margin-left: auto; margin-right: auto; display: inline; padding: 0px 1em 7px 0px',
   iconClass: '',
   iconAlt: '',
   iconSrc: '',
