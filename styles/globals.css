@@ -40,6 +40,11 @@
         @apply decoration-blue-600;
     }
 
+    p {
+        text-align: justify;
+        hyphens: auto;
+    }
+
     a {
         @apply underline-offset-2 underline text-blue-500 dark:text-cyan-600 hover:text-green-600 dark:hover:text-green-600 focus:outline focus:outline-offset-2 focus:outline-2 focus:outline-yellow-600;
         text-underline-position: left;
@@ -49,7 +54,7 @@
         @apply font-semibold;
     }
 
-    a:visited {
+    p > a:visited, li > a:visited {
         @apply dark:text-neutral-400;
     }
 
@@ -57,8 +62,38 @@
         @apply dark:text-green-600;
     }
 
+    /* blockquote { */
+    /*     @apply border-yellow-600 border-l-2; */
+    /* } */
+
     blockquote {
-        @apply border-yellow-600 border-l-2;
+        @apply w-fit border-0 text-neutral-400 border-neutral-700 py-4 px-8;
+        position: relative;
+    }
+
+    blockquote > p {
+        @apply before:content-none;
+    }
+
+    blockquote > ul {
+        text-align: right;
+        list-style-type: none;
+    }
+
+    blockquote::before {
+        font-size: xx-large;
+        content: "\201C";
+        position: absolute;
+        top: 0;
+        left: 10px;
+    }
+
+    blockquote::after {
+        font-size: xx-large;
+        content: "\201D";
+        position: absolute;
+        right: 15px;
+        bottom: -10px;
     }
 
     code {
@@ -72,11 +107,15 @@
     }
 
     pre {
-        @apply mb-0 rounded-none;
+        @apply mb-0 rounded-none block;
     }
 
     button {
         @apply text-right w-full mb-4 bg-neutral-800 transition-all;
+    }
+
+    button-parent {
+        @apply w-fit;
     }
 
     kbd {
@@ -99,17 +138,17 @@
         @apply pr-4;
     }
 
-    ol {
+    ol, ul {
         @apply ml-1;
     }
 
     /* on laptops */
     nav {
-        @apply w-fit mt-8 p-4 border-2 border-neutral-700 bg-neutral-800;
+        @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-neutral-700 bg-neutral-800 text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left;
     }
 
-    nav ol { counter-reset: list-item; }
-    nav li { display: block; counter-increment: list-item; }
+    nav ol { counter-reset: list-item; padding: 0px; }
+    nav li { display: block; counter-increment: list-item; padding: 0px; margin-left: 1em; }
     nav li:before { content: counters(list-item,'.') ' · '; }
 
     /* on laptops */

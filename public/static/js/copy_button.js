@@ -15,7 +15,7 @@ const defaultOptions = {
   textStyle: 'padding-right: 10px; vertical-align:middle;',
   textClass: '',
   textContent: 'copy',
-  buttonStyle: 'width: 100%; text-align: right;',
+  buttonStyle: 'text-align: right;',
   buttonClass: ''
 };
 

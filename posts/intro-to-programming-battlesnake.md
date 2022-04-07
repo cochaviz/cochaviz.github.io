@@ -12,12 +12,7 @@ tags:
   - ai
 ---
 
-<details>
-<summary>Table of Contents</summary>
-
 [[toc]]
-
-</details>
 
 ## Introduction
 
@@ -96,7 +91,8 @@ buckle up, grab some snacks, and let's get going :rocket:!
 > Battlesnake is a multi-player programming game played by developers all over
 > the world. All you need to play is a live web server that implements the
 > Battlesnake API. 
->    - play.battlesnake.com
+>
+> — play.battlesnake.com
 
 [Battlesnake](https://play.battlesnake.com/) is a developer-oriented game,
 meaning that everything in, about, and around the game is made by developers,
