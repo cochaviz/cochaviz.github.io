@@ -8,11 +8,14 @@ try {
 } catch (_) { }
 
 const defaultOptions = {
-  iconStyle: 'margin-left: auto; margin-right: auto; display: inline; padding: 0px 1em 7px 0px',
+  iconStyle: 'padding: 0px 1em 7px 0px; display:none',
   iconClass: '',
   iconAlt: '',
   iconSrc: '',
-  buttonStyle: 'width: 100%; text-align: right;',
+  textStyle: 'padding-right: 10px; vertical-align:middle;',
+  textClass: '',
+  textContent: 'copy',
+  buttonStyle: 'text-align: right;',
   buttonClass: ''
 };
 
@@ -33,6 +36,7 @@ function renderCode(origRule, options) {
         ${origRendered}
         <button class="code-copy-button ${options.buttonClass}" data-clipboard-text="${content}" style="${options.buttonStyle}" title="Copy code in block">
             <img class="code-copy-button-icon ${options.iconClass}" src="${options.iconSrc}" alt="${options.iconAlt}" style="${options.iconStyle}"/>
+            <div class="code-copy-button-text ${options.textClass}" style="${options.textStyle}">${options.textContent}</>
         </button>
       </div>
     `;
