@@ -92,7 +92,7 @@ buckle up, grab some snacks, and let's get going :rocket:!
 > the world. All you need to play is a live web server that implements the
 > Battlesnake API. 
 >
-> — play.battlesnake.com
+> — play.battlesnake.com
 
 [Battlesnake](https://play.battlesnake.com/) is a developer-oriented game,
 meaning that everything in, about, and around the game is made by developers,
@@ -203,14 +203,10 @@ let's get going!
 Going back to the [starter
 projects](https://docs.battlesnake.com/references/starter-projects), click on
 the one that you would like to use. This should bring you to GitHub, where you
-will click the big green button saying 
-<kbd style="color: white; display:inline-block; background-color:darkgreen">
-  Use this template
-</kbd>. Give it a name, keep it public, and click
-<kbd style="color: white; display:inline-block; background-color:darkgreen">
- Create repository from template
-</kbd>. Congratulations! You have made your first repository  :partying_face:!
-"But what is a repository?", I can hear you ask. Well, let me explain. 
+will click the big green button saying ***"Use this template"***. Give it a name,
+keep it public, and click ***"Create repository from template"***.
+Congratulations! You have made your first repository  :partying_face:!  "But
+what is a repository?", I can hear you ask. Well, let me explain. 
 
 #### Git primer
 A repository is a folder in which [git]() tracks changes in order to organize
