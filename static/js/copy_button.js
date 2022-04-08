@@ -32,9 +32,9 @@ function renderCode(origRule, options) {
       return origRendered;
     }
     return `
-      <div class="button-parent">
+      <div id="code-parent">
         ${origRendered}
-        <button class="code-copy-button ${options.buttonClass}" data-clipboard-text="${content}" style="${options.buttonStyle}" title="Copy code in block">
+        <button id="code-copy-button" class="${options.buttonClass}" data-clipboard-text="${content}" style="${options.buttonStyle}" title="Copy code in block">
             <img class="code-copy-button-icon ${options.iconClass}" src="${options.iconSrc}" alt="${options.iconAlt}" style="${options.iconStyle}"/>
             <div class="code-copy-button-text ${options.textClass}" style="${options.textStyle}">${options.textContent}</>
         </button>
