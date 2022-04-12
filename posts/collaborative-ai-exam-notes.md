@@ -1,4 +1,4 @@
-----
+---
 title: 'Collaborative AI: Exam Notes'
 metaTitle: 'Collaborative AI: Exam Notes'
 metaDesc: 'Notes for the course Collaborative Artificial Intelligence. These notes are made speficially for preparing for the exam of april 2022.'
