@@ -10,7 +10,7 @@ tags:
   - university
   - exam
 ---
-[[ toc ]]
+[[toc]]
 
 ## Negotiation
 
