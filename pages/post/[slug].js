@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 
 import fs from 'fs';
 import matter from 'gray-matter';
