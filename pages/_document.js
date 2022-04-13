@@ -34,7 +34,16 @@ class MyDocument extends Document {
           <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101354370ns.gif" /></p></noscript>
 
           {/* MathJax */}
-          <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+           <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+              },
+              svg: {
+                fontCache: 'global'
+              }
+            };
+          </script>
           <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         </body>
       </Html>
