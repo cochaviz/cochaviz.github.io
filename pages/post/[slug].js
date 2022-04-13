@@ -56,6 +56,10 @@ export default function PostPage({ frontmatter, content }) {
         <meta property="og:title" content={frontmatter.metaTitle} key="title" />
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
         <meta property="og:image" content={frontmatter.metaImg} key="image" />
+
+        {/* MathJax */}
+        <Script src="https://polyfill.io/v3/polyfill.min.js?features=es6" />
+        <Script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" />
       </Head>
       <a className="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-0 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-double border-4"
         href="#TOP">↑</a>
