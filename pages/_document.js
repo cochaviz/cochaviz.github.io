@@ -32,19 +32,6 @@ class MyDocument extends Document {
           {/* clicky traffic analysis */}
           <script async src="//static.getclicky.com/101354370.js"></script>
           <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101354370ns.gif" /></p></noscript>
-
-          {/* MathJax */}
-           <script>
-            MathJax = {
-              tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-              },
-              svg: {
-                fontCache: 'global'
-              }
-            };
-          </script>
-          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         </body>
       </Html>
     )
