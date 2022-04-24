@@ -37,12 +37,24 @@
         @apply decoration-accent-1-light dark:decoration-accent-1-dark;
     }
 
+    h2::before {
+        content: "# ";
+    }
+
     h3 {
         @apply decoration-accent-2-light dark:decoration-accent-2-dark;
     }
 
+    h3::before {
+        content: "## ";
+    }
+
     h4 {
-        @apply decoration-accent-3-light decoration-accent-3-dark;
+        @apply decoration-accent-3-light decoration-accent-3-dark before:content-['###'];
+    }
+
+    h4::before {
+        content: "### ";
     }
 
     p {
