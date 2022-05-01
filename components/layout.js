@@ -18,8 +18,8 @@ export default function Layout({ children }) {
           <div className="flex gap-x-2">
             <a href="https://www.github.com/zoharcochavi"> github </a>
             <a href="https://www.linkedin.com/in/cochaviz"> linkedin </a>
-            <button id="dark-mode-toggle" className="border-background-alter-light dark:border-background-alter-dark border-2 px-2 hidden dark:block" onClick={() => toggle_dark_mode()}>light mode</button>
-            <button id="dark-mode-toggle" className="border-background-alter-light dark:border-background-alter-dark border-2 px-2 block dark:hidden" onClick={() => toggle_dark_mode()}>dark mode</button>
+            <button id="dark-mode-toggle-light" className="border-background-alter-light dark:border-background-alter-dark border-2 px-2 hidden dark:block" onClick={() => toggle_dark_mode()}>light mode</button>
+            <button id="dark-mode-toggle-dark" className="border-background-alter-light dark:border-background-alter-dark border-2 px-2 block dark:hidden" onClick={() => toggle_dark_mode()}>dark mode</button>
           </div>
         </div>
       </header>
