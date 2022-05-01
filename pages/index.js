@@ -19,11 +19,11 @@ export async function getStaticProps() {
   });
 
   // filter out wip posts
-  posts = posts.filter(function(e) {
+  posts = posts.filter(function (e) {
     return !e.frontmatter.tags.includes('wip')
   });
   // sort by most recent post
-  posts = posts.sort(function(a, b) {
+  posts = posts.sort(function (a, b) {
     return -a.frontmatter.date.localeCompare(b.frontmatter.date);
   });
   posts = posts.slice(0, 4)
@@ -97,7 +97,7 @@ export default function Home({ projects, posts }) {
             </div>
           </li>
         ))}
-        <li className="text-neutral-500">older...</li>
+        <li className="text-gray-400">older...</li>
       </ul>
 
       <h2>Projects</h2>
