@@ -76,7 +76,7 @@
     }
 
     a:visited:hover {
-        @apply dark:text-accent-2-dark;
+        @apply text-accent-2-light dark:text-accent-2-dark;
     }
 
     li {
