@@ -50,7 +50,7 @@
     }
 
     h4 {
-        @apply decoration-accent-3-light decoration-accent-3-dark before:content-['###'];
+        @apply decoration-accent-3-light dark:decoration-accent-3-dark before:content-['###'];
     }
 
     h4::before {
