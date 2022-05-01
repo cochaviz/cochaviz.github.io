@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { toggle_dark_mode } from '../public/static/js/dark_mode_button';
+import Script from 'next/script';
+import { toggle_dark_mode, match_system_dark_mode } from '../public/static/js/dark_mode_utils';
 
 export default function Layout({ children }) {
   return (

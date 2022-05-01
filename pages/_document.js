@@ -25,6 +25,16 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+
+          {/* adjust dark/light mode to system theme */}
+          <script dangerouslySetInnerHTML={{
+            __html:
+              "if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { \
+          document.documentElement.classList.add('dark') \
+            } else { \
+          document.documentElement.classList.remove('dark') \
+            }"
+          }} />
         </Head>
         <body>
           <Main />
