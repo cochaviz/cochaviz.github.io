@@ -14,10 +14,11 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           {/* Fira Code */}
-          <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
           {/* Source Pro */}
-          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&family=Source+Sans+Pro+Medium&display=swap" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+          {/* Noto Emoji */}
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap" rel="stylesheet" />
 
           {/* favicon - Copyright 2020 Twitter, Inc and other contributors */}
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
