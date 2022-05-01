@@ -11,6 +11,7 @@ import anchor from 'markdown-it-anchor';
 import emojis from 'markdown-it-emoji';
 import toc from 'markdown-it-toc-done-right';
 import tasks from 'markdown-it-tasks';
+import footnotes from 'markdown-it-footnote';
 import copy from '../../public/static/js/copy_button';
 
 const md = markdownIt({ html: true })
@@ -22,7 +23,8 @@ const md = markdownIt({ html: true })
   .use(anchor)
   .use(toc)
   .use(tasks, { enabled: true })
-  .use(copy, { iconAlt: 'copy' });
+  .use(copy, { iconAlt: 'copy' })
+  .use(footnotes);
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
