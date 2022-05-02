@@ -14,6 +14,27 @@ import tasks from 'markdown-it-tasks';
 import footnotes from 'markdown-it-footnote';
 import copy from '../../public/static/js/copy_button';
 
+function render_footnote_anchor(tokens, idx, options, env, slf) {
+  var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
+
+  if (tokens[idx].meta.subId > 0) {
+    id += ':' + tokens[idx].meta.subId;
+  }
+
+  /* ↩ with escape code to prevent display as Apple Emoji on iOS */
+  return ' <a href="#fnref' + id + '" class="no-underline">¶</a>';
+}
+
+function render_footnote_caption(tokens, idx/*, options, env, slf*/) {
+  var n = Number(tokens[idx].meta.id + 1).toString();
+
+  if (tokens[idx].meta.subId > 0) {
+    n += ':' + tokens[idx].meta.subId;
+  }
+
+  return n;
+}
+
 const md = markdownIt({ html: true })
   .use(highlightjs)
   .use(emojis)
@@ -25,6 +46,9 @@ const md = markdownIt({ html: true })
   .use(tasks, { enabled: true })
   .use(copy, { iconAlt: 'copy' })
   .use(footnotes);
+
+md.renderer.rules.footnote_anchor = render_footnote_anchor;
+md.renderer.rules.footnote_caption = render_footnote_caption;
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
