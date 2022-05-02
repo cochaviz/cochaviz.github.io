@@ -135,10 +135,6 @@
         @apply group-hover:bg-accent-1-dark mb-0 rounded-none block border-2 border-code-alt-light bg-code-light dark:border-code-alt-dark dark:bg-code-dark ;
     }
 
-    /* pre:hover { */
-    /*     @apply border-code-alter-light dark:border-code-alter-dark; */
-    /* } */
-
     #code-copy-button {
         @apply text-right w-full bg-code-alt-light dark:bg-code-alt-dark;
     }
