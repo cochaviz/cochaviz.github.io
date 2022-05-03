@@ -14,7 +14,7 @@ module.exports = {
       colors: {
         background: {
           light: '#f5f5f3',
-          dark: '#0f0f0f',
+          dark: '#1a1a1a',
           alt: {
             light: '#ededeb',
             dark: '#141414',
@@ -57,5 +57,8 @@ module.exports = {
       }
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('autoprefixer'),
+  ],
 }
