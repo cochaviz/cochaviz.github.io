@@ -8,9 +8,7 @@
     html {
         @apply scroll-smooth;
 
-        font-family: Source Code Pro, monospace;
-        font-family: Source Serif Pro, serif;
-        font-family: Source Sans Pro, sans-serif;
+        font-family: "Source Sans Pro", "Noto Emoji" sans-serif;
     }
 
     body {
