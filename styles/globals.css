@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -6,9 +9,7 @@
 
 @layer base {
     html {
-        @apply scroll-smooth;
-
-        font-family: "Source Sans Pro", "Noto Emoji" sans-serif;
+        @apply font-sans scroll-smooth;
     }
 
     body {
@@ -60,12 +61,12 @@
     }
 
     p {
-        @apply text-justify;
+        @apply font-sans text-justify;
         hyphens: auto;
     }
 
     a {
-        @apply font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
+        @apply font-sans font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
         text-underline-position: left;
     }
 
@@ -86,7 +87,7 @@
     }
 
     ol, ul {
-        @apply ml-1;
+        @apply font-sans ml-1;
     }
 
     /* Blockquote */
@@ -97,7 +98,7 @@
     }
 
     blockquote > p {
-        @apply before:content-none;
+        @apply font-serif before:content-none;
     }
 
     blockquote > ul {

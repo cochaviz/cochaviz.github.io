@@ -6,9 +6,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ['"Source Sans Pro"', '"Noto Emoji"'],
-      'serif': ['"Source Serif Pro"', '"Noto Emoji"'],
-      'mono': ['"Source Code Pro"', '"Noto Emoji"']
+      'sans': ['"Source Sans Pro"', '"Noto Emoji"', 'sans-serif'],
+      'serif': ['"Source Serif Pro"', '"Noto Emoji"', 'serif'],
+      'mono': ['"Source Code Pro"', '"Noto Emoji"', 'mono']
     },
     extend: {
       colors: {
