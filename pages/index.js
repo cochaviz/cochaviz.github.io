@@ -48,7 +48,7 @@ export async function getStaticProps() {
 
 export function printTags(frontmatter) {
   return frontmatter.tags.map((tag) => (
-    <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
+    <p key={tag} className="inline italic p-0 m-0 text-neutral-500 dark:text-neutral-400">#{tag} </p>
   ))
 }
 
@@ -92,12 +92,12 @@ export default function Home({ projects, posts }) {
             </Link>
             <div>
               {frontmatter.tags.map((tag) => (
-                <p key={tag} className="inline italic p-0 m-0 text-gray-400">#{tag} </p>
+                <p key={tag} className="inline italic p-0 m-0 text-gray-500 dark:text-gray-400">#{tag} </p>
               ))}
             </div>
           </li>
         ))}
-        <li className="text-gray-400">older...</li>
+        <li className="text-gray-500 dark:text-gray-400">older...</li>
       </ul>
 
       <h2>Projects</h2>
@@ -110,7 +110,7 @@ export default function Home({ projects, posts }) {
         {projects.map(({ name, url, description }) => (
           <li key={name}>
             <a href={url}>{name}</a>
-            <p className="italic p-0 m-0 text-gray-400">{description}</p>
+            <p className="italic p-0 m-0 text-gray-500 dark:text-gray-400">{description}</p>
           </li>
         ))}
       </ul>
