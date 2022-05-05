@@ -53,7 +53,7 @@
     }
 
     h4 {
-        @apply decoration-accent-3-light dark:decoration-accent-3-dark before:content-['###'];
+        @apply decoration-accent-3-light dark:decoration-accent-3-dark;
     }
 
     h4::before {
@@ -63,6 +63,17 @@
     p {
         @apply font-sans text-justify;
         hyphens: auto;
+    }
+
+    h1+p::first-letter, blockquote+p::first-letter, h2+p::first-letter {
+        @apply font-serif font-semibold text-6xl float-left align-text-top;
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+
+    h1+p::first-line, blockquote+p::first-line, h2+p::first-line {
+        @apply text-xl;
+        font-variant: small-caps;
     }
 
     a {
@@ -87,14 +98,11 @@
     }
 
     ol, ul {
-        @apply font-sans ml-1;
+        @apply font-sans;
     }
 
-    /* Blockquote */
-
     blockquote {
-        @apply w-fit border-0 text-neutral-500 dark:text-neutral-400  border-neutral-700 py-4 px-8;
-        position: relative;
+        @apply w-fit border-0 text-neutral-500 dark:text-neutral-400  border-neutral-700 py-4 px-8 text-lg relative;
     }
 
     blockquote > p {
