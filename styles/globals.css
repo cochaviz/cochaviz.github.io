@@ -65,13 +65,13 @@
         hyphens: auto;
     }
 
-    h1+p::first-letter, blockquote+p::first-letter, h2+p::first-letter {
+    p:first-of-type:not(blockquote>p, li>p)::first-letter {
         @apply font-serif font-semibold text-6xl float-left align-text-top;
         padding-top: 8px;
         padding-right: 8px;
     }
 
-    h1+p::first-line, blockquote+p::first-line, h2+p::first-line {
+    p:first-of-type:not(blockquote>p, li>p)::first-line {
         @apply text-xl;
         font-variant: small-caps;
     }
