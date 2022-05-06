@@ -80,10 +80,12 @@ export default function PostPage({ frontmatter, content }) {
     <div>
       <Head>
         <title>{frontmatter.title}</title>
+        <meta property="og:type" content="article" />
         <meta property="og:title" content={frontmatter.metaTitle} key="title" />
         <meta property="og:description" content={frontmatter.metaDesc} key="description" />
         <meta property="og:image" content={frontmatter.metaImg} key="image" />
-        <meta property="twitter:card" content="summary_large_image" />
+
+        <meta name="twitter:card" content="summary_large_image" />
 
         {/* MathJax */}
         <script dangerouslySetInnerHTML={{
