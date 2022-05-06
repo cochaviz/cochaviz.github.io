@@ -2,6 +2,7 @@
 title: 'Why Computer Science should strive to be More Human'
 metaTitle: 'Why Computer Science should strive to be More Human'
 metaDesc: 'Taking lessons from humanities and applying them to research and practices in computer sciences.'
+metaImg: 'https://zjf683hopnivfq5d12xaooxr-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/science-article-lede.jpg'
 date: '2022-05-01'
 tags:
   - humanities
