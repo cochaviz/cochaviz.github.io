@@ -9,7 +9,6 @@ tags:
   - computer science
   - opinionated
   - maybe it's just me
-  - wip
 ---
 
 ## Introduction
