@@ -62,13 +62,13 @@
 
     p {
         @apply font-sans text-justify;
+        line-height: 1.5;
         hyphens: auto;
     }
 
     p:first-of-type:not(blockquote>p, li>p)::first-letter {
-        @apply font-serif font-semibold text-6xl float-left align-text-top;
-        padding-top: 8px;
-        padding-right: 8px;
+        @apply font-serif font-semibold float-left bg-accent-1-light text-background-light dark:bg-accent-1-dark dark:text-background-dark p-2 mr-2;
+        font-size: 500%;
     }
 
     p:first-of-type:not(blockquote>p, li>p)::first-line {
