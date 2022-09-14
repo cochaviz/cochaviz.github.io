@@ -1,8 +1,9 @@
 ---
 title: 'CTF Challenge VulnLawyers Writeup'
 metaTitle: 'CTF Challenge VulnLawyers Writeup'
-metaDesc: 'A writeup for the 'VulnLawyers' challenge from ctfchallenge.com'
-date: '2022-02-14'
+metaDesc: 'A writeup for the VulnLawyers challenge from ctfchallenge.com'
+metaImg: 'https://ctfchallenge.com/images/ctflogo-trans.png'
+date: '2022-09-14'
 tags:
   - ctf
   - writeup
