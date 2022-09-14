@@ -17,7 +17,7 @@ tags:
 So you're looking for answers, are ya? Well, I've got them, but for a price...
 Namely a little bit of your time and attention:
 
-***Please try the challenges yourself before checking the answers.**
+**Please try the challenges yourself before checking the answers.**
 
 CTF's are notoriously 'NP' prone. Once you've seen the answer, it's easy
 to think you could've come up with that. There is nothing wrong with looking up
@@ -33,11 +33,13 @@ With the mommy'ing out of the way, let's get pwning.
 > sure what number was associated with which flag (as the website does not allow
 > me to re-enter flags). These are the flags in the order I found them.
 
-## Flag 1 - Data Baby (Enumeration)
+## Flags
+
+### Data Baby (Enumeration)
 
 The first flag can be found by performing a standard recon of the subdomains of
 `vulnlawyers.co.uk`.
-```bash
+```
 $ dnsrecon -d vulnlawyers.co.uk -D ~/path/to/wordlists/subdomains.txt -t brt
 
 [*] Using the dictionary file: /home/zohar/Documents/Playground/wordlists/subdomains.txt (provided by user)
@@ -49,17 +51,17 @@ $ dnsrecon -d vulnlawyers.co.uk -D ~/path/to/wordlists/subdomains.txt -t brt
 
 Doing a http request with `curl`, or opening the domain in your browser returns
 some info about the API and the first flag.
-```bash
+```
 $ curl http://data.vulnlawyers.co.uk -H "Cookie: <your_ctf_cookie>"
 
 {"name":"VulnLawyers Website API","version":"2.1.04","flag":"[^FLAG^1337-DIY-1337^FLAG^]"}
 ```
 
-## Flag 2 - Browsers are Evil (Enumeration)
+### Browsers are Evil (Enumeration)
 
 Now that we know the different domains that are available to us, let's do some
 recon on the different files and folders we have access to.
-```bash
+```
 $ ffuf -w ~/Documents/Playground/wordlists/content.txt -t 1 -p 0.1 -H "Cookie: ctfchallenge=<your_ctf_cookie>" -u http://www.vulnlawyers.co.uk/FUZZ
 
 
@@ -93,7 +95,7 @@ code from the `/login` endpoint. This code specifically tells a *browser* to
 reroute to a URL given by the `Location` header [^1].
 
 Browsers can do weird stuff, so let's try to ask `curl` what's up.
-```bash
+```
 $ curl www.vulnlawyers.co.uk/login -H "Cookie: ctfchallenge=<your_ctf_cookie>"
 
 [...]
@@ -109,7 +111,7 @@ came early this year.
 Opening the URL `http://www.vulnlawyers.co.uk/lawyers-only` will bring us to a
 login screen. Now the fun stuff can begin!
 
-## Flag 3 - A Bit of This and A Bit of That (Enumeration/Exploitation)
+### A Bit of This and A Bit of That (Enumeration/Exploitation)
 
 The current goal is to log in, but we lack any user data.
 
