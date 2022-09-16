@@ -170,7 +170,7 @@
     }
 
     nav {
-        @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alter-light bg-background-alt-light dark:bg-background-alt-dark dark:border-background-alter-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left;
+        @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alter-light bg-background-alt-light dark:bg-background-alt-dark dark:border-background-alter-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
     }
 
     nav ol { counter-reset: list-item; padding: 0px; }
