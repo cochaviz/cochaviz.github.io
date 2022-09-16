@@ -134,7 +134,7 @@
     /* Code blocks and copy .code-copy-buttons */
 
     code {
-        @apply px-1 border-code-alt-light bg-code-light dark:border-code-alt-dark dark:bg-code-dark before:content-none after:content-none;
+        @apply px-1 border-code-alt-light bg-code-light dark:border-code-alter-dark dark:bg-code-dark before:content-none after:content-none;
         border-width: 1px;
     }
 
