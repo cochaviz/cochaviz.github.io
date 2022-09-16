@@ -236,7 +236,7 @@ $ curl curl http://www.vulnlawyers.co.uk/lawyers-only-profile -H "Cookie: ctfcha
 </script>
 ```
 
-Oh would you look at that :glasses:! That's how our info was already filled in!
+Oh would you look at that :sunglasses:! That's how our info was already filled in!
 For some reason they use some other source than the
 `data.vulnlawyers.co.uk/users` endpoint which we've seen before. Maybe this
 contains different information.
@@ -273,6 +273,6 @@ Flag number five!
 ### Finishing Up (Exploitation)
 
 This leaves us to the last flag. We now use the found credentials to log in as
-Shayne Cairns, delete the case, and find the last flag :celebration:.
+Shayne Cairns, delete the case, and find the last flag :trophy:.
 
 [^1]: [302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302)
