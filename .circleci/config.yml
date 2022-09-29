@@ -23,7 +23,7 @@ jobs:
           at: ./ 
       - run: |
           touch out/.nojekyll
-          echo "www.bunkernet.dev" > out/CNAME
+          echo "www.bunkernet.cc" > out/CNAME
       - add_ssh_keys:
           fingerprints:
             - "2c:f0:58:1d:90:86:ff:9f:1d:8e:a6:6d:bb:49:25:5d"
