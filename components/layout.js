@@ -12,7 +12,7 @@ export default function Layout({ children }) {
           </Link>
 
           <div className="font-mono my-auto text-accent-1-light dark:text-accent-1-dark">
-            <span className="hidden sm:block ">cochaviz@bunkernet.dev</span>{' '}
+            <span className="hidden sm:block ">cochaviz@bunkernet.cc</span>{' '}
             <span className="block sm:hidden ">cochaviz</span>{' '}
           </div>
 
