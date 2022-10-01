@@ -14,6 +14,10 @@ import tasks from 'markdown-it-tasks';
 import footnotes from 'markdown-it-footnote';
 import copy from '../../public/static/js/copy_button';
 
+/***
+ * This method renders footnote anchor.
+ * @return a tag with an href
+ ***/
 function render_footnote_anchor(tokens, idx, options, env, slf) {
   var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
 
@@ -25,13 +29,16 @@ function render_footnote_anchor(tokens, idx, options, env, slf) {
   return ' <a href="#fnref' + id + '" class="no-underline">¶</a>';
 }
 
+/***
+ * This method renders footnote caption
+ * @return number of the current footnote
+ ***/
 function render_footnote_caption(tokens, idx/*, options, env, slf*/) {
   var n = Number(tokens[idx].meta.id + 1).toString();
 
   if (tokens[idx].meta.subId > 0) {
     n += ':' + tokens[idx].meta.subId;
   }
-
   return n;
 }
 
