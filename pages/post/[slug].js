@@ -57,6 +57,10 @@ const md = markdownIt({ html: true })
 md.renderer.rules.footnote_anchor = render_footnote_anchor;
 md.renderer.rules.footnote_caption = render_footnote_caption;
 
+/***
+ * This method returns an object with required parameter 'slug'
+ * @return paths with fallback set to 'false'
+ ***/
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
 
@@ -71,6 +75,10 @@ export async function getStaticPaths() {
   };
 }
 
+/***
+ * This method pre-renders a page at build time using the props returned from the function (i.e., 'frontmatter' and 'content')
+ * @return props: 'frontmatter' and 'content'
+ ***/
 export async function getStaticProps({ params: { slug } }) {
   const fileName = fs.readFileSync(`posts/${slug}.md`, 'utf-8');
   const { data: frontmatter, content } = matter(fileName);
