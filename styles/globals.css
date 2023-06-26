@@ -1,208 +1,238 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap");
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import 'code';
-@import 'code-dark';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "code";
+@import "code-dark";
 
 @layer base {
-    html {
-        @apply font-sans scroll-smooth;
-    }
+  html {
+    @apply font-sans scroll-smooth;
+  }
 
+  body {
+    @apply text-black dark:text-white bg-background-light dark:bg-background-dark;
+  }
+
+  header,
+  footer {
+    @apply bg-background-alt-light dark:bg-background-alt-dark;
+  }
+
+  main {
+    @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
+  }
+
+  abstract {
+    @apply block px-4 sm:px-10;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-mono;
+  }
+
+  h2,
+  h3,
+  h4 {
+    @apply underline underline-offset-4 decoration-2;
+  }
+
+  h1 {
+    @apply m-2 my-8 p-4 border-4 border-accent-1-light dark:border-accent-1-dark border-double text-center;
+  }
+
+  h2 {
+    @apply decoration-accent-1-light dark:decoration-accent-1-dark;
+  }
+
+  h2::before {
+    content: "# ";
+  }
+
+  h3:not(abstract > h3) {
+    @apply decoration-accent-2-light dark:decoration-accent-2-dark;
+  }
+
+  h3:not(abstract > h3)::before {
+    content: "## ";
+  }
+
+  h4 {
+    @apply decoration-accent-3-light dark:decoration-accent-3-dark;
+  }
+
+  h4::before {
+    content: "### ";
+  }
+
+  p {
+    @apply font-sans text-justify;
+    line-height: 1.7;
+    hyphens: auto;
+  }
+
+  p:first-of-type:not(.references p, abstract > p, blockquote > p, li > p)::first-letter {
+    @apply font-serif font-semibold float-left bg-accent-1-light text-background-light dark:bg-accent-1-dark dark:text-background-dark p-2 mr-2;
+    font-size: 300%;
+    line-height: 1;
+  }
+
+  p:first-of-type:not(.references p, abstract > p, blockquote > p, li > p)::first-line {
+    @apply text-xl;
+    font-variant: small-caps;
+  }
+
+  a {
+    @apply font-sans font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
+    text-underline-position: left;
+  }
+
+  a:focus {
+    @apply outline outline-offset-2 outline-2 outline-accent-1-light dark:outline-accent-1-dark;
+  }
+
+  p > a:visited,
+  li > a:visited {
+    @apply text-neutral-500 dark:text-neutral-400;
+  }
+
+  a:visited:hover {
+    @apply text-accent-2-light dark:text-accent-2-dark;
+  }
+
+  li {
+    @apply pr-4;
+  }
+
+  ol,
+  ul {
+    @apply font-sans;
+  }
+
+  blockquote {
+    @apply w-fit border-0 text-neutral-500 dark:text-neutral-400  border-neutral-700 py-4 px-8 text-lg relative;
+  }
+
+  blockquote > p {
+    @apply font-serif before:content-none;
+  }
+
+  blockquote > ul {
+    text-align: right;
+    list-style-type: none;
+  }
+
+  blockquote::before {
+    font-size: xx-large;
+    content: "\201C";
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+
+  blockquote::after {
+    font-size: xx-large;
+    content: "\201D";
+    position: absolute;
+    right: 15px;
+    bottom: -10px;
+  }
+
+  /* Code blocks and copy .code-copy-buttons */
+
+  code {
+    @apply px-1 border-code-alt-light bg-code-light dark:border-code-alter-dark dark:bg-code-dark before:content-none after:content-none;
+    border-width: 1px;
+  }
+
+  pre > code {
+    @apply p-0;
+    border-width: 0px;
+  }
+
+  pre {
+    @apply group-hover:bg-accent-1-dark mb-0 rounded-none block border-2 border-code-alt-light bg-code-light dark:border-code-alt-dark dark:bg-code-dark;
+  }
+
+  #code-copy-button {
+    @apply text-right w-full bg-code-alt-light dark:bg-code-alt-dark relative;
+  }
+
+  /* Other custom markdown elements */
+
+  figure {
+    @apply bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark border-double transition-all;
+  }
+
+  figure > img {
+    @apply mx-auto mt-0 py-0 invert dark:invert-0;
+  }
+
+  figcaption {
+    @apply text-center;
+  }
+
+  kbd {
+    @apply px-2 p-1 bg-background-alt-light dark:bg-background-alt-dark border-b-4 border-2 border-border-light dark:border-border-dark;
+  }
+
+  nav {
+    @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alter-light bg-background-alt-light dark:bg-background-alt-dark dark:border-background-alter-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
+  }
+
+  nav ol {
+    counter-reset: list-item;
+    padding: 0px;
+  }
+  nav li {
+    display: block;
+    counter-increment: list-item;
+    padding: 0px;
+    margin-left: 1em;
+  }
+  nav li:before {
+    content: counters(list-item, ".") " · ";
+  }
+
+  /* on laptops */
+  @media (hover: hover) and (pointer: fine) {
     body {
-        @apply text-black dark:text-white bg-background-light dark:bg-background-dark;
+      cursor: url(/cursor.png) 3 7, auto;
     }
 
-    header, footer {
-        @apply bg-background-alt-light dark:bg-background-alt-dark;
+    #code-copy-button:hover {
+      @apply bg-code-alter-light dark:bg-code-alter-dark transition-all;
+      cursor: url(/pointer.png) 5 0, auto;
     }
 
-    main {
-        @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
+    figure:hover {
+      @apply border-4 scale-125 p-4;
     }
 
-    h1, h2, h3, h4 {
-        @apply font-mono;
+    a:hover {
+      cursor: url(/pointer.png) 5 0, auto;
     }
+  }
 
-    h2, h3, h4 {
-        @apply underline underline-offset-4 decoration-2;
-    }
+  /* has to be after figure:hover :shrugs: */
+  #code-copy-button:active {
+    @apply bg-accent-1-light dark:bg-accent-1-dark text-white dark:text-black transition-none;
+  }
 
-    h1 {
-        @apply m-2 my-8 p-4 border-4 border-accent-1-light dark:border-accent-1-dark border-double text-center;
-    }
+  #dark-mode-toggle {
+    @apply hover:bg-background-alter-light dark:hover:bg-background-alter-dark border-background-alter-light dark:border-background-alter-dark;
+  }
 
-    h2 {
-        @apply decoration-accent-1-light dark:decoration-accent-1-dark;
-    }
+  #language-hint {
+    @apply transition-opacity absolute right-4 w-min px-3 border-2 border-code-alt-light bg-background-alter-light dark:border-code-alt-dark dark:bg-code-alt-dark text-black dark:text-white z-20;
+  }
 
-    h2::before {
-        content: "# ";
-    }
-
-    h3 {
-        @apply decoration-accent-2-light dark:decoration-accent-2-dark;
-    }
-
-    h3::before {
-        content: "## ";
-    }
-
-    h4 {
-        @apply decoration-accent-3-light dark:decoration-accent-3-dark;
-    }
-
-    h4::before {
-        content: "### ";
-    }
-
-    p {
-        @apply font-sans text-justify;
-        line-height: 1.7;
-        hyphens: auto;
-    }
-
-    p:first-of-type:not(blockquote>p, li>p)::first-letter {
-        @apply font-serif font-semibold float-left bg-accent-1-light text-background-light dark:bg-accent-1-dark dark:text-background-dark p-2 mr-2;
-        font-size: 300%;
-        line-height: 1;
-    }
-
-    p:first-of-type:not(blockquote>p, li>p)::first-line {
-        @apply text-xl;
-        font-variant: small-caps;
-    }
-
-    a {
-        @apply font-sans font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
-        text-underline-position: left;
-    }
-
-    a:focus {
-        @apply outline outline-offset-2 outline-2 outline-accent-1-light dark:outline-accent-1-dark;
-    }
-
-    p > a:visited, li > a:visited {
-        @apply text-neutral-500 dark:text-neutral-400;
-    }
-
-    a:visited:hover {
-        @apply text-accent-2-light dark:text-accent-2-dark;
-    }
-
-    li {
-        @apply pr-4;
-    }
-
-    ol, ul {
-        @apply font-sans;
-    }
-
-    blockquote {
-        @apply w-fit border-0 text-neutral-500 dark:text-neutral-400  border-neutral-700 py-4 px-8 text-lg relative;
-    }
-
-    blockquote > p {
-        @apply font-serif before:content-none;
-    }
-
-    blockquote > ul {
-        text-align: right;
-        list-style-type: none;
-    }
-
-    blockquote::before {
-        font-size: xx-large;
-        content: "\201C";
-        position: absolute;
-        top: 0;
-        left: 10px;
-    }
-
-    blockquote::after {
-        font-size: xx-large;
-        content: "\201D";
-        position: absolute;
-        right: 15px;
-        bottom: -10px;
-    }
-
-    /* Code blocks and copy .code-copy-buttons */
-
-    code {
-        @apply px-1 border-code-alt-light bg-code-light dark:border-code-alter-dark dark:bg-code-dark before:content-none after:content-none;
-        border-width: 1px;
-    }
-
-    pre > code {
-        @apply p-0;
-        border-width: 0px;
-    }
-
-    pre {
-        @apply group-hover:bg-accent-1-dark mb-0 rounded-none block border-2 border-code-alt-light bg-code-light dark:border-code-alt-dark dark:bg-code-dark ;
-    }
-
-    #code-copy-button {
-        @apply text-right w-full bg-code-alt-light dark:bg-code-alt-dark;
-    }
-
-    /* Other custom markdown elements */
-
-    figure {
-        @apply bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark border-double transition-all;
-    }
-
-    figure > img {
-        @apply mx-auto mt-0 py-0 invert dark:invert-0;
-    }
-
-    figcaption {
-        @apply text-center
-    }
-
-    kbd {
-        @apply px-2 p-1 bg-background-alt-light dark:bg-background-alt-dark border-b-4 border-2 border-border-light dark:border-border-dark;
-    }
-
-    nav {
-        @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alter-light bg-background-alt-light dark:bg-background-alt-dark dark:border-background-alter-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
-    }
-
-    nav ol { counter-reset: list-item; padding: 0px; }
-    nav li { display: block; counter-increment: list-item; padding: 0px; margin-left: 1em; }
-    nav li:before { content: counters(list-item,'.') ' · '; }
-
-    /* on laptops */
-    @media(hover: hover) and (pointer: fine) {
-        body {
-            cursor: url(/cursor.png) 3 7, auto;
-        }
-
-        #code-copy-button:hover {
-            @apply bg-code-alter-light dark:bg-code-alter-dark transition-all;
-            cursor: url(/pointer.png) 5 0, auto;
-        }
-
-        figure:hover {
-            @apply border-4 scale-125 p-4;
-        }
-
-        a:hover {
-            cursor: url(/pointer.png) 5 0, auto;
-        }
-    }
-
-    /* has to be after figure:hover :shrugs: */
-    #code-copy-button:active {
-        @apply bg-accent-1-light dark:bg-accent-1-dark text-white dark:text-black transition-none;
-    }
-
-    #dark-mode-toggle {
-        @apply hover:bg-background-alter-light dark:hover:bg-background-alter-dark border-background-alter-light dark:border-background-alter-dark;
-    }
+  #code-parent:hover #language-hint {
+    @apply transition-opacity border-background-alter-dark border-code-alt-light/0 bg-code-light dark:border-code-alt-dark/0 dark:bg-code-dark opacity-0;
+  }
 }

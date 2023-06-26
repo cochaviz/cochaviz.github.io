@@ -5,7 +5,7 @@ try {
   // Node js will throw an error
   this === window;
   new Clipboard('.code-copy-button');
-} catch (_) { }
+} catch (_) {}
 
 const defaultOptions = {
   iconStyle: 'padding: 0px 1em 7px 0px; display:none',
@@ -33,6 +33,7 @@ function renderCode(origRule, options) {
     }
     return `
       <div id="code-parent">
+        <div id="language-hint">TEST</div>
         ${origRendered}
         <button id="code-copy-button" class="${options.buttonClass}" data-clipboard-text="${content}" style="${options.buttonStyle}" title="Copy code in block">
             <img class="code-copy-button-icon ${options.iconClass}" src="${options.iconSrc}" alt="${options.iconAlt}" style="${options.iconStyle}"/>
