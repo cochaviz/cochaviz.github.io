@@ -14,6 +14,10 @@ import tasks from 'markdown-it-tasks';
 import footnotes from 'markdown-it-footnote';
 import copy from '../../public/static/js/copy_button';
 
+/***
+ * This method renders footnote anchor.
+ * @return a tag with an href
+ ***/
 function render_footnote_anchor(tokens, idx, options, env, slf) {
   var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
 
@@ -25,13 +29,16 @@ function render_footnote_anchor(tokens, idx, options, env, slf) {
   return ' <a href="#fnref' + id + '" class="no-underline">¶</a>';
 }
 
+/***
+ * This method renders footnote caption
+ * @return number of the current footnote
+ ***/
 function render_footnote_caption(tokens, idx/*, options, env, slf*/) {
   var n = Number(tokens[idx].meta.id + 1).toString();
 
   if (tokens[idx].meta.subId > 0) {
     n += ':' + tokens[idx].meta.subId;
   }
-
   return n;
 }
 
@@ -50,6 +57,10 @@ const md = markdownIt({ html: true })
 md.renderer.rules.footnote_anchor = render_footnote_anchor;
 md.renderer.rules.footnote_caption = render_footnote_caption;
 
+/***
+ * This method returns an object with required parameter 'slug'
+ * @return paths with fallback set to 'false'
+ ***/
 export async function getStaticPaths() {
   const files = fs.readdirSync('posts');
 
@@ -64,6 +75,10 @@ export async function getStaticPaths() {
   };
 }
 
+/***
+ * This method pre-renders a page at build time using the props returned from the function (i.e., 'frontmatter' and 'content')
+ * @return props: 'frontmatter' and 'content'
+ ***/
 export async function getStaticProps({ params: { slug } }) {
   const fileName = fs.readFileSync(`posts/${slug}.md`, 'utf-8');
   const { data: frontmatter, content } = matter(fileName);
@@ -105,7 +120,8 @@ export default function PostPage({ frontmatter, content }) {
       <a className="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-50 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-double border-4"
         href="#TOP">↑</a>
       <h1>{frontmatter.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />
+      {(frontmatter.abstract != null) && <abstract><h3>Abstract</h3> <p>{frontmatter.abstract}</p></abstract>}
+      <article dangerouslySetInnerHTML={{ __html: md.render(content) }} />
     </div>
   );
 }
