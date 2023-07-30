@@ -24,6 +24,9 @@ author: Zohar Cochavi
 date: '2022-07-02'
 tags:
   - thesis (bsc)
+  - fairness
+  - philosophy
+  - ai
 ---
 
 ## Introduction
