@@ -5,6 +5,7 @@ metaDesc: 'Taking lessons from humanities and applying them to research and prac
 metaImg: 'https://zjf683hopnivfq5d12xaooxr-wpengine.netdna-ssl.com/wp-content/uploads/2018/10/science-article-lede.jpg'
 date: '2022-05-01'
 tags:
+  - wip
   - humanities
   - computer science
   - opinionated
@@ -79,17 +80,17 @@ Feynman.
 > **Pick a topic**—Identify a subject you are unfamiliar with, and take an inventory
 > of what you know and what you don’t know; then, “fill in the gaps.” This could
 > be through self-study, attending lectures, listening to podcasts, etc.
-> 
+>
 > **Teach someone else**—After having compiled all that knowledge, simplify it as though you
 > will be explaining the topic to someone else. **This step is really the key**.
 > Plenty of studies have demonstrated that subjects learn better and retain more
 > knowledge when they are asked to teach what they’ve learned to someone else.
-> 
+>
 > **Simplify**—Work on removing jargon and overly technical terms from the explanation
 > by breaking down the material into simple terms using your own words. This helps
 > ensure that complex concepts don’t hide behind big words that won’t be fully
 > grasped.
-> 
+>
 > **Repeat**—Iteration is key here, as it is with so many processes.
 > Continuing to teach others the material and refine the teaching method will
 > improve retention and enforce mastery of the subject.
