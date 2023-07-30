@@ -45,9 +45,10 @@ export async function getStaticProps() {
       description: "Toy kernel for ARM, written by students of TU Delft",
     },
     {
-      name: "gopy",
-      url: "https://github.com/cochaviz/gopy",
-      description: "Go game written in python, without any dependecies ",
+      name: "acamdemic_markdown",
+      url: "https://github.com/cochaviz/academic_markdown",
+      description:
+        "A workflow for doing academic writing with Markown (and VSCode)",
     },
     {
       name: "battlesnake",
@@ -63,7 +64,7 @@ export async function getStaticProps() {
       name: "bunkernet",
       url: "https://github.com/cochaviz/bunkernet",
       description:
-        "Personal website containing projects, guides, and other blog posts ",
+        "Personal website containing projects, guides, and other blog posts (very meta)",
     },
   ];
 
@@ -111,26 +112,33 @@ export default function Home({ projects, posts }) {
 
       <h1>Hi! My name is Zohar</h1>
       <p>
-        I&apos;m a computer science and engineering student at Delft University
-        of Technology. Academically I&apos;m very interested in algorithms and
-        collaborative AI, among other things. When I&apos;m not studying I love
-        to make projects about anything that seems interesting at the moment.
+        I&apos;m a graduate computer science and engineering student at Delft
+        University of Technology, specializing in the field of Cyber Security
+        and AI systems. I have experience as a software developer, student
+        researcher, SOC analyst, and a trainer, but I have always wanted to be a
+        teacher, or at least had the desire to communicate what I&apos;ve
+        learned and with that learn from others.
       </p>
       <p>
-        Here I collect stuff about what I&apos;ve learned, useful resources and
-        show off some cool stuff I&apos;ve made. Feel free to have a look around
-        and <a href="mailto:cochaviz@bunkernet.dev">tell me what you think! </a>
+        I love learning and communication, and I hope this website reflects
+        that. Here I collect stuff about what I&apos;ve learned, useful
+        resources and show off some cool stuff I&apos;ve made. Feel free to have
+        a look around and
+        <a href="mailto:cochaviz@bunkernet.dev">tell me what you think! </a>
       </p>
 
       <h2>Recent Posts</h2>
-      <p>Most recent blog posts. Check the archive for more!</p>
+      <p>
+        The most recent articles. Check the archive for more! (Not actually a
+        thing now, but I hope it will be at some point.)
+      </p>
 
       <ul>
         {posts.map(({ slug, frontmatter }) => (
           <li key={slug}>
             <Link href={`/post/${slug}`}>
               <a>
-                {frontmatter.date} --//--{" "}
+                [{frontmatter.date}] -{" "}
                 {frontmatter.tags.includes("wip") ? "[WIP]" : ""}{" "}
                 {frontmatter.title}
               </a>
