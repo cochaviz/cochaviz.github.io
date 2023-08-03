@@ -110,7 +110,7 @@ export default function Home({ projects, posts }) {
         />
       </Head>
 
-      <h1>Hi! My name is Zohar</h1>
+      <h1>Hi! My name is Zohar 👨‍💻</h1>
       <p>
         I&apos;m a graduate computer science and engineering student at Delft
         University of Technology, specializing in the field of Cyber Security
@@ -123,7 +123,7 @@ export default function Home({ projects, posts }) {
         I love learning and communication, and I hope this website reflects
         that. Here I collect stuff about what I&apos;ve learned, useful
         resources and show off some cool stuff I&apos;ve made. Feel free to have
-        a look around and
+        a look around and{" "}
         <a href="mailto:cochaviz@bunkernet.dev">tell me what you think! </a>
       </p>
 

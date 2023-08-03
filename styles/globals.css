@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
@@ -9,7 +10,7 @@
 
 @layer base {
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-serif scroll-smooth sm:text-[120%];
   }
 
   body {
@@ -29,13 +30,6 @@
     @apply block px-4 sm:px-10;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-mono;
-  }
-
   h2,
   h3,
   h4 {
@@ -43,7 +37,7 @@
   }
 
   h1 {
-    @apply m-2 my-8 p-4 border-4 border-accent-1-light dark:border-accent-1-dark border-double text-center;
+    @apply m-2 my-10 px-4 pb-8 border-b-2 dark:border-white border-black;
   }
 
   h2 {
@@ -71,24 +65,34 @@
   }
 
   p {
-    @apply font-sans text-justify;
+    @apply text-justify;
     line-height: 1.7;
     hyphens: auto;
   }
 
-  p:first-of-type:not(.references p, abstract > p, blockquote > p, li > p)::first-letter {
+  p:first-of-type:not(
+      .references p,
+      abstract > p,
+      blockquote > p,
+      li > p
+    )::first-letter {
     @apply font-serif font-semibold float-left bg-accent-1-light text-background-light dark:bg-accent-1-dark dark:text-background-dark p-2 mr-2;
     font-size: 300%;
     line-height: 1;
   }
 
-  p:first-of-type:not(.references p, abstract > p, blockquote > p, li > p)::first-line {
+  p:first-of-type:not(
+      .references p,
+      abstract > p,
+      blockquote > p,
+      li > p
+    )::first-line {
     @apply text-xl;
     font-variant: small-caps;
   }
 
   a {
-    @apply font-sans font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
+    @apply font-serif font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
     text-underline-position: left;
   }
 
@@ -111,7 +115,7 @@
 
   ol,
   ul {
-    @apply font-sans;
+    @apply font-serif;
   }
 
   blockquote {

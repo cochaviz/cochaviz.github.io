@@ -3,7 +3,7 @@ title: 'Intro to programming: implementing a snake AI 🐍'
 metaTitle: 'Introduction to programming with snake AI'
 metaDesc: 'An introduction to programming with the goal of implementing an AI that will compete in the developer game Battlesnake'
 metaImg: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblog.battlesnake.com%2Fcontent%2Fimages%2F2021%2F06%2FMediumSocial-1.png&f=1&nofb=1'
-date: '2022-02-16'
+date: '2022-12-16'
 tags:
   - wip
   - battlesnake
@@ -24,7 +24,7 @@ language you want to learn, have a grasp of basic syntax and know how logic in
 programming works (e.g. if statements). But what now? Well, writing an AI
 :sunglasses:. We will cover:
 
-- problem representation and solving 
+- problem representation and solving
 - version control with [git](https://git-scm.com) and
   [GitHub](https://www.github.com)
 - some high-level concepts regarding web services and
@@ -38,8 +38,8 @@ well it performs. This means that you can see your snake improve with your
 programming abilities!
 
 I can hear you ask: "Great, but what language are we gonna be programming in?".
-Since we are essentially  creating a [web
-service](https://en.wikipedia.org/wiki/Web_service), you can do this in any
+Since we are essentially creating a [web](https://en.wikipedia.org/wiki/Web_service)
+service](<https://en.wikipedia.org/wiki/Web_service>), you can do this in any
 language you want!  The Battlesnake devs and the community have created some
 [starter projects](https://docs.battlesnake.com/references/starter-projects)
 which will help you get started in minutes. If you language is in there, great!
@@ -85,12 +85,11 @@ Actually, I highly encourage this! Take breaks regularly, especially if things
 don't seem to work when they should... :bug:. We'll cover a lot of material, so
 buckle up, grab some snacks, and let's get going :rocket:!
 
-
 ## Battlesnake
 
 > Battlesnake is a multi-player programming game played by developers all over
 > the world. All you need to play is a live web server that implements the
-> Battlesnake API. 
+> Battlesnake API.
 >
 > — play.battlesnake.com
 
@@ -113,7 +112,7 @@ the normal rules of snake apply:
 
 There are some other edge-cases to consider (e.g. what do you do when heads
 collide), but these don't matter much for our purposes. Please refer to the
-official documentation if you want to learn more. 
+official documentation if you want to learn more.
 
 ### Creating our first snake
 
@@ -150,7 +149,7 @@ this manually, this is the equivalent of typing the URL, let's say
 [endpoint](https://en.wikipedia.org/wiki/Communication_endpoint). There is also
 a endpoint for indicating that we want to start to game, which would be
 `my-awesome-snake.dev/start`. And one for ending the game, `/end`. You get the
-idea. 
+idea.
 
 ![transaction
 diagram](/images/post/intro-to-programming-battlesnake/transaction-diagram.svg
@@ -166,7 +165,7 @@ what type of requests we need to handle (does the request contain information?
 Do we need to send anything back; give a response?), as well as the format that
 the information is in (e.g. a two-dimensional array representing the board) is
 called an [Application Programming Interface, or
-API](https://en.wikipedia.org/wiki/API). 
+API](https://en.wikipedia.org/wiki/API).
 
 Having an API is great, because it means that **two programs can
 communicate, without them needing to know exactly how the other works**. Since
@@ -180,8 +179,7 @@ Of course, the Battlesnake documentation also [contains a specification for the
 API of the snake](https://docs.battlesnake.com/references/api). Go and see if
 you can find the endpoints mentioned before.  There is actually one more
 endpoint I didn't mention, try to see if you can find it and figure out what it
-does! 
-
+does!
 
 ## Getting the server running
 
@@ -193,7 +191,7 @@ with just one button we can have our own version of such a so-called
 code. This is done with git, which I'll also introduce then (in short, it allows
 us to keep track of different versions of our code and lets us sync our local
 version with a remote one, in our case GitHub). Once we've got that going, we
-will look at Heroku. This is a service that will host our code on a publicly 
+will look at Heroku. This is a service that will host our code on a publicly
 accessible URL, which will allow us to create our first snake! Once all of this
 is set up we will be able to start programming our snake logic. With that said,
 let's get going!
@@ -203,12 +201,13 @@ let's get going!
 Going back to the [starter
 projects](https://docs.battlesnake.com/references/starter-projects), click on
 the one that you would like to use. This should bring you to GitHub, where you
-will click the big green button saying ***"Use this template"***. Give it a name,
-keep it public, and click ***"Create repository from template"***.
+will click the big green button saying _**"Use this template"**_. Give it a name,
+keep it public, and click _**"Create repository from template"**_.
 Congratulations! You have made your first repository  :partying_face:!  "But
-what is a repository?", I can hear you ask. Well, let me explain. 
+what is a repository?", I can hear you ask. Well, let me explain.
 
 #### Git primer
+
 A repository is a folder in which [git]() tracks changes in order to organize
 the history of your code. And what is git? Well, it simply is a tool to organize
 the history, or, the different versions of you code, a [Version Control
@@ -219,7 +218,7 @@ accidentally break your precious program, so you **branch** off to a different
 version. In this new branch, you write your code and continue to make commits.
 You are a great programmer, so your feature turns out to be a great addition to
 the existing program! Now you can **merge** the new feature branch with the
-**main** (from which we've originally branched off) one. 
+**main** (from which we've originally branched off) one.
 
 ![git history
 diagram](/images/post/intro-to-programming-battlesnake/git-history-diagram.svg
@@ -239,12 +238,13 @@ the same code you want to work on. If you don't do this, you might encounter
 **conflicts** when you want to push the changes you made to the remote.
 
 #### Working with git
+
 Now, there are a couple of different options in with regard to performing these
-actions on a local version of your new repository. There are applications with 
+actions on a local version of your new repository. There are applications with
 a **graphical user interface (GUI)** such as
 
 - [GitHub Desktop](https://desktop.github.com/) - easiest to use in combination
-  with GitHub 
+  with GitHub
 - [GitKraken](https://www.gitkraken.com/) - has a _ton_ of features
 - [and many more...](https://git-scm.com/downloads/guis)
 
@@ -253,10 +253,12 @@ bash](https://git-scm.com/downloads) for Windows) to use git.  If you don't have
 any experience using a **command line interface (CLI)**, I suggest you take one
 of the options that includes a GUI. I, however, will be giving explaining what
 to do using command line instructions. Which would looks something like this
+
 ```bash
 git add changed_file.go
 git commit -m "Commit #1"
 ```
+
 Here, I'm adding all my changes from a file called `changed_file.go`, and then
 committing them in a new commit called _Commit #1_. If you would like to know
 how to do that in your git application of choice, simply _DuckDuck Go_ something
@@ -265,24 +267,29 @@ Desktop"_. It might be a little hard at first, but I believe you'll learn more
 about the application and how to work with it if you find the solution yourself.
 
 ### Exploring the code base
+
 Let's get a little taste of what we're gonna be working with and check if
 everything works as it should, before starting to set up our server. In order to
 check out the code, we could of course go to repository on GitHub and browse the
 code from there. But if we want to make changes, we'll have to have it locally.
-So let's do that now. 
+So let's do that now.
+
 ```bash
 # this will clone the repository <repo> of <username> into the folder <local_repo>
 git clone git@github.com:<username>/<repo>.git <local_repo>
 ```
+
 This will give us a folder, which we can open with our favorite IDE (mine is
 emacs). All the beginner projects have a similar structure of which these are
 the most important files.
+
 ```
 # A wildcard (*) indicates any sort of pattern (e.g. py, go, rs, etc.)
 - logic.*
 - main.*
 - logic_test.*
 ```
+
 `main.*` contains the functions that handle the web requests. `logic.*` contains
 the snake logic; how your snake responds given a game state. `logic_test.*`
 contains some tests for functions defined in `logic.*`. In the next two sections
@@ -290,12 +297,14 @@ I'll discuss the code in these files. Again, it will be done in Go, but you
 should be able to follow in any language since the structure is similar.
 
 #### Web requests
+
 Opening `main.go` file will show a couple of functions and structs. The functions are
 for handling web requests, and the structs show how the data should be
 **parsed** from the incoming web request. All these data structures have to do
 with the `GameState` that we get from a request at the `/move` endpoint.
 
 We can see four different handlers:
+
 ```go
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
   [...]
@@ -313,6 +322,7 @@ func HandleEnd(w http.ResponseWriter, r *http.Request) {
   [...]
 }
 ```
+
 Each one corresponds to a different end point. Here, `HandleIndex` corresponds
 to the `/`, or **root**, endpoint. The reason that this is called `HandleIndex`
 and not `HandleRoot`, is because when you normally type a URL, for example
@@ -327,15 +337,19 @@ root, because **it is the root of the filesystem of the server**.
 To check if the server runs like it should (and it should), you can run the
 project in whatever IDE you have. In Go, using the command line, it would look
 like this:
+
 ```bash
 go run main.go
 ```
+
 ```txt
 2022/03/23 21:10:03 Starting Battlesnake Server at http://0.0.0.0:8080...
 ```
+
 Open your browser and type in the URL at the end of the line
 (or, `http://localhost:8080`, they mean the same). If everything works as it
 should, you should see something like this:
+
 ```json
 {
   "apiversion": "1",
@@ -345,13 +359,14 @@ should, you should see something like this:
   "tail": "curled"
 }
 ```
+
 This is the 'secret' endpoint I was hinting at in the previous chapter! It tells
 us information about who made the snake (me :smile:), what it looks like, and
 the version of the API. Knowing the version of the API is important because it
 tells you if it even makes sense to interact with the snake any further. If the
 Battlesnake game server would see a different API version, it would probably not
 interact any further (maybe show you an error when creating the snake) in order
-to avoid possible errors. 
+to avoid possible errors.
 
 This is essentially what the Heroku server will do. It will take the code from
 GitHub and run it. The only difference is that the URL will be different than
@@ -362,6 +377,7 @@ could gain access to your computer. Technically you _could_ host it yourself
 encourage you to do so!), but for now Heroku is the simplest _and_ safest option.
 
 #### Snake logic
+
 Having a look in the `logic.go` shows only a couple of functions, but a lot of
 comments. This is where most of the magic will happen, at least, in the
 beginning. Once you make your snake more complex, you will inevitably
@@ -398,46 +414,52 @@ func end(state GameState) {
 func move(state GameState) BattlesnakeMoveResponse {
   [...]
 
-	// Step 0: Don't let your Battlesnake move back in on it's own neck
+ // Step 0: Don't let your Battlesnake move back in on it's own neck
 
   [...]
 
-	// TODO: Step 1 - Don't hit walls.
+ // TODO: Step 1 - Don't hit walls.
 
-	// TODO: Step 2 - Don't hit yourself.
+ // TODO: Step 2 - Don't hit yourself.
 
-	// TODO: Step 3 - Don't collide with others.
+ // TODO: Step 3 - Don't collide with others.
 
-	// TODO: Step 4 - Find food.
+ // TODO: Step 4 - Find food.
 
-	// TODO: Step 5 - Select a move to make based on strategy, rather than random.
+ // TODO: Step 5 - Select a move to make based on strategy, rather than random.
   
   [...]
 }
 ```
 
-
 ### Making a web service with Heroku
+>
 > Just guiding the reader through the process of working with Heroku
 
 ## Programming the snake
+>
 > Actually starting to do some programming
 
 ### Making the snake beautiful
+>
 > Customize info and show how changes propagate through the whole pipeline
 
 ### Making the snake not stupid
+>
 > Get through the basic challenges
 
-### Making the snake smart 
+### Making the snake smart
+>
 > Getting food, and some heuristics
 
-
 ## Beyond this tutorial
+>
 > Give some ideas on how to continue
 
 ### CI/CD
+>
 > Creating a pipeline using a CI/CD tool to check if the snake will actually run
 
 ### Tree snakes
+>
 > Small teaser to tree-traversal and the potentials of a better snake
