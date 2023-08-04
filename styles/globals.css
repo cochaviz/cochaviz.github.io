@@ -70,27 +70,6 @@
     hyphens: auto;
   }
 
-  p:first-of-type:not(
-      .references p,
-      abstract > p,
-      blockquote > p,
-      li > p
-    )::first-letter {
-    @apply font-serif font-semibold float-left bg-accent-1-light text-background-light dark:bg-accent-1-dark dark:text-background-dark p-2 mr-2;
-    font-size: 300%;
-    line-height: 1;
-  }
-
-  p:first-of-type:not(
-      .references p,
-      abstract > p,
-      blockquote > p,
-      li > p
-    )::first-line {
-    @apply text-xl;
-    font-variant: small-caps;
-  }
-
   a {
     @apply font-serif font-semibold underline-offset-2 underline text-accent-3-light dark:text-accent-3-dark hover:text-accent-2-light dark:hover:text-accent-2-dark;
     text-underline-position: left;
@@ -209,17 +188,8 @@
       cursor: url(/cursor.png) 3 7, auto;
     }
 
-    #code-copy-button:hover {
-      @apply bg-code-alter-light dark:bg-code-alter-dark transition-all;
-      cursor: url(/pointer.png) 5 0, auto;
-    }
-
     figure:hover {
       @apply border-4 scale-125 p-4;
-    }
-
-    a:hover {
-      cursor: url(/pointer.png) 5 0, auto;
     }
   }
 

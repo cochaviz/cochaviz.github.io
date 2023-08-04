@@ -14,13 +14,13 @@ module.exports = {
       colors: {
         background: {
           light: "#f5f5f3",
-          dark: "#1a1a1a",
+          dark: "#1c1c1c",
           alt: {
-            light: "#ebebe9",
+            light: "#e8e8e8",
             dark: "#141414",
           },
           alter: {
-            light: "#e1e1df",
+            light: "#f1f1f1",
             dark: "#202020",
           },
         },
