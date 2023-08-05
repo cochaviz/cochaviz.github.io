@@ -129,7 +129,7 @@ export default function PostPage({ frontmatter, content }) {
         ></script>
       </Head>
       <a
-        className="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-50 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-double border-4"
+        className="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-50 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-2"
         href="#TOP"
       >
         ↑
