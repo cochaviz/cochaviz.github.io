@@ -16,7 +16,7 @@ export default function Layout({ children }) {
 
           <div className="font-mono my-auto text-accent-1-light dark:text-accent-1-dark">
             <span className="hidden sm:block ">cochaviz</span>{" "}
-            {/* <span className="block sm:hidden ">cochaviz</span>{" "} */}
+            <span className="block sm:hidden">👨‍💻</span>{" "}
           </div>
 
           <div className="flex gap-x-5">
