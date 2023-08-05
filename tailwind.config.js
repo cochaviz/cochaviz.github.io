@@ -16,11 +16,11 @@ module.exports = {
           light: "#f5f5f3",
           dark: "#1c1c1c",
           alt: {
-            light: "#e8e8e8",
-            dark: "#141414",
+            light: "#e0e0e0",
+            dark: "#303030",
           },
           alter: {
-            light: "#f1f1f1",
+            light: "#f0f0f0",
             dark: "#202020",
           },
         },
@@ -42,16 +42,20 @@ module.exports = {
         },
         accent: {
           1: {
-            dark: "#ca8a04",
-            light: "#16a34a",
+            // dark: "#ca8a04",
+            dark: "#d29d2e",
+            // light: "#16a34a",
+            light: "#4aa16c",
           },
           2: {
-            dark: "#16a34a",
-            light: "#d84417",
+            // dark: "#16a34a",
+            dark: "#4cc078",
+            light: "#9f69c0",
           },
           3: {
-            dark: "#3095dd",
-            light: "#1791e8",
+            // dark: "#3095dd",
+            dark: "#4a9eda",
+            light: "#4a8fc3",
           },
         },
       },

@@ -19,7 +19,15 @@
 
   header,
   footer {
-    @apply bg-background-alt-light dark:bg-background-alt-dark;
+    @apply bg-background-alter-light border-background-alt-light dark:bg-background-alter-dark dark:border-background-alt-dark;
+  }
+
+  header {
+    @apply border-b-2;
+  }
+
+  footer {
+    @apply border-t-2;
   }
 
   main {
@@ -33,7 +41,7 @@
   h2,
   h3,
   h4 {
-    @apply underline underline-offset-4 decoration-2;
+    @apply underline underline-offset-[5px] decoration-2;
   }
 
   h1 {
@@ -44,23 +52,26 @@
     @apply decoration-accent-1-light dark:decoration-accent-1-dark;
   }
 
-  h2::before {
-    content: "# ";
-  }
-
   h3:not(abstract > h3) {
     @apply decoration-accent-2-light dark:decoration-accent-2-dark;
-  }
-
-  h3:not(abstract > h3)::before {
-    content: "## ";
   }
 
   h4 {
     @apply decoration-accent-3-light dark:decoration-accent-3-dark;
   }
 
+  h2::before {
+    @apply text-accent-1-light dark:text-accent-1-dark;
+    content: "# ";
+  }
+
+  h3:not(abstract > h3)::before {
+    @apply text-accent-2-light dark:text-accent-2-dark;
+    content: "## ";
+  }
+
   h4::before {
+    @apply text-accent-3-light dark:text-accent-3-dark;
     content: "### ";
   }
 
@@ -146,6 +157,10 @@
     @apply text-right w-full bg-code-alt-light dark:bg-code-alt-dark relative;
   }
 
+  h1 > em {
+    @apply text-accent-1-dark;
+  }
+
   /* Other custom markdown elements */
 
   figure {
@@ -165,7 +180,7 @@
   }
 
   nav {
-    @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alter-light bg-background-alt-light dark:bg-background-alt-dark dark:border-background-alter-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
+    @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alt-light bg-background-alter-light dark:bg-background-alter-dark dark:border-background-alt-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
   }
 
   nav ol {
