@@ -110,7 +110,13 @@ export default function Home({ projects, posts }) {
         />
       </Head>
 
-      <h1>Hi! My name is Zohar 👨‍💻</h1>
+      <h1>
+        Hi! My name is{" "}
+        <span className="text-accent-1-light dark:text-accent-1-dark">
+          Zohar
+        </span>{" "}
+        👨‍💻
+      </h1>
       <p>
         I&apos;m a graduate computer science and engineering student at Delft
         University of Technology, specializing in the field of Cyber Security
