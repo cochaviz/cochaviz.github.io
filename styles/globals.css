@@ -31,7 +31,7 @@
   }
 
   main {
-    @apply prose dark:prose-invert relative mx-auto px-4 sm:pt-0;
+    @apply prose dark:prose-invert relative mx-auto px-6 sm:pt-0;
   }
 
   abstract {
@@ -141,7 +141,7 @@
 
   code {
     @apply px-1 border-code-alt-light bg-code-light dark:border-code-alter-dark dark:bg-code-dark before:content-none after:content-none;
-    border-width: 1px;
+    border-width: 2px;
   }
 
   pre > code {
@@ -154,17 +154,17 @@
   }
 
   #code-copy-button {
-    @apply text-right w-full bg-code-alt-light dark:bg-code-alt-dark relative;
+    @apply font-sans text-right w-full bg-code-alt-light dark:bg-code-alt-dark relative;
   }
 
-  h1 > em {
-    @apply text-accent-1-dark;
+  em {
+    @apply text-accent-1-light dark:text-accent-1-dark;
   }
 
   /* Other custom markdown elements */
 
   figure {
-    @apply bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark border-double transition-all;
+    @apply bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark transition-all;
   }
 
   figure > img {
@@ -180,7 +180,8 @@
   }
 
   nav {
-    @apply w-full mx-auto mt-8 mb-4 p-2 px-16 border-2 border-background-alt-light bg-background-alter-light dark:bg-background-alter-dark dark:border-background-alt-dark text-sm block md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%];
+    @apply mx-4 md:mx-8 my-4 p-2 md:px-8 border-2 border-background-alt-light bg-background-alter-light dark:bg-background-alter-dark dark:border-background-alt-dark text-sm block;
+    /* md:my-0 md:mr-8 md:w-fit md:px-2 md:float-left md:max-w-[50%]; */
   }
 
   nav ol {
@@ -204,7 +205,7 @@
     }
 
     figure:hover {
-      @apply border-4 scale-125 p-4;
+      @apply border-2 scale-125 p-4;
     }
   }
 
@@ -218,10 +219,10 @@
   }
 
   #language-hint {
-    @apply transition-opacity absolute right-4 w-min px-3 border-2 border-code-alt-light bg-background-alter-light dark:border-code-alt-dark dark:bg-code-alt-dark text-black dark:text-white z-20;
+    @apply hidden;
   }
 
-  #code-parent:hover #language-hint {
+  /* #code-parent:hover #language-hint {
     @apply transition-opacity border-background-alter-dark border-code-alt-light/0 bg-code-light dark:border-code-alt-dark/0 dark:bg-code-dark opacity-0;
-  }
+  } */
 }

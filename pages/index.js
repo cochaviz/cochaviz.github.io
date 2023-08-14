@@ -91,10 +91,10 @@ export default function Home({ projects, posts }) {
   return (
     <div>
       <Head>
-        <title>bunkernet</title>
+        <title>cochaviz</title>
         <meta
           property="og:title"
-          content="bunkernet.dev - portfolio website and blog"
+          content="cochaviz.dev - portfolio website and blog"
           key="title"
         />
         <meta

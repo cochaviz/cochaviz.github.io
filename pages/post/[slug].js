@@ -141,6 +141,11 @@ export default function PostPage({ frontmatter, content }) {
           <p>{frontmatter.abstract}</p>
         </abstract>
       )}
+      {content.includes("[[toc]]") && (
+        <abstract>
+          <h3 className="no-underline">Table of Contents</h3>{" "}
+        </abstract>
+      )}
       <article dangerouslySetInnerHTML={{ __html: md.render(content) }} />
     </div>
   );
