@@ -158,13 +158,17 @@
   }
 
   em {
-    @apply text-accent-1-light dark:text-accent-1-dark;
+    @apply font-semibold;
   }
 
   /* Other custom markdown elements */
 
   figure {
     @apply bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark transition-all;
+  }
+
+  img {
+    @apply bg-transparent;
   }
 
   figure > img {

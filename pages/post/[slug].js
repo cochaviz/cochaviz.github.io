@@ -1,61 +1,26 @@
 import Head from "next/head";
-import Script from "next/script";
 
 import fs from "fs";
 import matter from "gray-matter";
 
-import markdownIt from "markdown-it";
-import highlightjs from "markdown-it-highlightjs";
-import figure from "markdown-it-image-figures";
-import anchor from "markdown-it-anchor";
-import emojis from "markdown-it-emoji";
-import toc from "markdown-it-toc-done-right";
-import tasks from "markdown-it-tasks";
-import footnotes from "markdown-it-footnote";
-import copy from "../../public/static/js/copy_button";
+import { marked } from "marked";
+import markedKatex from "marked-katex-extension";
+import markedFootnote from "marked-footnote";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 
-/***
- * This method renders footnote anchor.
- * @return a tag with an href
- ***/
-function render_footnote_anchor(tokens, idx, options, env, slf) {
-  var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-
-  if (tokens[idx].meta.subId > 0) {
-    id += ":" + tokens[idx].meta.subId;
-  }
-
-  /* ↩ with escape code to prevent display as Apple Emoji on iOS */
-  return ' <a href="#fnref' + id + '" class="no-underline">¶</a>';
-}
-
-/***
- * This method renders footnote caption
- * @return number of the current footnote
- ***/
-function render_footnote_caption(tokens, idx /*, options, env, slf*/) {
-  var n = Number(tokens[idx].meta.id + 1).toString();
-
-  if (tokens[idx].meta.subId > 0) {
-    n += ":" + tokens[idx].meta.subId;
-  }
-  return n;
-}
-
-const md = markdownIt({ html: true })
-  .use(highlightjs)
-  .use(emojis)
-  .use(figure, {
-    figcaption: true,
-  })
-  .use(anchor)
-  .use(toc)
-  .use(tasks, { enabled: true })
-  .use(copy, { iconAlt: "copy" })
-  .use(footnotes);
-
-md.renderer.rules.footnote_anchor = render_footnote_anchor;
-md.renderer.rules.footnote_caption = render_footnote_caption;
+marked
+  .use(markedKatex())
+  .use(markedFootnote())
+  .use(
+    markedHighlight({
+      langPrefix: "hljs language-",
+      highlight(code, lang) {
+        const language = hljs.getLanguage(lang) ? lang : "plaintext";
+        return hljs.highlight(code, { language }).value;
+      },
+    })
+  );
 
 /***
  * This method returns an object with required parameter 'slug'
@@ -106,7 +71,7 @@ export default function PostPage({ frontmatter, content }) {
 
         <meta name="twitter:card" content="summary_large_image" />
 
-        {/* MathJax */}
+        {/* MathJax
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -126,7 +91,7 @@ export default function PostPage({ frontmatter, content }) {
           id="MathJax-script"
           async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
+        ></script> */}
       </Head>
       <a
         className="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-50 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-2"
@@ -146,7 +111,7 @@ export default function PostPage({ frontmatter, content }) {
           <h3 className="no-underline">Table of Contents</h3>{" "}
         </abstract>
       )}
-      <article dangerouslySetInnerHTML={{ __html: md.render(content) }} />
+      <article dangerouslySetInnerHTML={{ __html: marked.parse(content) }} />
     </div>
   );
 }

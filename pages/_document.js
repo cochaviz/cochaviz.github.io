@@ -1,9 +1,9 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
@@ -11,20 +11,44 @@ class MyDocument extends Document {
       <Html lang="en-US">
         <Head>
           {/* favicon - Copyright 2020 Twitter, Inc and other contributors */}
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
           <link rel="manifest" href="/site.webmanifest" />
 
+          {/* Katex */}
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+            integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn"
+            crossOrigin="anonymous"
+          />
+
           {/* adjust dark/light mode to system theme */}
-          <script dangerouslySetInnerHTML={{
-            __html:
-              "if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { \
+          <script
+            dangerouslySetInnerHTML={{
+              __html:
+                "if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { \
           document.documentElement.classList.add('dark') \
             } else { \
           document.documentElement.classList.remove('dark') \
-            }"
-          }} />
+            }",
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -32,11 +56,20 @@ class MyDocument extends Document {
 
           {/* clicky traffic analysis */}
           <script async src="//static.getclicky.com/101354370.js"></script>
-          <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101354370ns.gif" /></p></noscript>
+          <noscript>
+            <p>
+              <img
+                alt="Clicky"
+                width="1"
+                height="1"
+                src="//in.getclicky.com/101354370ns.gif"
+              />
+            </p>
+          </noscript>
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

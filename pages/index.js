@@ -25,11 +25,13 @@ export async function getStaticProps() {
       !e.frontmatter.tags.includes("wip")
     );
   });
+
   // sort by most recent post
   posts = posts.sort(function (a, b) {
-    return -a.frontmatter.date.localeCompare(b.frontmatter.date);
+    console.log(a.frontmatter.date, b.frontmatter.date);
+    return a.frontmatter.date - b.frontmatter.date;
   });
-  posts = posts.slice(0, 5);
+  // posts = posts.slice(0, 5);
 
   // Automate?
   const projects = [
