@@ -28,10 +28,9 @@ export async function getStaticProps() {
 
   // sort by most recent post
   posts = posts.sort(function (a, b) {
-    console.log(a.frontmatter.date, b.frontmatter.date);
-    return a.frontmatter.date - b.frontmatter.date;
+    return new Date(b.frontmatter.date) - new Date(a.frontmatter.date);
   });
-  // posts = posts.slice(0, 5);
+  posts = posts.slice(0, 5);
 
   // Automate?
   const projects = [
@@ -47,7 +46,7 @@ export async function getStaticProps() {
       description: "Toy kernel for ARM, written by students of TU Delft",
     },
     {
-      name: "acamdemic_markdown",
+      name: "academic_markdown",
       url: "https://github.com/cochaviz/academic_markdown",
       description:
         "A workflow for doing academic writing with Markown (and VSCode)",
@@ -144,7 +143,7 @@ export default function Home({ projects, posts }) {
       <ul>
         {posts.map(({ slug, frontmatter }) => (
           <li key={slug}>
-            <Link href={`/post/${slug}`}>
+            <Link href={`/posts/${slug}`}>
               <a>
                 [{frontmatter.date}] -{" "}
                 {frontmatter.tags.includes("wip") ? "[WIP]" : ""}{" "}
@@ -163,7 +162,9 @@ export default function Home({ projects, posts }) {
             </div>
           </li>
         ))}
-        <li className="text-gray-500 dark:text-gray-400">older...</li>
+        <li className="text-gray-500 dark:text-gray-400">
+          <a href="/post">all</a>
+        </li>
       </ul>
 
       <h2>Projects</h2>
