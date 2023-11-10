@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><title>Baby’s First Reverse Engineering</title><meta property="og:type" content="article"/><meta property="og:title"/><meta property="og:description"/><meta property="og:image"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="manifest" href="/site.webmanifest"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous"/><script>if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {           document.documentElement.classList.add('dark')             } else {           document.documentElement.classList.remove('dark')             }</script><link rel="preload" href="/_next/static/css/c1d346a475f2dc76.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c1d346a475f2dc76.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-69bfa6990bb9e155.js" defer=""></script><script src="/_next/static/chunks/framework-e70c6273bfe3f237.js" defer=""></script><script src="/_next/static/chunks/main-7e27d3add388512d.js" defer=""></script><script src="/_next/static/chunks/pages/_app-1ab394c7a000adfc.js" defer=""></script><script src="/_next/static/chunks/175675d1-0bdd1afc02fe15fb.js" defer=""></script><script src="/_next/static/chunks/985-e85a3fa4ed34a036.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bslug%5D-b523656a8b39cc3a.js" defer=""></script><script src="/_next/static/uIZ6HIrXn6DcuhxdsMn7f/_buildManifest.js" defer=""></script><script src="/_next/static/uIZ6HIrXn6DcuhxdsMn7f/_ssgManifest.js" defer=""></script></head><body><div id="__next" data-reactroot=""><div class="flex flex-col min-h-screen"><header id="TOP" class="py-4 px-8"><div class="container max-w-3xl mx-auto flex justify-between"><a class="font-mono no-underline" href="/">~/</a><div class="font-mono my-auto text-accent-1-light dark:text-accent-1-dark"><span class="hidden sm:block ">cochaviz</span> <span class="block sm:hidden">👨‍💻</span> </div><div class="flex gap-x-5"><a href="https://www.github.com/cochaviz"> github </a><a href="https://www.linkedin.com/in/cochaviz"> linkedin </a><button id="dark-mode-toggle-light" class="hover:border-accent-1-dark border-background-alt-dark bg-background-dark border-2 px-2 hidden dark:block">light mode</button><button id="dark-mode-toggle-dark" class="hover:border-accent-1-light border-background-alt-light bg-background-light border-2 px-2 block dark:hidden">dark mode</button></div></div></header><main class="container max-w-2xl"><div><a class="text-5xl font-sans no-underline fixed bottom-5 right-5 sm:bottom-10 sm:right-10 z-50 bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark px-3 pb-2 border-2" href="#TOP">↑</a><h1>Baby’s First Reverse Engineering</h1><article><p>[[ toc ]]</p>
+<h2>Introduction</h2>
+<p>A little while ago, my dad came to me with the request whether I would
+be able to crack some long-forgotten abandon-ware. As it happened, I had
+binged just about all of
+<a href="https://www.youtube.com/@jeFF0Falltrades">jeFF0Falltrades</a>’s content
+which, together with a healthy dose of youthful over-confidence, made me
+just about the only person who could solve this little challenge. Not
+that I am well-equipped or any way more qualified than many other people
+in the field of reverse engineering, I just didn’t tell them about the
+challenge. <strong>Don’t be the best, be the first</strong>.</p>
+<p>First, I should explain what we are exactly going to do, and why I would
+consider cracking this software ethical. Then, I will walk you through
+the different paths I took, both successful and unsuccessful. As I don’t
+know much about reverse engineering but am very interested in it, I
+think this might be useful for anyone who, too, is interested but does
+not have much knowledge. With that said, I will cut the talk and show
+how I solved this, admittedly simple, challenge.</p>
+<h2>The Prompt and the Ethics</h2>
+<p>The program my dad worked with is an executable that takes geometric
+data regarding a ship and allows you to modify it in some particular
+ways. I won’t pretend like I know exactly why it’s useful, but he deemed
+it very much so. The program itself is from about 2009 and the installer
+will only complete when run in Windows Vista compatibility mode. Long
+story short, there is nothing to be found about this software online and
+the only reason it has not disappeared from the face of the earth is my
+father’s questionable but meticulous back-up methodology. Sadly, though,
+the backup was not meticulous enough and the license to use the program
+got lost.</p>
+<p>Installing the program for the first time shows the following window.</p>
+<figure id="fig:first_run">
+<img
+src="/images/post/babys-first-reverse-engineering/validate_this_installation.png"
+alt="A program window showing that there are 7 free runs left." />
+<figcaption>Figure 1: A program window showing that there are 7 free
+runs left.</figcaption>
+</figure>
+
+<p>Clearly, we can run this program and use it fully without a license. The
+problem is that we can only use this 7 times, after which we get the
+following message.</p>
+<figure id="fig:no_more_free_runs">
+<img
+src="/images/post/babys-first-reverse-engineering/no_more_free_runs.png"
+alt="A program window showing that we are out of free runs and have to validate the program." />
+<figcaption>Figure 2: A program window showing that we are out of free
+runs and have to validate the program.</figcaption>
+</figure>
+
+<p>The keen-eyed among you, might have already guessed that it has to keep
+track of these free runs or trails, based on some process-independent
+state, i.e. it has to write it to some file. If we can find a way to
+manipulate this state or its processing, we can crack the software.</p>
+<p>Still, cracking is generally considered unethical because it directly
+interferes with the monetary interests of the software developer who
+wrote the program. In this case, we could make the argument that my dad
+simply lost the key and should therefore be allowed to use the program.
+Still, you might say that publicizing a write-up like this goes further
+than just allowing a person who bought the software to get what they
+paid for. In which case I would say: “Good point!”.</p>
+<p>In this case, however, I wouldn’t consider the monetary interests of the
+author relevant anymore because the software is not publicly available
+or sold anywhere. Therefore, cracking this software shouldn’t be
+considered unethical. Additionally, I’m only publicizing <em>how</em> to crack
+this software, not distributing a cracked version of this software. So
+anyone thinking that copyright might be an issue need not worry.</p>
+<p>If there is anyone that still thinks this is in some way not justified,
+please let me know. I love a great discussion.</p>
+<h2>Cracking</h2>
+<p>The goal of this challenge is therefore to somehow use the free trails
+to crack the program and provide my dear old father with his equally
+ancient software (love you).</p>
+<h3>Registry Files and Procmon (Attempt)</h3>
+<p>My first thought was to use
+<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/procmon">procmon</a>
+to monitor the behavior of the executable and look for any interesting
+registries that are written to. To do this, we launch procmon, open the
+<em>Process Tree</em>, and filter on our program of interest <code>GFMv6.exe</code> and
+its possible children.</p>
+<figure id="fig:procmon_pt">
+<img
+src="/images/post/babys-first-reverse-engineering/procmon_process_tree.png"
+alt="Procmon Process Tree. Highlighted is the program we’re looking for. Using ‘Include Subtree’, we can include and apply a filter such that we only monitor this Process ID (PID) and any other processes it spawns." />
+<figcaption>Figure 3: Procmon Process Tree. Highlighted is the program
+we’re looking for. Using ‘Include Subtree’, we can include and apply a
+filter such that we only monitor this Process ID (PID) and any other
+processes it spawns.</figcaption>
+</figure>
+
+<p>We can then return to the main procmon screen and select only the
+registry operations button. We have to make sure procmon is started and
+recording <em>before</em> we start the program.</p>
+<figure id="fig:procmon_reg">
+<img
+src="/images/post/babys-first-reverse-engineering/procmon_registries.png"
+alt="Registries observed by procmon for GFMv6.exe. Notice the bar on the top-right where you can filter to show only registry operations." />
+<figcaption>Figure 4: Registries observed by procmon for
+<code>GFMv6.exe</code>. Notice the bar on the top-right where you can
+filter to show only registry operations.</figcaption>
+</figure>
+
+<p>I’ll spare you the details, but I spent some time looking through all
+the registries that are written to, specifically filtering on events
+that happened after initially opening the prompt shown in fig. 1. This
+way, we should be able to see any registry files that are updated after
+selecting <strong>No</strong>, but to no avail.</p>
+<p>Even though it’s a very manual process, it’s not complicated; don’t let
+low-hanging fruit go to waste. Furthermore, I guess there might be a
+method of exporting the results from procmon to a csv and checking what
+the differences are in the contents of the registries between one run
+and another. If these trails were saved in some registry, the difference
+should should be pretty obvious assuming the runs were saved in
+plaintext.</p>
+<h3>Brute-Forcing and Guessing (Attempt)</h3>
+<p>Then, onto the meat of the matter: Let’s open Ghidra! I did, however,
+realize that there is no sense in just opening the program without some
+sort of hook from where I would be able to determine what is going on.
+The thing is that the prompt in fig. 1 somehow reads the number of
+trails left while the sentence “full uses of this program before
+validation is required” remains the same. So let’s go with that for now.</p>
+<p>Create a new project in Ghidra and import the file (shortcut: <code>I</code>,
+fig. 5). With more exotic programs or when analyzing firmware, you might
+have to define some options. Here, we just go with the defaults.</p>
+<figure id="fig:ghidra_import">
+<img
+src="/images/post/babys-first-reverse-engineering/ghidra_import.png"
+alt="Ghidra importing an executable. In this case, we just leave it as default. Do, however, have a look in the options! It can be surprising what kind of stuff you need to know to successfully decompile a binary." />
+<figcaption>Figure 5: Ghidra importing an executable. In this case, we
+just leave it as default. Do, however, have a look in the options! It
+can be surprising what kind of stuff you need to know to successfully
+decompile a binary.</figcaption>
+</figure>
+
+<p>Then, Ghidra will as whether we would like to analyze the file. We
+absolutely do, otherwise, a 1-day project might turn into a 1-year
+project.</p>
+<figure id="fig:ghidra_analysis">
+<img
+src="/images/post/babys-first-reverse-engineering/ghidra_analysis.png"
+alt="Analyzing Ghidra, just let it do its thing. If you know you’re using a WindowsPE app, it could be benefitial to tick the corresponding box. This will propagate the argument names as defined in the documentation to the rest of the program" />
+<figcaption>Figure 6: Analyzing Ghidra, just let it do its thing. If you
+know you’re using a WindowsPE app, it could be benefitial to tick the
+corresponding box. This will propagate the argument names as defined in
+the documentation to the rest of the program</figcaption>
+</figure>
+
+<p>Then, we search for the string as mentioned before by selecting
+<code>Search &gt; For Strings...</code> in the menu bar. When we enter “full uses” we
+immediately get the result we’re looking for!</p>
+<figure id="fig:ghidra_search_string">
+<img
+src="/images/post/babys-first-reverse-engineering/ghidra_search_strings.png"
+alt="String search in Ghidra showing the results for the search “full uses”. This will only show strings as defined in the program (probably all in the .data section, but I’m not sure). If you’re looking for functions, variable names, or comments, you should use Search &gt; Program Text." />
+<figcaption>Figure 7: String search in Ghidra showing the results for
+the search “full uses”. This will only show strings as defined in the
+program (probably all in the <code>.data</code> section, but I’m not
+sure). If you’re looking for functions, variable names, or comments, you
+should use <code>Search &gt; Program Text</code>.</figcaption>
+</figure>
+
+<p>Double-clicking the string will redirect us to the place where the
+string is located in the <code>.data</code> section. Luckily there is only one
+cross-reference (denoted by the <code>XREF</code> tag/comment) to this string,
+which we double click to got to. After letting Ghidra do it magic, we’re
+left with the following if-statement in which the string is used:</p>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">// [...]</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; local_1c) {
+    __vbaStrCat(<span class="hljs-string">L&quot;You have &quot;</span>,local_18);
+    uVar8 = (*pcVar11)();
+    __vbaStrR4(local_1c);
+    uVar10 = (*pcVar11)(uVar8);
+    __vbaStrCat(uVar10,uVar8);
+    uVar8 = (*pcVar11)();
+    __vbaStrCat(<span class="hljs-string">L&quot; full uses of this program before validation is required.  Select No to use this f ree full use now, or Cancel to exit.&quot;</span>
+                ,uVar8);
+    uVar8 = (*pcVar11)();
+    <span class="hljs-built_in">rtcBstrFromAnsi</span>(<span class="hljs-number">0xd</span>);
+    uVar10 = (*pcVar11)(uVar8);
+    __vbaStrCat(uVar10,uVar8);
+    uVar8 = (*pcVar11)();
+    <span class="hljs-built_in">rtcBstrFromAnsi</span>(<span class="hljs-number">0xd</span>);
+    uVar10 = (*pcVar11)(uVar8);
+    __vbaStrCat(uVar10,uVar8);
+    uVar8 = (*pcVar11)();
+    __vbaStrCat(<span class="hljs-string">L&quot;Validate now?&quot;</span>,uVar8);
+    (*pcVar11)();
+    __vbaFreeStrList(<span class="hljs-number">8</span>,&amp;local_30,&amp;local_34,&amp;local_38,&amp;local_3c,&amp;local_40,&amp;local_44,&amp;local_48,
+                     &amp;local_4c);
+  } <span class="hljs-keyword">else</span> {
+    __vbaStrCat(<span class="hljs-string">L&quot;You have used up your free full uses of this program.  Select No to run in demonst ration mode, or Cancel to exit.&quot;</span>
+                ,local_18);
+    <span class="hljs-comment">// [...]</span>
+    __vbaStrCat(<span class="hljs-string">L&quot;Validate now?&quot;</span>,uVar8);
+    (*pcVar11)();
+    __vbaFreeStrList(<span class="hljs-number">5</span>,&amp;local_30,&amp;local_34,&amp;local_38,&amp;local_3c,&amp;local_40);
+  }
+<span class="hljs-comment">// [...]</span>
+</code></pre><p>While this is great, there are some quirks about this decompilation
+which we’ll get to. First, this tells us a couple of things:</p>
+<ol>
+<li><p>This program was probably written in Visual Basic, as denoted by the
+<code>vba</code> prefix before all the functions.</p>
+</li>
+<li><p>The variable <code>local_1c</code> determines whether the number of free uses
+have passed. This is indicated by <code>local_1c</code> being used to determine
+whether the text “You have <code>local_1c</code> full uses left” or “You have
+used up your free full uses of this program” is shown to the user.
+Also, the variable is converted to a string from a number in
+<code>__vbaStrR4(local_1c)</code> in between “You have” and “full uses”.</p>
+</li>
+<li><p>The fact that these strings are built here, probably indicates that
+this is also where the windows will be built. If that’s the case,
+this function should therefore be called by some other function
+which might perform the actual check. But this is definitely more
+speculation than anything.</p>
+</li>
+</ol>
+<p>There is something weird happening with the function calls and the
+complete lack of return values or pointers as arguments. The assembly
+code definitely tells us a little more, but is hard to read.</p>
+<pre><code class="hljs language-asm">                      LAB_005492d1                                    XREF[1]:     00549262(j)  
+005492d1 68 78 2c        PUSH       u_You_have_00432c78                              = u&quot;You have &quot;
+          43 00
+005492d6 ff d7           CALL       EDI=&gt;MSVBVM60.DLL::__vbaStrCat
+005492d8 8b d0           MOV        EDX,EAX
+005492da 8d 4d d4        LEA        ECX=&gt;local_30,[EBP + -0x2c]
+005492dd ff d6           CALL       ESI=&gt;MSVBVM60.DLL::__vbaStrMove
+005492df 8b 4d e8        MOV        ECX,dword ptr [EBP + local_1c]
+005492e2 50              PUSH       EAX
+005492e3 51              PUSH       ECX
+005492e4 ff 15 b4        CALL       dword ptr [-&gt;MSVBVM60.DLL::__vbaStrR4]           = 727803a4
+          11 40 00
+005492ea 8b d0           MOV        EDX,EAX
+005492ec 8d 4d d0        LEA        ECX=&gt;local_34,[EBP + -0x30]
+005492ef ff d6           CALL       ESI=&gt;MSVBVM60.DLL::__vbaStrMove
+005492f1 50              PUSH       EAX
+005492f2 ff d7           CALL       EDI=&gt;MSVBVM60.DLL::__vbaStrCat
+005492f4 8b d0           MOV        EDX,EAX
+005492f6 8d 4d cc        LEA        ECX=&gt;local_38,[EBP + -0x34]
+005492f9 ff d6           CALL       ESI=&gt;MSVBVM60.DLL::__vbaStrMove
+005492fb 50              PUSH       EAX
+005492fc 68 4c 2d        PUSH       u__full_uses_of_this_program_befor_00432d4c      = u&quot; full uses of this program b
+          43 00
+00549301 ff d7           CALL       EDI=&gt;MSVBVM60.DLL::__vbaStrCat
+</code></pre><h3>Finding User Settings (Success)</h3>
+<ul>
+<li>Delete <code>WMG.ini</code></li>
+</ul>
+<h3>Subtract by Zero (Success)</h3>
+<ul>
+<li>Change <code>FSUB dword ptr [DAT_00401db0]</code> to <code>NOP dword ptr 0x00401d</code></li>
+</ul>
+<h3>Verification Prompt Begone (Success)</h3>
+<h2>Conclusion</h2>
+</article></div></main><footer class="mt-8 p-4 px-8"><div class="container max-w-3xl mx-auto flex justify-between"><div>© 2023 - Zohar Cochavi</div><a href="https://github.com/cochaviz/bunkernet">check the source</a></div></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"frontmatter":{"author":"Zohar Cochavi","autoEqnLabels":false,"autoSectionLabels":false,"ccsDelim":", ","ccsLabelSep":"—","ccsTemplate":"$$i$$$$ccsLabelSep$$$$t$$","chapDelim":".","chapters":false,"chaptersDepth":1,"codeBlockCaptions":true,"cref":false,"crossrefYaml":"pandoc-crossref.yaml","date":"2023-11-06","eqLabels":"arabic","eqnBlockInlineMath":false,"eqnBlockTemplate":"\u003ctable\u003e\n\u003ccolgroup\u003e\n\u003ccol style=\"width: 90%\" /\u003e\n\u003ccol style=\"width: 10%\" /\u003e\n\u003c/colgroup\u003e\n\u003ctbody\u003e\n\u003ctr class=\"odd\"\u003e\n\u003ctd style=\"text-align: center;\"\u003e\u003cspan\nclass=\"math display\"\u003e\u003cem\u003et\u003c/em\u003e\u003c/span\u003e\u003c/td\u003e\n\u003ctd style=\"text-align: right;\"\u003e\u003cspan\nclass=\"math display\"\u003e\u003cem\u003ei\u003c/em\u003e\u003c/span\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n","eqnIndexTemplate":"($$i$$)","eqnInlineTemplate":"$$e$$$$equationNumberTeX$${$$i$$}","eqnPrefix":["eq.","eqns."],"eqnPrefixTemplate":"$$p$$ $$i$$","equationNumberTeX":"\\qquad","figLabels":"arabic","figPrefix":["fig.","figs."],"figPrefixTemplate":"$$p$$ $$i$$","figureTemplate":"$$figureTitle$$ $$i$$$$titleDelim$$ $$t$$","figureTitle":"Figure","lastDelim":", ","linkReferences":false,"listings":false,"listingTemplate":"$$listingTitle$$ $$i$$$$titleDelim$$ $$t$$","listingTitle":"Listing","listItemTitleDelim":".","lofItemTemplate":"$$lofItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  \n","lofTitle":"# List of Figures\n","lolItemTemplate":"$$lolItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  \n","lolTitle":"# List of Listings\n","lotItemTemplate":"$$lotItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  \n","lotTitle":"# List of Tables\n","lstLabels":"arabic","lstPrefix":["lst.","lsts."],"lstPrefixTemplate":"$$p$$ $$i$$","nameInLink":false,"numberSections":false,"pairDelim":", ","rangeDelim":"-","refDelim":", ","refIndexTemplate":"$$i$$$$suf$$","secHeaderDelim":null,"secHeaderTemplate":"$$i$$$$secHeaderDelim[n]$$$$t$$","secLabels":"arabic","secPrefix":["sec.","secs."],"secPrefixTemplate":"$$p$$ $$i$$","sectionsDepth":0,"subfigGrid":false,"subfigLabels":"alpha a","subfigureChildTemplate":"$$i$$","subfigureRefIndexTemplate":"$$i$$$$suf$$ ($$s$$)","subfigureTemplate":"$$figureTitle$$ $$i$$$$titleDelim$$ $$t$$. $$ccs$$","tableEqns":false,"tableTemplate":"$$tableTitle$$ $$i$$$$titleDelim$$ $$t$$","tableTitle":"Table","tags":["first","reverse-engineering","wip"],"tblLabels":"arabic","tblPrefix":["tbl.","tbls."],"tblPrefixTemplate":"$$p$$ $$i$$","title":"Baby’s First Reverse Engineering","titleDelim":":"},"content":"\n\\[\\[ toc \\]\\]\n\n## Introduction\n\nA little while ago, my dad came to me with the request whether I would\nbe able to crack some long-forgotten abandon-ware. As it happened, I had\nbinged just about all of\n[jeFF0Falltrades](https://www.youtube.com/@jeFF0Falltrades)’s content\nwhich, together with a healthy dose of youthful over-confidence, made me\njust about the only person who could solve this little challenge. Not\nthat I am well-equipped or any way more qualified than many other people\nin the field of reverse engineering, I just didn’t tell them about the\nchallenge. **Don’t be the best, be the first**.\n\nFirst, I should explain what we are exactly going to do, and why I would\nconsider cracking this software ethical. Then, I will walk you through\nthe different paths I took, both successful and unsuccessful. As I don’t\nknow much about reverse engineering but am very interested in it, I\nthink this might be useful for anyone who, too, is interested but does\nnot have much knowledge. With that said, I will cut the talk and show\nhow I solved this, admittedly simple, challenge.\n\n## The Prompt and the Ethics\n\nThe program my dad worked with is an executable that takes geometric\ndata regarding a ship and allows you to modify it in some particular\nways. I won’t pretend like I know exactly why it’s useful, but he deemed\nit very much so. The program itself is from about 2009 and the installer\nwill only complete when run in Windows Vista compatibility mode. Long\nstory short, there is nothing to be found about this software online and\nthe only reason it has not disappeared from the face of the earth is my\nfather’s questionable but meticulous back-up methodology. Sadly, though,\nthe backup was not meticulous enough and the license to use the program\ngot lost.\n\nInstalling the program for the first time shows the following window.\n\n\u003cfigure id=\"fig:first_run\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/validate_this_installation.png\"\nalt=\"A program window showing that there are 7 free runs left.\" /\u003e\n\u003cfigcaption\u003eFigure 1: A program window showing that there are 7 free\nruns left.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nClearly, we can run this program and use it fully without a license. The\nproblem is that we can only use this 7 times, after which we get the\nfollowing message.\n\n\u003cfigure id=\"fig:no_more_free_runs\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/no_more_free_runs.png\"\nalt=\"A program window showing that we are out of free runs and have to validate the program.\" /\u003e\n\u003cfigcaption\u003eFigure 2: A program window showing that we are out of free\nruns and have to validate the program.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nThe keen-eyed among you, might have already guessed that it has to keep\ntrack of these free runs or trails, based on some process-independent\nstate, i.e. it has to write it to some file. If we can find a way to\nmanipulate this state or its processing, we can crack the software.\n\nStill, cracking is generally considered unethical because it directly\ninterferes with the monetary interests of the software developer who\nwrote the program. In this case, we could make the argument that my dad\nsimply lost the key and should therefore be allowed to use the program.\nStill, you might say that publicizing a write-up like this goes further\nthan just allowing a person who bought the software to get what they\npaid for. In which case I would say: “Good point!”.\n\nIn this case, however, I wouldn’t consider the monetary interests of the\nauthor relevant anymore because the software is not publicly available\nor sold anywhere. Therefore, cracking this software shouldn’t be\nconsidered unethical. Additionally, I’m only publicizing *how* to crack\nthis software, not distributing a cracked version of this software. So\nanyone thinking that copyright might be an issue need not worry.\n\nIf there is anyone that still thinks this is in some way not justified,\nplease let me know. I love a great discussion.\n\n## Cracking\n\nThe goal of this challenge is therefore to somehow use the free trails\nto crack the program and provide my dear old father with his equally\nancient software (love you).\n\n### Registry Files and Procmon (Attempt)\n\nMy first thought was to use\n[procmon](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon)\nto monitor the behavior of the executable and look for any interesting\nregistries that are written to. To do this, we launch procmon, open the\n*Process Tree*, and filter on our program of interest `GFMv6.exe` and\nits possible children.\n\n\u003cfigure id=\"fig:procmon_pt\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/procmon_process_tree.png\"\nalt=\"Procmon Process Tree. Highlighted is the program we’re looking for. Using ‘Include Subtree’, we can include and apply a filter such that we only monitor this Process ID (PID) and any other processes it spawns.\" /\u003e\n\u003cfigcaption\u003eFigure 3: Procmon Process Tree. Highlighted is the program\nwe’re looking for. Using ‘Include Subtree’, we can include and apply a\nfilter such that we only monitor this Process ID (PID) and any other\nprocesses it spawns.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nWe can then return to the main procmon screen and select only the\nregistry operations button. We have to make sure procmon is started and\nrecording *before* we start the program.\n\n\u003cfigure id=\"fig:procmon_reg\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/procmon_registries.png\"\nalt=\"Registries observed by procmon for GFMv6.exe. Notice the bar on the top-right where you can filter to show only registry operations.\" /\u003e\n\u003cfigcaption\u003eFigure 4: Registries observed by procmon for\n\u003ccode\u003eGFMv6.exe\u003c/code\u003e. Notice the bar on the top-right where you can\nfilter to show only registry operations.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nI’ll spare you the details, but I spent some time looking through all\nthe registries that are written to, specifically filtering on events\nthat happened after initially opening the prompt shown in fig. 1. This\nway, we should be able to see any registry files that are updated after\nselecting **No**, but to no avail.\n\nEven though it’s a very manual process, it’s not complicated; don’t let\nlow-hanging fruit go to waste. Furthermore, I guess there might be a\nmethod of exporting the results from procmon to a csv and checking what\nthe differences are in the contents of the registries between one run\nand another. If these trails were saved in some registry, the difference\nshould should be pretty obvious assuming the runs were saved in\nplaintext.\n\n### Brute-Forcing and Guessing (Attempt)\n\nThen, onto the meat of the matter: Let’s open Ghidra! I did, however,\nrealize that there is no sense in just opening the program without some\nsort of hook from where I would be able to determine what is going on.\nThe thing is that the prompt in fig. 1 somehow reads the number of\ntrails left while the sentence “full uses of this program before\nvalidation is required” remains the same. So let’s go with that for now.\n\nCreate a new project in Ghidra and import the file (shortcut: `I`,\nfig. 5). With more exotic programs or when analyzing firmware, you might\nhave to define some options. Here, we just go with the defaults.\n\n\u003cfigure id=\"fig:ghidra_import\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/ghidra_import.png\"\nalt=\"Ghidra importing an executable. In this case, we just leave it as default. Do, however, have a look in the options! It can be surprising what kind of stuff you need to know to successfully decompile a binary.\" /\u003e\n\u003cfigcaption\u003eFigure 5: Ghidra importing an executable. In this case, we\njust leave it as default. Do, however, have a look in the options! It\ncan be surprising what kind of stuff you need to know to successfully\ndecompile a binary.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nThen, Ghidra will as whether we would like to analyze the file. We\nabsolutely do, otherwise, a 1-day project might turn into a 1-year\nproject.\n\n\u003cfigure id=\"fig:ghidra_analysis\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/ghidra_analysis.png\"\nalt=\"Analyzing Ghidra, just let it do its thing. If you know you’re using a WindowsPE app, it could be benefitial to tick the corresponding box. This will propagate the argument names as defined in the documentation to the rest of the program\" /\u003e\n\u003cfigcaption\u003eFigure 6: Analyzing Ghidra, just let it do its thing. If you\nknow you’re using a WindowsPE app, it could be benefitial to tick the\ncorresponding box. This will propagate the argument names as defined in\nthe documentation to the rest of the program\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nThen, we search for the string as mentioned before by selecting\n`Search \u003e For Strings...` in the menu bar. When we enter “full uses” we\nimmediately get the result we’re looking for!\n\n\u003cfigure id=\"fig:ghidra_search_string\"\u003e\n\u003cimg\nsrc=\"/images/post/babys-first-reverse-engineering/ghidra_search_strings.png\"\nalt=\"String search in Ghidra showing the results for the search “full uses”. This will only show strings as defined in the program (probably all in the .data section, but I’m not sure). If you’re looking for functions, variable names, or comments, you should use Search \u0026gt; Program Text.\" /\u003e\n\u003cfigcaption\u003eFigure 7: String search in Ghidra showing the results for\nthe search “full uses”. This will only show strings as defined in the\nprogram (probably all in the \u003ccode\u003e.data\u003c/code\u003e section, but I’m not\nsure). If you’re looking for functions, variable names, or comments, you\nshould use \u003ccode\u003eSearch \u0026gt; Program Text\u003c/code\u003e.\u003c/figcaption\u003e\n\u003c/figure\u003e\n\nDouble-clicking the string will redirect us to the place where the\nstring is located in the `.data` section. Luckily there is only one\ncross-reference (denoted by the `XREF` tag/comment) to this string,\nwhich we double click to got to. After letting Ghidra do it magic, we’re\nleft with the following if-statement in which the string is used:\n\n``` cpp\n// [...]\n  if (0.0 \u003c local_1c) {\n    __vbaStrCat(L\"You have \",local_18);\n    uVar8 = (*pcVar11)();\n    __vbaStrR4(local_1c);\n    uVar10 = (*pcVar11)(uVar8);\n    __vbaStrCat(uVar10,uVar8);\n    uVar8 = (*pcVar11)();\n    __vbaStrCat(L\" full uses of this program before validation is required.  Select No to use this f ree full use now, or Cancel to exit.\"\n                ,uVar8);\n    uVar8 = (*pcVar11)();\n    rtcBstrFromAnsi(0xd);\n    uVar10 = (*pcVar11)(uVar8);\n    __vbaStrCat(uVar10,uVar8);\n    uVar8 = (*pcVar11)();\n    rtcBstrFromAnsi(0xd);\n    uVar10 = (*pcVar11)(uVar8);\n    __vbaStrCat(uVar10,uVar8);\n    uVar8 = (*pcVar11)();\n    __vbaStrCat(L\"Validate now?\",uVar8);\n    (*pcVar11)();\n    __vbaFreeStrList(8,\u0026local_30,\u0026local_34,\u0026local_38,\u0026local_3c,\u0026local_40,\u0026local_44,\u0026local_48,\n                     \u0026local_4c);\n  } else {\n    __vbaStrCat(L\"You have used up your free full uses of this program.  Select No to run in demonst ration mode, or Cancel to exit.\"\n                ,local_18);\n    // [...]\n    __vbaStrCat(L\"Validate now?\",uVar8);\n    (*pcVar11)();\n    __vbaFreeStrList(5,\u0026local_30,\u0026local_34,\u0026local_38,\u0026local_3c,\u0026local_40);\n  }\n// [...]\n```\n\nWhile this is great, there are some quirks about this decompilation\nwhich we’ll get to. First, this tells us a couple of things:\n\n1.  This program was probably written in Visual Basic, as denoted by the\n    `vba` prefix before all the functions.\n\n2.  The variable `local_1c` determines whether the number of free uses\n    have passed. This is indicated by `local_1c` being used to determine\n    whether the text “You have `local_1c` full uses left” or “You have\n    used up your free full uses of this program” is shown to the user.\n    Also, the variable is converted to a string from a number in\n    `__vbaStrR4(local_1c)` in between “You have” and “full uses”.\n\n3.  The fact that these strings are built here, probably indicates that\n    this is also where the windows will be built. If that’s the case,\n    this function should therefore be called by some other function\n    which might perform the actual check. But this is definitely more\n    speculation than anything.\n\nThere is something weird happening with the function calls and the\ncomplete lack of return values or pointers as arguments. The assembly\ncode definitely tells us a little more, but is hard to read.\n\n``` asm\n                      LAB_005492d1                                    XREF[1]:     00549262(j)  \n005492d1 68 78 2c        PUSH       u_You_have_00432c78                              = u\"You have \"\n          43 00\n005492d6 ff d7           CALL       EDI=\u003eMSVBVM60.DLL::__vbaStrCat\n005492d8 8b d0           MOV        EDX,EAX\n005492da 8d 4d d4        LEA        ECX=\u003elocal_30,[EBP + -0x2c]\n005492dd ff d6           CALL       ESI=\u003eMSVBVM60.DLL::__vbaStrMove\n005492df 8b 4d e8        MOV        ECX,dword ptr [EBP + local_1c]\n005492e2 50              PUSH       EAX\n005492e3 51              PUSH       ECX\n005492e4 ff 15 b4        CALL       dword ptr [-\u003eMSVBVM60.DLL::__vbaStrR4]           = 727803a4\n          11 40 00\n005492ea 8b d0           MOV        EDX,EAX\n005492ec 8d 4d d0        LEA        ECX=\u003elocal_34,[EBP + -0x30]\n005492ef ff d6           CALL       ESI=\u003eMSVBVM60.DLL::__vbaStrMove\n005492f1 50              PUSH       EAX\n005492f2 ff d7           CALL       EDI=\u003eMSVBVM60.DLL::__vbaStrCat\n005492f4 8b d0           MOV        EDX,EAX\n005492f6 8d 4d cc        LEA        ECX=\u003elocal_38,[EBP + -0x34]\n005492f9 ff d6           CALL       ESI=\u003eMSVBVM60.DLL::__vbaStrMove\n005492fb 50              PUSH       EAX\n005492fc 68 4c 2d        PUSH       u__full_uses_of_this_program_befor_00432d4c      = u\" full uses of this program b\n          43 00\n00549301 ff d7           CALL       EDI=\u003eMSVBVM60.DLL::__vbaStrCat\n```\n\n### Finding User Settings (Success)\n\n- Delete `WMG.ini`\n\n### Subtract by Zero (Success)\n\n- Change `FSUB dword ptr [DAT_00401db0]` to `NOP dword ptr 0x00401d`\n\n### Verification Prompt Begone (Success)\n\n## Conclusion\n"},"__N_SSG":true},"page":"/posts/[slug]","query":{"slug":"babys-first-reverse-engineering"},"buildId":"uIZ6HIrXn6DcuhxdsMn7f","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
