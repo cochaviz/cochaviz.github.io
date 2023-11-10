@@ -161,9 +161,9 @@ The goal of any machine learning algorithm is to predict some label or
 value given familiar but unseen data. For the purposes of this
 discussion, the machine-learning process can be separated into 3 stages:
 
-1.  Training
-2.  Testing/Evaluation
-3.  Deployment
+1. Training
+2. Testing/Evaluation
+3. Deployment
 
 During training, the machine learning model, $f$ is given a set of
 tuples $\{(x_i, y_i)\}$. The learning algorithm then adjusts the model
@@ -190,13 +190,13 @@ Federated Learning (FL) is a method of delegating, or democratizing, the
 training stage of a machine learning algorithm. Its benefits are
 threefold (Konečný et al., 2017):
 
-1.  It avoids sharing *raw* personal data with a third party.
-2.  Processing resources are delegated.
-3.  Data that is fragmented over multiple locations can still be used
+1. It avoids sharing *raw* personal data with a third party.
+2. Processing resources are delegated.
+3. Data that is fragmented over multiple locations can still be used
     for training.
 
 The process, generally, works as follows. Each client in set of clients,
-$C=\{c_0, \ldots, c_n\}$, trains a private machine learning model their
+ $C=\{c_0, \ldots, c_n\}$, trains a private machine learning model their
 respective dataset. Information about this trained model is then sent to
 a central server that *aggregates* the information from all clients into
 a single model. The newly trained model is then sent back to the clients
@@ -223,11 +223,12 @@ Various aggregation algorithms exist. The most popular of which are
 *Federated Stochastic Gradient Descent* (FedSGD) and *Federated
 Averaging* (FedAvg). These use the *gradient* (the function that
 describes how to optimize the model) or the aforementioned parameters,
-$\theta$, of the client models respectively when communicating model
-updates Gu et al. (2022). While technical details of these algorithms
-are not crucial to this discussion, it is important to note that both
-the gradient and the weights contain embedded information about the
-client’s dataset (Fredrikson et al., 2015; Geiping et al., 2020).
+ $\theta$, of the client models respectively when communicating
+model updates Gu et al. (2022). While the technical details of these
+algorithms are not crucial to this discussion, it is important to note
+that both the gradient and the weights contain embedded information
+about the client’s dataset (Fredrikson et al., 2015; Geiping et al.,
+2020).
 
 #### Vertical versus Horizontal FL
 
@@ -263,18 +264,18 @@ The phases discussed in the first section (training, testing, and
 deployment) correspond directly to different attacks which can be
 categorized as follows (Chakraborty et al., 2018).
 
-1.  *Poisoning Attack*: This type of attack, known as contamination of
+1. *Poisoning Attack*: This type of attack, known as contamination of
     the training data, takes place during the training time of the
     machine learning model. An adversary tries to poison the training
     data by injecting carefully designed samples to compromise the whole
     learning process eventually.
 
-2.  *Evasion Attack*: This is the most common type of attack in the
+2. *Evasion Attack*: This is the most common type of attack in the
     adversarial setting. The adversary tries to evade the system by
     adjusting malicious samples during the testing phase. This setting
     does not assume any influence over the training data.
 
-3.  *Inference/Exploratory Attack*: These attacks do not influence any
+3. *Inference/Exploratory Attack*: These attacks do not influence any
     dataset. Given black-box access to the model, they try to gain as
     much knowledge as possible about the learning algorithm of the
     underlying system and pattern in training data.
@@ -576,14 +577,14 @@ this could be considered when assessing the security of such systems.
 Considering the aforementioned advances, the following directions could
 provide useful for future research:
 
-1.  Consider using existing preprocessing methods for privacy
+1. Consider using existing preprocessing methods for privacy
     preservation. Shin et al. (2023) and Hatamizadeh et al. (2023) both
     either use or suggest using existing pre-processing or other
     learning-enhancing augmentations to improve privacy. Efforts toward
     generalizing data *before* training might prove a solution to both
     overfitting and privacy.
 
-2.  New attack methods would benefit from relaxing assumptions instead
+2. New attack methods would benefit from relaxing assumptions instead
     of attempting to increase performance. By doing this, various of the
     attacks shown have been to provide a more realistic view of the
     privacy-preserving features of FL. While performance improvements
@@ -591,7 +592,7 @@ provide useful for future research:
     exposing potential *realistic* threats would have a more direct
     effect on our ability to assess FL from a privacy perspective.
 
-3.  Working, safe Homomorphic Encryption (HE) would hamper most of the
+3. Working, safe Homomorphic Encryption (HE) would hamper most of the
     aforementioned attacks. Being able to encrypt data *before* training
     a model would make inference attacks completely benign (Lee et al.,
     2022). Work from the past year, however, was able to infer
