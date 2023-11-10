@@ -143,13 +143,11 @@ export default function Home({ projects, posts }) {
       <ul>
         {posts.map(({ slug, frontmatter }) => (
           <li key={slug}>
-            <Link href={`/posts/${slug}`}>
-              <a>
-                [{frontmatter.date}] -{" "}
-                {frontmatter.tags.includes("wip") ? "[WIP]" : ""}{" "}
-                {frontmatter.title}
-              </a>
-            </Link>
+            <a href={`/posts/${slug}`}>
+              [{frontmatter.date}] -{" "}
+              {frontmatter.tags.includes("wip") ? "[WIP]" : ""}{" "}
+              {frontmatter.title}
+            </a>
             <div>
               {frontmatter.tags.map((tag) => (
                 <p
@@ -163,7 +161,7 @@ export default function Home({ projects, posts }) {
           </li>
         ))}
         <li className="text-gray-500 dark:text-gray-400">
-          <a href="/post">all</a>
+          <Link href="/posts">older...</Link>
         </li>
       </ul>
 
@@ -177,7 +175,7 @@ export default function Home({ projects, posts }) {
       <ul>
         {projects.map(({ name, url, description }) => (
           <li key={name}>
-            <a href={url}>{name}</a>
+            <Link href={url}>{name}</Link>
             <p className="italic p-0 m-0 text-gray-500 dark:text-gray-400">
               {description}
             </p>
