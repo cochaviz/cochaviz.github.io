@@ -15,18 +15,17 @@ abstract: Federated Learning (FL) is a privacy-preserving approach to
 author: Zohar Cochavi
 autoEqnLabels: false
 autoSectionLabels: false
-ccsDelim: ","
-ccsLabelSep: —
+ccsDelim: ", "
+ccsLabelSep:  —
 ccsTemplate: $$i$$$$ccsLabelSep$$$$t$$
 chapDelim: .
 chapters: false
 chaptersDepth: 1
 classoption:
 - compsoc
-codeBlockCaptions: true
+codeBlockCaptions: false
 cref: false
 crossrefYaml: pandoc-crossref.yaml
-date: "2023-06-26"
 documentclass: IEEEtran
 eqLabels: arabic
 eqnBlockInlineMath: false
@@ -38,12 +37,10 @@ eqnBlockTemplate: |
   </colgroup>
   <tbody>
   <tr class="odd">
-  <td style="text-align: center;">
-  <span class="math display"><em>t</em></span>
-  </td>
-  <td style="text-align: right;">
-  <span class="math display"><em>i</em></span>
-  </td>
+  <td style="text-align: center;"><span
+  class="math display"><em>t</em></span></td>
+  <td style="text-align: right;"><span
+  class="math display"><em>i</em></span></td>
   </tr>
   </tbody>
   </table>
@@ -53,6 +50,7 @@ eqnPrefix:
 - eq.
 - eqns.
 eqnPrefixTemplate: $$p$$ $$i$$
+equationNumberTeX: \qquad
 figLabels: arabic
 figPrefix:
 - fig.
@@ -60,22 +58,22 @@ figPrefix:
 figPrefixTemplate: $$p$$ $$i$$
 figureTemplate: $$figureTitle$$ $$i$$$$titleDelim$$ $$t$$
 figureTitle: Figure
-lastDelim: ","
+lastDelim: ", "
 linkReferences: false
 listings: false
 listingTemplate: $$listingTitle$$ $$i$$$$titleDelim$$ $$t$$
 listingTitle: Listing
 listItemTitleDelim: .
 lofItemTemplate: |
-  $$lofItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$
+  $$lofItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  
 lofTitle: |
   # List of Figures
 lolItemTemplate: |
-  $$lolItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$
+  $$lolItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  
 lolTitle: |
   # List of Listings
 lotItemTemplate: |
-  $$lotItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$
+  $$lotItemTitle$$$$i$$$$listItemTitleDelim$$ $$t$$  
 lotTitle: |
   # List of Tables
 lstLabels: arabic
@@ -85,10 +83,11 @@ lstPrefix:
 lstPrefixTemplate: $$p$$ $$i$$
 nameInLink: false
 numberSections: false
-pairDelim: ","
+pairDelim: ", "
 rangeDelim: "-"
-refDelim: ","
+refDelim: ", "
 refIndexTemplate: $$i$$$$suf$$
+secHeaderDelim: 
 secHeaderTemplate: $$i$$$$secHeaderDelim[n]$$$$t$$
 secLabels: arabic
 secPrefix:
@@ -104,10 +103,6 @@ subfigureTemplate: $$figureTitle$$ $$i$$$$titleDelim$$ $$t$$. $$ccs$$
 tableEqns: false
 tableTemplate: $$tableTitle$$ $$i$$$$titleDelim$$ $$t$$
 tableTitle: Table
-tags:
-- survey
-- adversarial machine learning
-- federated learning
 tblLabels: arabic
 tblPrefix:
 - tbl.
@@ -115,6 +110,11 @@ tblPrefix:
 tblPrefixTemplate: $$p$$ $$i$$
 title: Inference Attacks on Federated Learning - A Survey
 titleDelim: ":"
+date: "2023-06-26"
+tags:
+  - survey
+  - adversarial machine learning
+  - federated learning
 ---
 
 ## Introduction
@@ -161,9 +161,9 @@ The goal of any machine learning algorithm is to predict some label or
 value given familiar but unseen data. For the purposes of this
 discussion, the machine-learning process can be separated into 3 stages:
 
-1.  Training
-2.  Testing/Evaluation
-3.  Deployment
+1. Training
+2. Testing/Evaluation
+3. Deployment
 
 During training, the machine learning model, $f$ is given a set of
 tuples $\{(x_i, y_i)\}$. The learning algorithm then adjusts the model
@@ -190,9 +190,9 @@ Federated Learning (FL) is a method of delegating, or democratizing, the
 training stage of a machine learning algorithm. Its benefits are
 threefold (Konečný et al., 2017):
 
-1.  It avoids sharing *raw* personal data with a third party.
-2.  Processing resources are delegated.
-3.  Data that is fragmented over multiple locations can still be used
+1. It avoids sharing *raw* personal data with a third party.
+2. Processing resources are delegated.
+3. Data that is fragmented over multiple locations can still be used
     for training.
 
 The process, generally, works as follows. Each client in set of clients,
@@ -200,23 +200,22 @@ $C=\{c_0, \ldots, c_n\}$, trains a private machine learning model their
 respective dataset. Information about this trained model is then sent to
 a central server that *aggregates* the information from all clients into
 a single model. The newly trained model is then sent back to the clients
-for another iteration[^2] Konečný et al. (2017).
+for another iteration[^2] Konečný et al. (2017).
 
 <figure>
 <img src="/images/post/inference-attacks-on-federated-learning/client-server-fl.svg"
 alt="Typical Federated Learning network topology. The client, c_i, sends the gradient, \nabla Q(\theta_i), and/or weights, \theta_i, of a particular iteration i. The central server then sends the updated model parameters \theta_{i+1} initiating the next iteration." />
-<figcaption aria-hidden="true">
-Typical Federated Learning network topology. The client,
-<span class="math inline"><em>c</em><sub><em>i</em></sub></span>, sends
-the gradient,
-<span class="math inline">∇<em>Q</em>(<em>θ</em><sub><em>i</em></sub>)</span>,
-and/or weights,
-<span class="math inline"><em>θ</em><sub><em>i</em></sub></span>, of a
+<figcaption aria-hidden="true">Typical Federated Learning network
+topology. The client, <span
+class="math inline"><em>c</em><sub><em>i</em></sub></span>, sends the
+gradient, <span
+class="math inline">∇<em>Q</em>(<em>θ</em><sub><em>i</em></sub>)</span>,
+and/or weights, <span
+class="math inline"><em>θ</em><sub><em>i</em></sub></span>, of a
 particular iteration <span class="math inline"><em>i</em></span>. The
-central server then sends the updated model parameters
-<span class="math inline"><em>θ</em><sub><em>i</em> + 1</sub></span>
-initiating the next iteration.
-</figcaption>
+central server then sends the updated model parameters <span
+class="math inline"><em>θ</em><sub><em>i</em> + 1</sub></span>
+initiating the next iteration.</figcaption>
 </figure>
 
 Various aggregation algorithms exist. The most popular of which are
@@ -224,7 +223,7 @@ Various aggregation algorithms exist. The most popular of which are
 Averaging* (FedAvg). These use the *gradient* (the function that
 describes how to optimize the model) or the aforementioned parameters,
 $\theta$, of the client models respectively when communicating model
-updates Gu et al. (2022). While technical details of these algorithms
+updates Gu et al. (2022). While technical details of these algorithms
 are not crucial to this discussion, it is important to note that both
 the gradient and the weights contain embedded information about the
 client’s dataset (Fredrikson et al., 2015; Geiping et al., 2020).
@@ -263,18 +262,18 @@ The phases discussed in the first section (training, testing, and
 deployment) correspond directly to different attacks which can be
 categorized as follows (Chakraborty et al., 2018).
 
-1.  *Poisoning Attack*: This type of attack, known as contamination of
+1. *Poisoning Attack*: This type of attack, known as contamination of
     the training data, takes place during the training time of the
     machine learning model. An adversary tries to poison the training
     data by injecting carefully designed samples to compromise the whole
     learning process eventually.
 
-2.  *Evasion Attack*: This is the most common type of attack in the
+2. *Evasion Attack*: This is the most common type of attack in the
     adversarial setting. The adversary tries to evade the system by
     adjusting malicious samples during the testing phase. This setting
     does not assume any influence over the training data.
 
-3.  *Inference/Exploratory Attack*: These attacks do not influence any
+3. *Inference/Exploratory Attack*: These attacks do not influence any
     dataset. Given black-box access to the model, they try to gain as
     much knowledge as possible about the learning algorithm of the
     underlying system and pattern in training data.
@@ -302,14 +301,14 @@ Inference attacks can be applied to both centralized machine learning
 models and Federated Learning schemes. Many of the principles we will
 cover apply to both centralized and Federated Learning, but the focus
 will be on applications on FL. Specifically, we will provide an overview
-of attack classifications as given by Abad et al. (2022).
+of attack classifications as given by Abad et al. (2022).
 
 Firstly, depending on the target information the attacker attempts to
 infer, the attack is classified as follows:
 
 - *Model Inversion*: In model inversion, the attacker attempts to invert
   the machine learning model. Thereby finding the data point
-  corresponding to a certain label. Fredrikson et al. (2015) were able
+  corresponding to a certain label. Fredrikson et al. (2015) were able
   to invert a facial recognition model, allowing them to recover the
   image of an individual known to be in the training dataset.
 
@@ -378,7 +377,7 @@ authors, and briefly discuss them.
 Keywords: *Model Inversion*, *Local/Global*, *Cross-Device/HFL*,
 *Passive*
 
-Hatamizadeh et al. (2023) performed image reconstruction using gradient
+Hatamizadeh et al. (2023) performed image reconstruction using gradient
 inversion while relaxing a strong assumption made in prior work
 regarding Batch Normalization (BN) (Ioffe & Szegedy, 2015). BN is a
 technique used in neural networks that significantly improve the
@@ -398,7 +397,7 @@ the image) to make accurate reconstructions.
 Keywords: *Membership Inference*, *Local/Global*, *Cross-Device/HFL*,
 *Passive*, *White-Box*
 
-Geng et al. (2023) proposed a framework for inverting both
+Geng et al. (2023) proposed a framework for inverting both
 *FedAVG*-based and *FedSGD*-based networks in an “honest-but-curious”
 scenario. They mention prior work has failed to effectively perform
 gradient inversion when FL uses the *FedAVG* aggregation algorithm.
@@ -416,7 +415,7 @@ attack harder to perform.
 Keywords: *Membership Inference*, *Local/Global*, *Cross-Device/VFL*,
 *Passive*
 
-Gu et al. (2022) were able to determine whether data points are members
+Gu et al. (2022) were able to determine whether data points are members
 of certain datasets by following the trend in their classification
 confidence. Over time, the global model should perform less well on
 participants’ private data, meaning that member data should follow a
@@ -434,7 +433,7 @@ best out of all included approaches by a significant margin.
 Keywords: *Membership Inference*, *Local/Global*, *Cross-Silo/VFL*,
 *Passive*
 
-In a black-box setting, Suri et al. (2022) propose a method for what
+In a black-box setting, Suri et al. (2022) propose a method for what
 they call *Subject Inference* (see [Federated
 Learning](#federated-learning)). They describe previous work as being
 disconnected from real-world scenarios as it (i) includes information
@@ -453,7 +452,7 @@ to user privacy.
 Keywords: *Membership Inference*, *Local/Global*, *Cross-Device/HFL*,
 *Active*
 
-Different from other works, Nguyen et al. (2023) considers a maximally
+Different from other works, Nguyen et al. (2023) considers a maximally
 malicious, i.e. *active*, membership inference attack. They implement a
 method for inferring membership of a particular data point in the
 presence of differential privacy (Dwork & Roth, 2013). Differential
@@ -475,7 +474,7 @@ them.
 
 #### Improved Gradient Inversion Attacks and Defenses in Federated Learning[^4]
 
-Geng et al. (2023) found that labels that only appeared only once were
+Geng et al. (2023) found that labels that only appeared only once were
 more prone to their proposed inversion attacks (see
 [Attacks](#improved-gradient-inversion-attacks-and-defenses-in-federated-learning)).
 They also mention the use of larger batch sizes in the global model
@@ -487,7 +486,7 @@ claims further.
 
 #### Do Gradient Inversion Attacks Make Federated Learning Unsafe?[^5]
 
-Hatamizadeh et al. (2023) make several recommendations to make existing
+Hatamizadeh et al. (2023) make several recommendations to make existing
 implementations of FL safer, namely: (i) larger training sets, (ii)
 updates from a larger number of iterations over different (iii) large
 batch sizes. In addition, they mention three more changes that could
@@ -495,13 +494,13 @@ potentially mitigate server-side (i.e. *Global*) gradient inversion
 attacks: (1) The use of *Homomorphic Encryption* (see [Future
 Work](#future-work)), (2) ensuring the attacker does not have knowledge
 of the model architecture, and (3) using an alternative aggregation
-algorithm such as FedBN Andreux et al. (2020). The countermeasures
+algorithm such as FedBN Andreux et al. (2020). The countermeasures
 provided are relatively general. They also provided sources affirming
 their suspicions.
 
 #### An Empirical Analysis of Image Augmentation Against Model Inversion Attack in Federated Learning
 
-Shin et al. (2023) propose the use of image augmentation as a more
+Shin et al. (2023) propose the use of image augmentation as a more
 viable alternative to differential privacy (Dwork & Roth, 2013). Image
 augmentation is a data synthesis method that increases the size of the
 training set, and reduces over-fitting (Shorten & Khoshgoftaar, 2019).
@@ -509,7 +508,7 @@ As this introduces fake data while improving the overall performance of
 the model, the authors suggest it could be used to mitigate model
 inversion attacks. The attack they used was introduced by (Geiping et
 al., 2020), and various more successful attacks have been constructed
-since then Geng et al. (2023).
+since then Geng et al. (2023).
 
 #### ResSFL: A Resistance Transfer Framework for Defending Model Inversion Attack in Split Federated Learning
 
@@ -541,7 +540,7 @@ attacks pose:
 - *More Realistic Scenarios*: Research starts to introduce more
   realistic scenarios that could threaten current implementations of
   Federated Learning. As the field matures, attacks seem to become more
-  realistic. Especially the work presented by Suri et al. (2022) poses a
+  realistic. Especially the work presented by Suri et al. (2022) poses a
   real threat as it assumes a complete black-box attack with reasonable
   assumptions while still showing good performance. Even in complete
   black-box settings, however, we still assume the ability to intercept
@@ -550,7 +549,7 @@ attacks pose:
 
 - *Increased Resilience Against Existing Privacy Measures*: Some of the
   aforementioned papers has shown improvements concerning the evasion of
-  privacy-preserving measures. Nguyen et al. (2023) have shown how a
+  privacy-preserving measures. Nguyen et al. (2023) have shown how a
   membership inference attack can be effectively performed in the
   presence of differential privacy. Their method was effective to such a
   degree that the attack was ineffective only once the privacy measures
@@ -561,7 +560,7 @@ attacks pose:
 
 - *Stronger Attacks in Existing Scenarios*: As to be expected, some work
   was focused on improving performance in existing scenarios. Gu et
-  al. (2022) have shown that much is still to be learned in the field by
+  al. (2022) have shown that much is still to be learned in the field by
   proposing a relatively simple approach that improves upon all previous
   methods by a large margin.
 
@@ -576,14 +575,14 @@ this could be considered when assessing the security of such systems.
 Considering the aforementioned advances, the following directions could
 provide useful for future research:
 
-1.  Consider using existing preprocessing methods for privacy
-    preservation. Shin et al. (2023) and Hatamizadeh et al. (2023) both
+1. Consider using existing preprocessing methods for privacy
+    preservation. Shin et al. (2023) and Hatamizadeh et al. (2023) both
     either use or suggest using existing pre-processing or other
     learning-enhancing augmentations to improve privacy. Efforts toward
     generalizing data *before* training might prove a solution to both
     overfitting and privacy.
 
-2.  New attack methods would benefit from relaxing assumptions instead
+2. New attack methods would benefit from relaxing assumptions instead
     of attempting to increase performance. By doing this, various of the
     attacks shown have been to provide a more realistic view of the
     privacy-preserving features of FL. While performance improvements
@@ -591,7 +590,7 @@ provide useful for future research:
     exposing potential *realistic* threats would have a more direct
     effect on our ability to assess FL from a privacy perspective.
 
-3.  Working, safe Homomorphic Encryption (HE) would hamper most of the
+3. Working, safe Homomorphic Encryption (HE) would hamper most of the
     aforementioned attacks. Being able to encrypt data *before* training
     a model would make inference attacks completely benign (Lee et al.,
     2022). Work from the past year, however, was able to infer
@@ -622,7 +621,7 @@ line-spacing="2">
 <div id="ref-abadSecurityPrivacyFederated2022" class="csl-entry">
 
 Abad, G., Picek, S., Ramírez-Durán, V. J., & Urbieta, A. (2022). *On the
-Security & Privacy in Federated Learning* (No. arXiv:2112.05423). arXiv.
+Security & Privacy in Federated Learning* (No. arXiv:2112.05423). arXiv.
 <https://arxiv.org/abs/2112.05423>
 
 </div>
@@ -745,7 +744,7 @@ Machine Intelligence*, *3*(6), 473–484.
 
 Konečný, J., McMahan, H. B., Yu, F. X., Richtárik, P., Suresh, A. T., &
 Bacon, D. (2017). *Federated Learning: Strategies for Improving
-Communication Efficiency* (No. arXiv:1610.05492). arXiv.
+Communication Efficiency* (No. arXiv:1610.05492). arXiv.
 <https://doi.org/10.48550/arXiv.1610.05492>
 
 </div>
@@ -782,7 +781,7 @@ IEEE/CVF Conference on Computer Vision and Pattern Recognition*,
 
 Li, X., Jiang, M., Zhang, X., Kamp, M., & Dou, Q. (2021). *FedBN:
 Federated Learning on Non-IID Features via Local Batch Normalization*
-(No. arXiv:2102.07623). arXiv.
+(No. arXiv:2102.07623). arXiv.
 <https://doi.org/10.48550/arXiv.2102.07623>
 
 </div>
@@ -828,7 +827,7 @@ Learning. *2019 IEEE Symposium on Security and Privacy (SP)*, 739–753.
 
 Nguyen, T., Lai, P., Tran, K., Phan, N., & Thai, M. T. (2023). *Active
 Membership Inference Attack under Local Differential Privacy in
-Federated Learning* (No. arXiv:2302.12685). arXiv.
+Federated Learning* (No. arXiv:2302.12685). arXiv.
 <https://doi.org/10.48550/arXiv.2302.12685>
 
 </div>
