@@ -73,7 +73,7 @@ export default function Posts({ posts }) {
       </Head>
 
       <h1>All Posts</h1>
-      <p>Here, you&oaps;ll find all the posts I&apos;ve made. Enjoy! :)</p>
+      <p>Here, you&apos;ll find all the posts I&apos;ve made. Enjoy! :)</p>
 
       <h2>Posts</h2>
 
